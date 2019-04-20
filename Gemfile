@@ -69,5 +69,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # List of gems added by me.
 
-gem 'bootstrap-sass'
+gem 'bootstrap'
 gem 'jquery-rails'
+gem 'popper_js'
