@@ -32,3 +32,6 @@
 
 # Ignore .env file (dotenv-rails)
 /.env
+
+# Ignore secrets.yml file
+/config/secrets.yml
