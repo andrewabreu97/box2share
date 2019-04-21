@@ -35,6 +35,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development, :test do
+  # Use dot-env to store secret keys and credentials
+  gem 'dotenv-rails'
   # Use rspec as test framework
   gem 'rspec-rails'
   gem 'factory_bot_rails'
