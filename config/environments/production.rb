@@ -94,8 +94,9 @@ Rails.application.configure do
 
   # ActionMailer Config
   config.action_mailer.default_url_options = { :host => "https://boxtoshare.herokuapp.com"}
-  ActionMailer::Base.delivery_method = :smtp
-  ActionMailer::Base.smtp_settings = {
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.default_options = { from: "noreply@gmail.com" }
+  config.action_mailer.smtp_settings = {
    address: "smtp.gmail.com",
    port: 587,
    domain: "gmail.com",
