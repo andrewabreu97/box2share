@@ -9,8 +9,8 @@ RSpec.feature "StaticPages", type: :feature do
 		
 		expect(page).to have_link("Home", :href => root_path)
 		expect(page).to have_link("Pricing", :href => '#')	
-		expect(page).to have_link("Sign In", :href => '#')	
-		expect(page).to have_link("Sign Up", :href => '#')
+		expect(page).to have_link("Sign In", :href => new_user_session_path)	
+		expect(page).to have_link("Sign Up", :href => new_user_registration_path)
 	end
 
 end
