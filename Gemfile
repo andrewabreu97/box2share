@@ -96,3 +96,4 @@ gem 'devise'
 gem 'devise-i18n'
 gem 'i18n-country-translations'
 gem 'rails-i18n'
+

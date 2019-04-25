@@ -2,6 +2,8 @@ es:
   activerecord:
     attributes:
       user:
+        name: Nombre
+        last_name: Apellidos
         confirmation_sent_at: Confirmación enviada a
         confirmation_token: Código de confirmación
         confirmed_at: Confirmado en
