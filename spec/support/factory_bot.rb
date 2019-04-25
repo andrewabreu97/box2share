@@ -5,7 +5,7 @@ RSpec.configure do |config|
     begin
       DatabaseCleaner.start
       # Test factories in spec/factories are working.
-      FactoryGirl.lint
+      FactoryBot.lint
     ensure
       DatabaseCleaner.clean
     end
