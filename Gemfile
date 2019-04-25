@@ -40,7 +40,7 @@ group :development, :test do
   # Use rspec as test framework
   gem 'rspec-rails'
   gem 'factory_bot_rails'
-
+  gem 'faker'
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3', '1.3.13'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -62,7 +62,7 @@ group :test do
   #gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   #gem 'chromedriver-helper'
-
+  gem 'shoulda-matchers'
   gem 'rails-controller-testing'
 end
 
