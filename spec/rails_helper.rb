@@ -12,6 +12,7 @@ require 'support/shoulda_matchers'
 require 'support/capybara'
 require 'support/webmock'
 require 'support/vcr'
+require 'support/email_spec'
 
 # Add additional requires below this line. Rails is not loaded until this point!
 
