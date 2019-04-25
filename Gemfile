@@ -77,6 +77,7 @@ group :test do
   # Stubbing and setting expectations on HTTP requests
   gem 'webmock'
   gem 'vcr'
+  gem 'email_spec'
 end
 
 group :production do
