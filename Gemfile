@@ -68,6 +68,8 @@ group :test do
   #gem 'chromedriver-helper'
   gem 'shoulda-matchers'
   gem 'rails-controller-testing'
+  # Stubbing and setting expectations on HTTP requests
+  gem 'webmock'
 end
 
 group :production do

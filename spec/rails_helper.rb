@@ -10,6 +10,7 @@ require 'support/factory_bot'
 require 'support/database_cleaner'
 require 'support/shoulda_matchers'
 require 'support/capybara'
+require 'support/webmock'
 
 # Add additional requires below this line. Rails is not loaded until this point!
 
