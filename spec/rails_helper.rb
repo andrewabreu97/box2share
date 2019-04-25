@@ -11,6 +11,7 @@ require 'support/database_cleaner'
 require 'support/shoulda_matchers'
 require 'support/capybara'
 require 'support/webmock'
+require 'support/vcr'
 
 # Add additional requires below this line. Rails is not loaded until this point!
 
