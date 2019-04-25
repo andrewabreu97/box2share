@@ -26,9 +26,9 @@
 	      <% end %>
 	      <li class="nav-item active">
 					<% if I18n.locale == I18n.default_locale %>
-						<%= link_to "Spanish", url_for(locale: 'es'), class: "nav-link" %>
+						<%= "Spanish", url_for(locale: 'es'), class: "nav-link" %>
 					<% else %>
-						<%= link_to "English", url_for(locale: 'en'), class: "nav-link" %>
+						<%= "English", url_for(locale: 'en'), class: "nav-link" %>
 					<% end %>			      	
 	      </li>
 	    </ul>
