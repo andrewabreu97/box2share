@@ -76,6 +76,7 @@ group :test do
   gem 'rails-controller-testing'
   # Stubbing and setting expectations on HTTP requests
   gem 'webmock'
+  gem 'vcr'
 end
 
 group :production do
