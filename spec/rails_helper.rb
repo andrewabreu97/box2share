@@ -8,6 +8,7 @@ require 'rspec/rails'
 require 'faker'
 require 'support/factory_bot'
 require 'support/database_cleaner'
+require 'support/shoulda_matchers'
 
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -63,11 +64,4 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 
-end
-
-Shoulda::Matchers.configure do |config|
-  config.integrate do |with|
-    with.test_framework :rspec
-    with.library :rails
-  end
 end
