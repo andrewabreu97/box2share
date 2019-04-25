@@ -1,5 +1,6 @@
 require 'capybara/rails'
 require 'capybara/rspec'
+require 'capybara-screenshot/rspec'
 
 # By default Capybara will use Selenium+Firefox for `js:true` feature specs.
 # Only if you're not using Puffing Billy, to use Chrome instead of Firefox,
