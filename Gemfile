@@ -61,6 +61,8 @@ end
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
+  # Capture a screenshot for each failure in our test suite
+  gem 'capybara-screenshot'
   gem 'selenium-webdriver'
   # Add database cleaner
   gem 'database_cleaner'
