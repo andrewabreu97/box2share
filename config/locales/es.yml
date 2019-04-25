@@ -217,3 +217,16 @@ es:
       long: "%-d de %B de %Y %H:%M"
       short: "%-d de %b %H:%M"
     pm: pm
+  pages:
+    header:
+      navigation_links:
+        home: Inicio
+        pricing: Precios
+        signin: Inicio de sesión
+        signup: Registrarse
+        signout: Cerrar sesión
+        profile: Perfil
+    home:
+      jumbotron:
+        lead: El nuevo servicio de almacenamiento en la nube
+        getstarted: Empieza ya

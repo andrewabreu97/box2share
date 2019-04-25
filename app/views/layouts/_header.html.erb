@@ -4,32 +4,32 @@
 			<%= link_to "Box2Share", root_path, class: "navbar-brand" %>
 	    <ul class="navbar-nav navbar-right ml-auto">
 	      <li class="nav-item active">
-	      	<%= link_to "Home", root_path, class: "nav-link" %>
+	      	<%= link_to t('pages.header.navigation_links.home'), root_path, class: "nav-link" %>
 	      </li>
 	      <li class="nav-item active">
-	        <%= link_to "Pricing", '#', class: "nav-link" %>
+	        <%= link_to t('pages.header.navigation_links.pricing'), '#', class: "nav-link" %>
 	      </li>
 	      <% if user_signed_in? %>
 		      <li class="nav-item active">
-		      	<%= link_to "Settings", edit_user_registration_path, class: "nav-link" %>
+		      	<%= link_to t('pages.header.navigation_links.profile'), edit_user_registration_path, class: "nav-link" %>
 		      </li>	      
 		      <li class="nav-item active">
-		      	<%= link_to "Sign Out", destroy_user_session_path , class: "nav-link", method: :delete %>
+		      	<%= link_to t('pages.header.navigation_links.signout'), destroy_user_session_path , class: "nav-link", method: :delete %>
 		      </li>
 	      <% else %>
 		      <li class="nav-item active">
-		      	<%= link_to "Sign In", new_user_session_path, class: "nav-link" %>
+		      	<%= link_to t('pages.header.navigation_links.signin'), new_user_session_path, class: "nav-link" %>
 		      </li>	      
 		      <li class="nav-item active">
-		      	<%= link_to "Sign Up", new_user_registration_path, class: "nav-link" %>
+		      	<%= link_to t('pages.header.navigation_links.signup'), new_user_registration_path, class: "nav-link" %>
 		      </li>
 	      <% end %>
 	      <li class="nav-item active">
-					<% if I18n.locale == I18n.default_locale %>
-						<%= "Spanish", url_for(locale: 'es'), class: "nav-link" %>
-					<% else %>
-						<%= "English", url_for(locale: 'en'), class: "nav-link" %>
-					<% end %>			      	
+			<% if I18n.locale == I18n.default_locale %>
+				<%= link_to "Spanish", url_for(locale: 'es'), class: "nav-link" %>
+			<% else %>
+				<%= link_to "English", url_for(locale: 'en'), class: "nav-link" %>
+			<% end %>			      	
 	      </li>
 	    </ul>
 		</div>

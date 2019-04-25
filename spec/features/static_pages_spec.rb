@@ -7,10 +7,10 @@ RSpec.feature "StaticPages", type: :feature do
 
 		expect(page).to have_title("Inicio | Box2Share")
 		
-		expect(page).to have_link("Home", :href => root_path)
-		expect(page).to have_link("Pricing", :href => '#')	
-		expect(page).to have_link("Sign In", :href => new_user_session_path)	
-		expect(page).to have_link("Sign Up", :href => new_user_registration_path)
+		expect(page).to have_link(I18n.t('pages.header.navigation_links.home'), :href => root_path(locale: I18n.locale))
+		expect(page).to have_link(I18n.t('pages.header.navigation_links.pricing'), :href => '#')	
+		expect(page).to have_link(I18n.t('pages.header.navigation_links.signin'), :href => new_user_session_path(locale: I18n.locale))	
+		expect(page).to have_link(I18n.t('pages.header.navigation_links.signup'), :href => new_user_registration_path(locale: I18n.locale))
 	end
 
 end

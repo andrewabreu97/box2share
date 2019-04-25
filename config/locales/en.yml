@@ -213,3 +213,16 @@ en:
       long: "%B %d, %Y %H:%M"
       short: "%d %b %H:%M"
     pm: pm
+  pages:
+    header:
+      navigation_links:
+        home: Home
+        pricing: Pricing
+        signin: Sign In
+        signup: Sign Up
+        signout: Sign Out
+        profile: Profile
+    home:
+      jumbotron:
+        lead: The new cloud storage service
+        getstarted: "Get Started"
