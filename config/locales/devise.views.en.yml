@@ -144,5 +144,5 @@ en:
       not_found: not found
       not_locked: was not locked
       not_saved:
-        one: '1 error prohibited this %{resource} from being saved:'
-        other: "%{count} errors prohibited this %{resource} from being saved:"
+        one: 'The form contains one error.'
+        other: "The form contains %{count} errors."

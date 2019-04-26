@@ -34,4 +34,39 @@ RSpec.feature "User sign up", type: :feature do
 
   end
 
+  context "with invalid information" do
+  	
+    before do
+      visit new_user_registration_path
+    end
+
+  	scenario "with blank fields" do
+  	
+  		expect(find_field("Name", type: "text").value).to be_nil
+  		expect(find_field("Last name", type: "text").value).to be_nil
+	    expect(page).to have_field("Email", with: "", type: "email")
+	    expect(find_field("Password", type: "password").value).to be_nil
+	    expect(find_field("Password confirmation", type: "password").value).to be_nil
+
+	    click_button I18n.t('devise.registrations.new.sign_up')
+
+      expect(page).to have_content I18n.t('errors.messages.not_saved.other', count: 4)
+ 
+  	end
+
+  	scenario "with incorrect password confirmation" do
+  		
+  		fill_in "Name", with: "test-name"
+  		fill_in "Last name", with: "test-last-name"
+      fill_in "Email", with: "test@domain.com"
+      fill_in "Password", with: "test-password"
+      fill_in "Password confirmation", with: "not-test-password"
+      click_button I18n.t('devise.registrations.new.sign_up')
+
+      expect(page).to have_content I18n.t('errors.messages.not_saved.one')
+
+  	end
+
+  end
+
 end
