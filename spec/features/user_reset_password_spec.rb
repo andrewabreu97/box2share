@@ -34,5 +34,28 @@ RSpec.feature "User reset password", type: :feature do
 
 	end
 
+	context "with invalid information" do
+		
+		scenario "with a non-existent email", js: true do
+			
+			user = create(:user, email: "test@example.com", password: "foobar")
+
+			visit root_path
+
+			click_link I18n.t('pages.header.navigation_links.signin')
+			expect(current_path).to eq new_user_session_path
+
+			click_link I18n.t('devise.shared.links.forgot_your_password')
+			expect(current_path).to eq new_user_password_path
+
+			fill_in "Email", with: "not-exists-test@example.com"
+			click_button I18n.t('devise.passwords.new.send_me_reset_password_instructions')		
+
+			expect(current_path).to eq user_password_path
+			expect(page).to have_content I18n.t('errors.messages.not_saved.one')				
+
+		end
+
+	end
 
 end
