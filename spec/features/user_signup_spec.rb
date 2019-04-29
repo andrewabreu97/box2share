@@ -97,7 +97,6 @@ RSpec.feature "User sign up", type: :feature do
       fill_in "Email", with: email
       fill_in "Password", with: password
       fill_in "Password confirmation", with: password_confirmation
-
       click_button I18n.t('devise.registrations.new.sign_up')      
     end
 
