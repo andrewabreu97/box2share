@@ -83,7 +83,7 @@ RSpec.feature "User sign up", type: :feature do
     end  
 
     scenario "with invalid email" do
-      
+
       fill_in "Name", with: "test-name"
       fill_in "Last name", with: "test-last-name"
       fill_in "Email", with: "invalid-email-for-testing"
@@ -94,6 +94,22 @@ RSpec.feature "User sign up", type: :feature do
       expect(page).to have_content I18n.t('errors.messages.not_saved.one')    
 
     end
+
+    scenario "with too short password" do
+      
+      min_password_length = 6
+      too_short_password = "p" * (min_password_length - 1)
+
+      fill_in "Name", with: "test-name"
+      fill_in "Last name", with: "test-last-name"
+      fill_in "Email", with: "test@example.com"
+      fill_in "Password", with: too_short_password
+      fill_in "Password confirmation", with: too_short_password
+      click_button I18n.t('devise.registrations.new.sign_up')
+
+      expect(page).to have_content I18n.t('errors.messages.not_saved.one')
+
+    end   
 
   end
 
