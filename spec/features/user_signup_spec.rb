@@ -42,11 +42,7 @@ RSpec.feature "User sign up", type: :feature do
 
   	scenario "with blank fields" do
   	
-  		expect(find_field("Name", type: "text").value).to be_nil
-  		expect(find_field("Last name", type: "text").value).to be_nil
-	    expect(page).to have_field("Email", with: "", type: "email")
-	    expect(find_field("Password", type: "password").value).to be_nil
-	    expect(find_field("Password confirmation", type: "password").value).to be_nil
+      expect_fields_to_be_blank
 
 	    click_button I18n.t('devise.registrations.new.sign_up')
 
@@ -112,5 +108,15 @@ RSpec.feature "User sign up", type: :feature do
     end   
 
   end
+
+  private
+
+    def expect_fields_to_be_blank
+      expect(find_field("Name", type: "text").value).to be_nil
+      expect(find_field("Last name", type: "text").value).to be_nil
+      expect(page).to have_field("Email", with: "", type: "email")
+      expect(find_field("Password", type: "password").value).to be_nil
+      expect(find_field("Password confirmation", type: "password").value).to be_nil          
+    end
 
 end
