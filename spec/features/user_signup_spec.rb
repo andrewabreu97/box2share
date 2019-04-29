@@ -82,6 +82,19 @@ RSpec.feature "User sign up", type: :feature do
 
     end  
 
+    scenario "with invalid email" do
+      
+      fill_in "Name", with: "test-name"
+      fill_in "Last name", with: "test-last-name"
+      fill_in "Email", with: "invalid-email-for-testing"
+      fill_in "Password", with: "test-password"
+      fill_in "Password confirmation", with: "test-password"
+      click_button I18n.t('devise.registrations.new.sign_up')
+
+      expect(page).to have_content I18n.t('errors.messages.not_saved.one')    
+
+    end
+
   end
 
 end
