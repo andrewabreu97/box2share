@@ -2,7 +2,7 @@ module Features
 
   module SessionHelpers
 
-    def sign_up_with(name, last_name, email, password, confirmation)
+    def sign_up(name, last_name, email, password, confirmation)
       visit new_user_registration_path
       fill_in "Name", with: name
       fill_in "Last name", with: last_name
@@ -12,7 +12,7 @@ module Features
       click_button I18n.t('devise.registrations.new.sign_up')
     end
 
-    def signin(email, password)
+    def sign_in(email, password)
       visit new_user_session_path
       fill_in "Email", with: email
       fill_in "Password", with: password
