@@ -75,4 +75,6 @@ Rails.application.configure do
     password: Rails.application.secrets.smtp_gmail_password,
     openssl_verify_mode: "none"
   }
+
+
 end

@@ -95,13 +95,13 @@ Rails.application.configure do
   # ActionMailer Config
   config.action_mailer.default_url_options = { :host => "https://boxtoshare.herokuapp.com"}
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.default_options = { from: "noreply@gmail.com" }
+  config.action_mailer.default_options = { from: "noreply@boxtoshare.com" }
   config.action_mailer.smtp_settings = {
-   address: "smtp.gmail.com",
+   address: "smtp.sendgrid.net",
    port: 587,
-   domain: "gmail.com",
-   user_name: Rails.application.secrets.smtp_gmail_user,
-   password: Rails.application.secrets.smtp_gmail_password,
+   domain: "heroku.com",
+   user_name: Rails.application.secrets.smtp_sendgrid_user,
+   password: Rails.application.secrets.smtp_sendgrid_password,
    authentication: "plain",
    enable_starttls_auto: true
   }
