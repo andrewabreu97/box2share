@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.feature "User sign out", type: :feature do
 
-	scenario "successfully after sign in", js: true do
+	scenario "successfully after sign in" do
 
 		create(:user, email: "test@example.com", password: "foobar")
 

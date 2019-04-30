@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.feature "User sign in", type: :feature do
 
 	# Spec will run using the ':selenium browser driver configured in spec/support/capybara.rb'
-	scenario "with valid information", js: true do
+	scenario "with valid information" do
 		
 		create(:user, email: "test@example.com", password: "foobar")
 
@@ -19,7 +19,7 @@ RSpec.feature "User sign in", type: :feature do
 
 	end
 
-	scenario "unconfirmed user cannot login", js: true do
+	scenario "unconfirmed user cannot login" do
 		
 		create(:user, skip_confirmation: false, email: "test@example.com", password: "foobar")
 

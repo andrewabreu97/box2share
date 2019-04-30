@@ -132,7 +132,7 @@ RSpec.feature "User reset password", type: :feature do
 	  	expect(current_path).to eq edit_user_password_path
 
       fill_in "New password", with: "123456"
-      expect(find_field("Confirm new password", type: "password").value).to be_nil  
+      expect(find_field("Confirm new password", type: "password").value).to be_nil 
 			click_button I18n.t('devise.passwords.edit.change_my_password')
 
 	  	expect(current_path).to eq user_password_path
