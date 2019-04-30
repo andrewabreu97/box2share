@@ -93,9 +93,9 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # ActionMailer Config
-  config.action_mailer.default_url_options = { :host => "https://boxtoshare.herokuapp.com"}
+  config.action_mailer.default_url_options = { :host => "boxtoshare.herokuapp.com"}
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.default_options = { from: "noreply@gmail.com" }
+  config.action_mailer.default_options = { from: "noreply@example.com" }
   config.action_mailer.smtp_settings = {
    address: "smtp.sendgrid.net",
    port: 587,
