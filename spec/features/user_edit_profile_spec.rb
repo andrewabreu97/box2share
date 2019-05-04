@@ -11,8 +11,6 @@ RSpec.feature "User edit profile", type: :feature do
 
 	context "with valid information" do
 
-
-
 		scenario "change name and last name values and setting current password" do
 
 			fill_in "Name", with: "Test Name 2"
@@ -25,7 +23,7 @@ RSpec.feature "User edit profile", type: :feature do
 			expect(current_path).to eq root_path
 			expect(page).to have_content I18n.t('devise.registrations.updated')
 
-		end	
+		end
 
 		scenario "change password and setting current password" do
 
@@ -39,7 +37,7 @@ RSpec.feature "User edit profile", type: :feature do
 			expect(current_path).to eq root_path
 			expect(page).to have_content I18n.t('devise.registrations.updated')
 
-		end	
+		end
 
 		scenario "change email and confirm via email" do
 
@@ -56,14 +54,14 @@ RSpec.feature "User edit profile", type: :feature do
   		visit_in_email I18n.t('devise.mailer.confirmation_instructions.action')
 
 			expect(current_path).to eq root_path
-			expect(page).to have_content I18n.t('devise.confirmations.confirmed')  		
+			expect(page).to have_content I18n.t('devise.confirmations.confirmed')
 
-		end	
+		end
 
 	end
 
 	context "with invalid information" do
-		
+
 		scenario "change name and last name values and not setting current password" do
 
 			fill_in "Name", with: "Test Name 2"
@@ -76,7 +74,7 @@ RSpec.feature "User edit profile", type: :feature do
 			expect(current_path).to eq user_registration_path
 			expect(page).to have_content I18n.t('errors.messages.not_saved.one')
 
-		end			
+		end
 
 	end
 

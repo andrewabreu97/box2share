@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.feature "User sign up", type: :feature do
-  
+
   scenario "with valid information" do
-  	
+
   	visit root_path
   	click_link I18n.t('pages.header.navigation_links.signup')
   	expect(current_path).to eq(new_user_registration_path)
@@ -27,23 +27,23 @@ RSpec.feature "User sign up", type: :feature do
   end
 
   context "with invalid information" do
-  	
+
     before do
       visit new_user_registration_path
     end
 
   	scenario "with blank fields" do
-  	
+
       expect_fields_to_be_blank
 
 	    click_button I18n.t('devise.registrations.new.sign_up')
 
       expect(page).to have_content I18n.t('errors.messages.not_saved.other', count: 4)
- 
+
   	end
 
   	scenario "with incorrect password confirmation" do
-  		
+
       sign_up_with "test-name", "test-last-name", "test@example.com", "test-password", "not-test-password"
 
       expect(page).to have_content I18n.t('errors.messages.not_saved.one')
@@ -58,18 +58,18 @@ RSpec.feature "User sign up", type: :feature do
 
       expect(page).to have_content I18n.t('errors.messages.not_saved.one')
 
-    end  
+    end
 
     scenario "with invalid email" do
 
       sign_up_with "test-name", "test-last-name", "invalid-email-for-testing", "test-password", "test-password"
 
-      expect(page).to have_content I18n.t('errors.messages.not_saved.one')    
+      expect(page).to have_content I18n.t('errors.messages.not_saved.one')
 
     end
 
     scenario "with too short password" do
-      
+
       min_password_length = 6
       too_short_password = "p" * (min_password_length - 1)
 
@@ -77,7 +77,7 @@ RSpec.feature "User sign up", type: :feature do
 
       expect(page).to have_content I18n.t('errors.messages.not_saved.one')
 
-    end   
+    end
 
   end
 
@@ -88,7 +88,7 @@ RSpec.feature "User sign up", type: :feature do
       expect(find_field("Last name", type: "text").value).to be_nil
       expect(page).to have_field("Email", with: "", type: "email")
       expect(find_field("Password", type: "password").value).to be_nil
-      expect(find_field("Password confirmation", type: "password").value).to be_nil          
+      expect(find_field("Password confirmation", type: "password").value).to be_nil
     end
 
     def sign_up_with(name, last_name, email, password, password_confirmation)
@@ -97,7 +97,7 @@ RSpec.feature "User sign up", type: :feature do
       fill_in "Email", with: email
       fill_in "Password", with: password
       fill_in "Password confirmation", with: password_confirmation
-      click_button I18n.t('devise.registrations.new.sign_up')      
+      click_button I18n.t('devise.registrations.new.sign_up')
     end
 
     def sign_in_with(email, password)
