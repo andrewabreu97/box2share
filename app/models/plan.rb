@@ -9,4 +9,9 @@ class Plan < ApplicationRecord
     @remote_plan ||= Stripe::Plan.retrieve(remote_id)
   end
 
+  def end_date_from(date = nil)
+    date ||= Date.current.to_date
+    interval_count.send(interval).from_now(date)
+  end
+
 end
