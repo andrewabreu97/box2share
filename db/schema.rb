@@ -10,7 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_21_190424) do
+ActiveRecord::Schema.define(version: 2019_05_05_122717) do
+
+  create_table "payment_line_items", force: :cascade do |t|
+    t.integer "payment_id"
+    t.integer "buyable_id"
+    t.integer "price_cents", default: 0, null: false
+    t.string "price_currency", default: "USD", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["buyable_id"], name: "index_payment_line_items_on_buyable_id"
+    t.index ["payment_id"], name: "index_payment_line_items_on_payment_id"
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "price_cents", default: 0, null: false
+    t.string "price_currency", default: "USD", null: false
+    t.integer "status"
+    t.string "reference"
+    t.string "payment_method"
+    t.string "response_id"
+    t.json "full_response"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["reference"], name: "index_payments_on_reference"
+    t.index ["user_id"], name: "index_payments_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
