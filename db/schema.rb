@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_05_122717) do
+ActiveRecord::Schema.define(version: 2019_05_05_143058) do
 
   create_table "payment_line_items", force: :cascade do |t|
     t.integer "payment_id"
@@ -38,6 +38,32 @@ ActiveRecord::Schema.define(version: 2019_05_05_122717) do
     t.index ["user_id"], name: "index_payments_on_user_id"
   end
 
+  create_table "plans", force: :cascade do |t|
+    t.string "remote_id"
+    t.string "name"
+    t.integer "price_cents", default: 0, null: false
+    t.string "price_currency", default: "USD", null: false
+    t.integer "interval"
+    t.integer "interval_count"
+    t.integer "space_allowed"
+    t.integer "status"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "subscriptions", force: :cascade do |t|
+    t.integer "user_id"
+    t.date "start_date"
+    t.date "end_date"
+    t.integer "status"
+    t.string "payment_method"
+    t.string "remote_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_subscriptions_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -53,6 +79,7 @@ ActiveRecord::Schema.define(version: 2019_05_05_122717) do
     t.string "name"
     t.string "last_name"
     t.boolean "admin", default: false
+    t.string "stripe_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
