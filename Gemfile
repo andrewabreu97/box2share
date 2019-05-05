@@ -97,4 +97,6 @@ gem 'devise-i18n'
 gem 'i18n-country-translations'
 gem 'rails-i18n'
 gem 'stripe'
+gem 'money-rails'
+gem 'awesome_print'
 
