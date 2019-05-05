@@ -5,4 +5,8 @@ class Plan < ApplicationRecord
 
   monetize :price_cents
 
+  def remote_plan
+    @remote_plan ||= Stripe::Plan.retrieve(remote_id)
+  end
+
 end
