@@ -18,7 +18,7 @@ class CreatesSubscriptionViaStripe
   end
 
   def run
-    Purchase.transaction do
+    Payment.transaction do
       return unless expected_plan_valid?
       stripe_customer = StripeCustomer.new(user: user)
       return unless stripe_customer.valid?
@@ -32,7 +32,7 @@ class CreatesSubscriptionViaStripe
   end
 
   def redirect_on_success_url
-    user
+    root_path
   end
 
 end

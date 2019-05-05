@@ -9,28 +9,4 @@
    </p>
  </div>
 </div>
-<div class="container">
-  <div class="row">
-    <div class="col-5 offset-4">
-      <div id="card-errors" class="alert-danger alert d-none" role="alert"></div>
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Datos de pago</h5>
-          <hr>
-          <%= form_tag(".", id: "payment-form") do %>
-          <div class="form-group">
-            <%= label_tag(:card_name, "Nombre completo (en la tarjeta)") %>
-            <%= text_field_tag(:card_name, nil, placeholder: "", class: "form-control") %>
-          </div>
-          <div class="form-group">
-            <%= content_tag(:div, nil , class: "form-control", id: "card-element") %>
-          </div>
-          <div class="form-group">
-            <%= submit_tag("Adquirir suscripción", class: "btn btn-block btn-primary", id: "payment-submit", data: { disable_with: false }) %>
-          </div>
-          <% end %>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+

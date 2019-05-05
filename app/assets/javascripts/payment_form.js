@@ -74,10 +74,7 @@ $(document).on('turbolinks:load', function(){
       $('#payment-form').append(hiddenInput);
       alert("Estoy en el stripe token handler: " + token.id);
       // Submit the form
-      // $('#payment-form').get(0).submit(function(event){
-      //   alert('submit intercepted');
-      //   event.preventDefault(event);
-      // });
+      $('#payment-form').get(0).submit();
     }
 
   });

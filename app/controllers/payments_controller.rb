@@ -24,4 +24,11 @@ class PaymentsController < ApplicationController
     workflow
   end
 
+  private def card_params
+    params.permit(
+        :credit_card_number, :expiration_month,
+        :expiration_year, :cvc,
+        :stripe_token).to_h.symbolize_keys
+  end
+
 end
