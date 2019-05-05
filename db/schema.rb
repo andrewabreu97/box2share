@@ -14,12 +14,13 @@ ActiveRecord::Schema.define(version: 2019_05_05_151447) do
 
   create_table "payment_line_items", force: :cascade do |t|
     t.integer "payment_id"
+    t.string "buyable_type"
     t.integer "buyable_id"
     t.integer "price_cents", default: 0, null: false
     t.string "price_currency", default: "USD", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["buyable_id"], name: "index_payment_line_items_on_buyable_id"
+    t.index ["buyable_type", "buyable_id"], name: "index_payment_line_items_on_buyable_type_and_buyable_id"
     t.index ["payment_id"], name: "index_payment_line_items_on_payment_id"
   end
 

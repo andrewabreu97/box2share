@@ -8,7 +8,7 @@ class PaymentsController < ApplicationController
   def create
     workflow = stripe_subscription_workflow
     if workflow.success
-      redirect_to workflow.redirect_on_success_url
+      redirect_to root_path
     else
       redirect_to subscription_cart_path
     end

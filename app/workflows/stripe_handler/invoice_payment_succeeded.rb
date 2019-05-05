@@ -15,12 +15,12 @@ module StripeHandler
         subscription.active!
         subscription.update_end_date
         @payment = Payment.create!(
-            user_id: user.id, price_cents: invoice.amount,
+            user_id: user.id, price_cents: invoice.amount_paid,
             status: "succeeded", reference: Payment.generate_reference,
             payment_method: "stripe", response_id: invoice.charge,
             full_response: charge.to_json)
         payment.payment_line_items.create!(
-            buyable: subscription, price_cents: invoice.amount)
+            buyable: subscription, price_cents: invoice.amount_paid)
         @success = true
       end
     end
