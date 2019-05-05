@@ -1,2 +1,17 @@
 <h2>Subscription Plans</h2>
 
+<%= @plans.each do |plan| %>
+
+  <div id="<%= plan.id %>">
+     <h3><%= plan.name %></h3>
+     <p><%= plan.description %></p>
+     <p><%= humanized_money_with_symbol(plan.price) %></p>
+     <%= form_tag(subscription_cart_path, method: :patch) do %>
+      <%= hidden_field_tag("plan_id", plan.id) %>
+      <div class="form-group">
+        <%= submit_tag("Add to Cart", class: "btn btn-primary", id: "add-to-cart") %>
+      </div>
+     <% end %>
+  </div>
+
+<% end %>

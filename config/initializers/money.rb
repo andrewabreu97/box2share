@@ -2,6 +2,8 @@
 
 MoneyRails.configure do |config|
 
+  config.locale_backend = nil
+
   # To set the default currency
   #
   # config.default_currency = :usd

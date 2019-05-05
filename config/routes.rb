@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'payments/show'
+  get 'payments/create'
   get 'subscription_carts/show'
   get 'subscription_carts/update'
   resources :plans
