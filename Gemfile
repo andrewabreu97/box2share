@@ -59,7 +59,7 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   # Enable Spring for RSpec
-  gem "spring-commands-rspec" 
+  gem "spring-commands-rspec"
 end
 
 group :test do
@@ -96,4 +96,5 @@ gem 'devise'
 gem 'devise-i18n'
 gem 'i18n-country-translations'
 gem 'rails-i18n'
+gem 'stripe'
 
