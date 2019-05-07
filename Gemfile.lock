@@ -58,10 +58,6 @@ GEM
       autoprefixer-rails (>= 9.1.0)
       popper_js (>= 1.14.3, < 2)
       sassc-rails (>= 2.0.0)
-    bootstrap_sb_admin_base_v1 (0.1.1)
-      bootstrap
-      font-awesome-sass
-      jquery-rails
     builder (3.2.3)
     byebug (11.0.1)
     capybara (3.17.0)
@@ -331,7 +327,6 @@ DEPENDENCIES
   awesome_print
   bootsnap (>= 1.1.0)
   bootstrap
-  bootstrap_sb_admin_base_v1
   byebug
   capybara (>= 2.15)
   capybara-screenshot

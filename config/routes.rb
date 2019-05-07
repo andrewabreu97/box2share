@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'panel/home'
   resources :plans
   resources :payments
   resources :subscriptions
