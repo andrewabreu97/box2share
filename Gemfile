@@ -99,4 +99,6 @@ gem 'rails-i18n'
 gem 'stripe'
 gem 'money-rails'
 gem 'awesome_print'
+gem 'bootstrap_sb_admin_base_v1'
+gem 'font-awesome-sass'
 
