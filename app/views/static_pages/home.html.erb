@@ -1,12 +1,47 @@
 <% provide(:title, "Inicio") %>
-<div class="jumbotron">
-	<div class="container">
-   <h1 class="display-4">Box2Share</h1>
-   <p class="lead"><%= t('pages.home.jumbotron.lead') %></p>
-   <hr class="my-4">
-   <p class="lead text-center">
-     <a class="btn btn-primary btn-lg" href="#" role="button"><%= t('pages.home.jumbotron.getstarted') %></a>
-   </p>
- </div>
-</div>
+<%= render "layouts/header" %>
+
+<section class="masthead text-white text-center">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-9 mx-auto"></div>
+      <div class="col-md-10 col-lg-8 col-xl-7 mx-auto"></div>
+    </div>
+  </div>
+</section>
+
+<section class="features-icons bg-light text-center">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+          <div class="features-icons-icon d-flex">
+            <i class="fas fa-cloud-upload-alt m-auto text-primary"></i>
+          </div>
+          <h3>Sube</h3>
+          <p class="lead mb-0">Almacena tus archivos de forma segura</p>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+          <div class="features-icons-icon d-flex">
+            <i class="fas fa-cloud-download-alt m-auto text-primary"></i>
+          </div>
+          <h3>Descarga</h3>
+          <p class="lead mb-0">Descarga tus archivos desde cualquier parte</p>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="features-icons-item mx-auto mb-0 mb-lg-3">
+          <div class="features-icons-icon d-flex">
+            <i class="fas fa-share-alt m-auto text-primary"></i>
+          </div>
+          <h3>Comparte</h3>
+          <p class="lead mb-0">Compártelos con quién quieras</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
