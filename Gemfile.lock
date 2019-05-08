@@ -117,8 +117,6 @@ GEM
     faraday (0.15.4)
       multipart-post (>= 1.2, < 3)
     ffi (1.10.0)
-    font-awesome-rails (4.7.0.5)
-      railties (>= 3.2, < 6.1)
     font-awesome-sass (5.8.1)
       sassc (>= 1.11)
     globalid (0.4.2)
@@ -340,7 +338,6 @@ DEPENDENCIES
   email_spec
   factory_bot_rails
   faker
-  font-awesome-rails
   font-awesome-sass
   i18n-country-translations
   jbuilder (~> 2.5)

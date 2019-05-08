@@ -100,5 +100,5 @@ gem 'stripe'
 gem 'money-rails'
 gem 'awesome_print'
 gem 'font-awesome-sass'
-gem 'font-awesome-rails'
+#gem 'font-awesome-rails'
 
