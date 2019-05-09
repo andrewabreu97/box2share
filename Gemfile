@@ -100,5 +100,6 @@ gem 'stripe'
 gem 'money-rails'
 gem 'awesome_print'
 gem 'font-awesome-sass'
+gem 'carrierwave'
 #gem 'font-awesome-rails'
 
