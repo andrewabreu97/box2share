@@ -2,6 +2,12 @@
 	<nav class="navbar navbar-expand navbar-dark bg-custom static-top">
 		<%= link_to image_tag("logo", alt: "logo", height: '42'), "#", class: "navbar-brand mr-1" %>
 		<ul class="navbar-nav navbar-right ml-auto">
+      <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown09" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <%= image_tag("united-kingdom-flag-icon", height: '20') %> English</a>
+          <div class="dropdown-menu" aria-labelledby="dropdown09">
+              <a class="dropdown-item" href="#fr"><span class="flag-icon flag-icon-fr"> </span><%= image_tag("spain-flag-icon", height: '20') %>  Spanish</a>
+          </div>
+      </li>
 			<% if user_signed_in? %>
 			<li class="nav-item dropdown no-arrow">
 				<a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
