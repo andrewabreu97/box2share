@@ -101,5 +101,6 @@ gem 'money-rails'
 gem 'awesome_print'
 gem 'font-awesome-sass'
 gem 'carrierwave'
+gem 'mini_magick'
 #gem 'font-awesome-rails'
 
