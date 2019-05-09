@@ -37,4 +37,4 @@
 /config/secrets.yml
 
 #Exclude upload directory
-/public/uploads
+/public/uploads/*
