@@ -82,6 +82,7 @@ end
 
 group :production do
   gem 'pg'
+  gem 'fog-aws'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -102,6 +103,5 @@ gem 'awesome_print'
 gem 'font-awesome-sass'
 gem 'carrierwave'
 gem 'mini_magick'
-gem 'fog-aws'
 #gem 'font-awesome-rails'
 
