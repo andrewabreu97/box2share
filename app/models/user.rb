@@ -18,4 +18,8 @@ class User < ApplicationRecord
     subscriptions.waiting.all.to_a
   end
 
+  def full_name
+    "#{name} #{last_name}"
+  end
+
 end
