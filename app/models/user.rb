@@ -11,6 +11,7 @@ class User < ApplicationRecord
   validates_presence_of :avatar
   validates_integrity_of :avatar
   validates_processing_of :avatar
+  validate :avatar_size
 
   has_many :subscriptions
 
@@ -21,5 +22,12 @@ class User < ApplicationRecord
   def full_name
     "#{name} #{last_name}"
   end
+
+  private
+    def avatar_size
+      if avatar.size > 5.megabytes
+        errors.add(:avatar, "should be less than 5MB")
+      end
+    end
 
 end
