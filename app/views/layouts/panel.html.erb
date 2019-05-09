@@ -1,34 +1,36 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title><%= full_title(yield(:title)) %></title>
-  <%= csrf_meta_tags %>
-  <%= csp_meta_tag %>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  <%= javascript_include_tag "#{STRIPE_JS_HOST}/v3" %>
-  <%= tag :meta, name: "stripe-publishable-key", content: Rails.application.secrets.stripe_publishable_key %>
-  <%= tag :meta, name: "viewport", content: "width=device-width, initial-scale=1, shrink-to-fit=no" %>
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js">
-    </script>
-  <![endif]-->
-</head>
+  <head>
+    <title><%= full_title(yield(:title)) %></title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag "#{STRIPE_JS_HOST}/v3" %>
+    <%= tag :meta, name: "stripe-publishable-key", content: Rails.application.secrets.stripe_publishable_key %>
+    <%= tag :meta, name: "viewport", content: "width=device-width, initial-scale=1, shrink-to-fit=no" %>
+    <!--[if lt IE 9]>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js">
+      </script>
+    <![endif]-->
+  </head>
 
-<body id="page-top">
+  <body id="page-top">
 
-  <%= render "layouts/header" %>
+    <% if notice %>
+    <div class="alert alert-success mb-0"><%= notice %></div>
+    <% end %>
+    <% if alert %>
+    <div class="alert alert-danger mb-0"><%= alert %></div>
+    <% end %>
 
-  <% if notice %>
-  <div class="alert alert-success mb-0"><%= notice %></div>
-  <% end %>
-  <% if alert %>
-  <div class="alert alert-danger mb-0"><%= alert %></div>
-  <% end %>
+    <%= render "layouts/panel_header" %>
 
-  <%= yield %>
+    <%= yield %>
 
-  <%= render 'layouts/footer' %>
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
 
-</body>
+  </body>
 </html>
