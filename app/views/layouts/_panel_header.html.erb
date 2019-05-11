@@ -13,9 +13,9 @@
           <%= current_user.full_name %> <%= image_tag current_user.avatar.url, class: "avatar ml-2", height: '40' %>
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-          <a class="dropdown-item" href="#">Mi cuenta</a>
+          <%= link_to t('pages.header.navigation_links.profile'), edit_user_registration_path, class: "dropdown-item" %>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Salir</a>
+          <%= link_to t('pages.header.navigation_links.signout'), destroy_user_session_path , class: "dropdown-item", method: :delete %>
         </div>
       </li>
     </ul>

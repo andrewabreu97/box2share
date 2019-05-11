@@ -18,14 +18,14 @@
 
   <body id="page-top">
 
-    <%= render "layouts/header" %>
-
     <% if notice %>
     <div class="alert alert-success mb-0"><%= notice %></div>
     <% end %>
     <% if alert %>
     <div class="alert alert-danger mb-0"><%= alert %></div>
     <% end %>
+
+    <%= render "layouts/header" %>
 
     <div class="body">
         <%= yield %>
