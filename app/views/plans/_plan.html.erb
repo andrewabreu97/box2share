@@ -5,10 +5,10 @@
   <div class="card-body">
     <%= image_tag(plan.name.downcase, alt: "#{plan.name}_icon") %>
     <h1 class="card-title pricing-card-title">
-      <%= humanized_money(plan.price) %> &euro;<small class="text-muted">/ mes</small>
+      <%= humanized_money(plan.price) %> &euro;<small class="text-muted">/ <%= t('pages.pricing.month') %></small>
     </h1>
     <ul class="list-unstyled mt-3 mb-4">
-      <li><%= plan.space_allowed %> GB de almacenamiento</li>
+      <li><%= plan.space_allowed %> GB <%= t('pages.pricing.of_storage') %></li>
       <li>...</li>
       <li>...</li>
       <li>...</li>
