@@ -17,7 +17,7 @@ en:
     - Fri
     - Sat
     abbr_month_names:
-    - 
+    -
     - Jan
     - Feb
     - Mar
@@ -43,7 +43,7 @@ en:
       long: "%B %d, %Y"
       short: "%b %d"
     month_names:
-    - 
+    -
     - January
     - February
     - March
@@ -223,6 +223,25 @@ en:
         signout: Sign Out
         profile: Profile
     home:
-      jumbotron:
-        lead: The new cloud storage service
-        getstarted: "Get Started"
+      features:
+        upload: "Upload"
+        upload_lead: "Store your files securely"
+        download: "Download"
+        download_lead: "Download your files from anywhere"
+        share: "Share"
+        share_lead: "Share them with whoever you want"
+    pricing:
+      title: "Pricing"
+      subtitle: "Choose the plan that best suits you."
+      month: "month"
+      year: "year"
+      of_storage: "of storage"
+    footer:
+      navigation_links:
+        about: "About"
+        contact: "Contact"
+        terms_of_use: "Terms of Use"
+        privacy_policy: "Privacy Policy"
+  languages:
+    english: "English"
+    spanish: "Spanish"

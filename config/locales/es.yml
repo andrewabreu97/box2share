@@ -17,7 +17,7 @@ es:
     - vie
     - sáb
     abbr_month_names:
-    - 
+    -
     - ene
     - feb
     - mar
@@ -43,7 +43,7 @@ es:
       long: "%-d de %B de %Y"
       short: "%-d de %b"
     month_names:
-    - 
+    -
     - enero
     - febrero
     - marzo
@@ -227,6 +227,25 @@ es:
         signout: Cerrar sesión
         profile: Perfil
     home:
-      jumbotron:
-        lead: El nuevo servicio de almacenamiento en la nube
-        getstarted: Empieza ya
+      features:
+        upload: "Sube"
+        upload_lead: "Almacena tus archivos de forma segura"
+        download: "Descarga"
+        download_lead: "Descarga tus archivos desde cualquier parte"
+        share: "Comparte"
+        share_lead: "Compártelos con quién quieras"
+    pricing:
+      title: "Precios"
+      subtitle: "Elige el plan que mejor se adapte a ti."
+      month: "mes"
+      year: "año"
+      of_storage: "de almacenamiento"
+    footer:
+      navigation_links:
+        about: "Sobre nosotros"
+        contact: "Contacto"
+        terms_of_use: "Términos de uso"
+        privacy_policy: "Política de privacidad"
+  languages:
+    english: "Inglés"
+    spanish: "Español"
