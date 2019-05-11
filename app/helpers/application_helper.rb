@@ -9,4 +9,8 @@ module ApplicationHelper
 		end
 	end
 
+  def default_locale?(language)
+    I18n.default_locale == language
+  end
+
 end
