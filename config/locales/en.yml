@@ -245,3 +245,7 @@ en:
   languages:
     english: "English"
     spanish: "Spanish"
+  panel:
+    pages:
+      dashboard: "Dashboard"
+      files: "My files"

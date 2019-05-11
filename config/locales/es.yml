@@ -249,3 +249,7 @@ es:
   languages:
     english: "Inglés"
     spanish: "Español"
+  panel:
+    pages:
+      dashboard: "Panel de control"
+      files: "Mis archivos"
