@@ -1,5 +1,8 @@
 $(document).on('turbolinks:load', function(){
 
+  // Retrieve language
+  var locale = $('html').attr('lang');
+
   // Retrieve the Stripe publishable key.
   const STRIPE_PUBLISHABLE_KEY = $("meta[name='stripe-publishable-key']").attr("content");
 
@@ -7,7 +10,7 @@ $(document).on('turbolinks:load', function(){
   var stripe = Stripe(STRIPE_PUBLISHABLE_KEY);
 
   // Create an instance of Elements.
-  var elements = stripe.elements();
+  var elements = stripe.elements({locale: locale});
 
   // Custom styling can be passed to options when creating an Element.
   var style = {
