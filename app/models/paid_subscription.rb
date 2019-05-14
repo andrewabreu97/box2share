@@ -1,0 +1,2 @@
+class PaidSubscription < Subscription
+end
