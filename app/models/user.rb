@@ -9,19 +9,26 @@ class User < ApplicationRecord
 
  	validates :name, presence: true
  	validates :last_name, presence: true
-  validates_presence_of :avatar
+  #validates_presence_of :avatar
   validates_integrity_of :avatar
   validates_processing_of :avatar
   validate :avatar_size
 
-  has_many :subscriptions
+  # has_many :subscriptions
 
-  def subscriptions_in_cart
-    subscriptions.waiting.all.to_a
-  end
+  has_one :subscription
+
+  # def subscriptions_in_cart
+  #   subscriptions.waiting.all.to_a
+  # end
 
   def full_name
     "#{name} #{last_name}"
+  end
+
+  def after_confirmation
+    self.create_subscription(plan: Plan.free_plan.first, status: 0,
+        type: 'FreeSubscription')
   end
 
   private
