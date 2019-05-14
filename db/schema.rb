@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_09_113530) do
+ActiveRecord::Schema.define(version: 2019_05_14_173003) do
 
   create_table "payment_line_items", force: :cascade do |t|
     t.integer "payment_id"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 2019_05_09_113530) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "type"
   end
 
   create_table "subscriptions", force: :cascade do |t|
@@ -63,6 +64,7 @@ ActiveRecord::Schema.define(version: 2019_05_09_113530) do
     t.string "remote_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "type"
     t.index ["plan_id"], name: "index_subscriptions_on_plan_id"
     t.index ["user_id"], name: "index_subscriptions_on_user_id"
   end
