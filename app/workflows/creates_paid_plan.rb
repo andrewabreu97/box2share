@@ -1,4 +1,4 @@
-class CreatesPlan
+class CreatesPaidPlan
 
   attr_accessor :remote_id, :name,
       :price_cents, :interval, :interval_count,
@@ -23,7 +23,7 @@ class CreatesPlan
         remote_id: remote_plan.id, name: name,
         price_cents: price_cents, interval: interval, interval_count: interval_count,
         space_allowed: space_allowed,
-        status: :active)
+        status: :active, type: 'PaidPlan')
   end
 
 end
