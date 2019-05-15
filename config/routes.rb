@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resource :subscription_cart
   devise_for :users, :controllers => { registrations: 'registrations' }
   authenticated :user do
-    root 'panel#home'
+    root 'panel#dashboard'
   end
   unauthenticated :user do
     root 'static_pages#home'

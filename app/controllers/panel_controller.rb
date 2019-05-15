@@ -4,7 +4,7 @@ class PanelController < ApplicationController
 
   layout 'panel'
 
-  def home
+  def dashboard
   end
 
 end
