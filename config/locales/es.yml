@@ -243,6 +243,8 @@ es:
       tab:
         monthly: "Mensual"
         yearly: "Anual"
+      buttons:
+        current_plan: "Estás suscrito a este plan"
     footer:
       navigation_links:
         about: "Sobre nosotros"

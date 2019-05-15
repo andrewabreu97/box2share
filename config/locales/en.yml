@@ -239,6 +239,8 @@ en:
       tab:
         monthly: "Monthly"
         yearly: "Yearly"
+      buttons:
+        current_plan: "You are subscribed to this plan"
     footer:
       navigation_links:
         about: "About"
