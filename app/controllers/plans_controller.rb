@@ -1,5 +1,7 @@
 class PlansController < ApplicationController
   def index
-    @plans = Plan.active.month.all
+    @free_plan = FreePlan.first
+    @monthly_paid_plans = PaidPlan.active.month.all
+    @yearly_paid_plans = PaidPlan.active.year.all
   end
 end

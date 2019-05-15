@@ -8,6 +8,12 @@
     </button>
 
     <ul class="navbar-nav navbar-right ml-auto align-items-center">
+      <li class="nav-item">
+        <%= link_to t('pages.header.navigation_links.home'), root_path, class: "nav-link" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to t('pages.header.navigation_links.pricing'), plans_path, class: "nav-link" %>
+      </li>
       <li class="nav-item dropdown no-arrow">
         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <%= current_user.full_name %> <%= image_tag current_user.avatar.url, class: "avatar ml-2", height: '40' %>

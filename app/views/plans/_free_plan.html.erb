@@ -1,20 +1,20 @@
 <div class="card mb-4 box-shadow">
   <div class="card-header">
-    <h4 class="my-0 font-weight-normal"><%= plan.name %></h4>
+    <h4 class="my-0 font-weight-normal"><%= free_plan.name %></h4>
   </div>
   <div class="card-body">
-    <%= image_tag(plan.name.downcase, alt: "#{plan.name}_icon") %>
+    <%= image_tag(free_plan.name.downcase, alt: "#{free_plan.name}_icon") %>
     <h1 class="card-title pricing-card-title">
-      <%= humanized_money(plan.price) %> &euro;<small class="text-muted">/ <%= t('pages.pricing.month') %></small>
+      0 &euro;<small class="text-muted"></small>
     </h1>
     <ul class="list-unstyled mt-3 mb-4">
-      <li><%= plan.space_allowed %> GB <%= t('pages.pricing.of_storage') %></li>
+      <li><%= free_plan.space_allowed %> GB <%= t('pages.pricing.of_storage') %></li>
       <li>...</li>
       <li>...</li>
       <li>...</li>
     </ul>
     <%= form_tag(subscription_cart_path, method: :patch) do %>
-      <%= hidden_field_tag("plan_id", plan.id) %>
+      <%= hidden_field_tag("plan_id", free_plan.id) %>
       <%= submit_tag("Add to Cart", class: "btn btn-lg btn-block btn-outline-primary", id: "add-to-cart") %>
     <% end %>
   </div>

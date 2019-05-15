@@ -240,6 +240,9 @@ es:
       month: "mes"
       year: "año"
       of_storage: "de almacenamiento"
+      tab:
+        monthly: "Mensual"
+        yearly: "Anual"
     footer:
       navigation_links:
         about: "Sobre nosotros"

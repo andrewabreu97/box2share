@@ -236,6 +236,9 @@ en:
       month: "month"
       year: "year"
       of_storage: "of storage"
+      tab:
+        monthly: "Monthly"
+        yearly: "Yearly"
     footer:
       navigation_links:
         about: "About"

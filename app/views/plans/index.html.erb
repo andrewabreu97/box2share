@@ -4,9 +4,33 @@
 </div>
 
 <div class="container">
-  <div class="card-deck mb-3 text-center">
-    <%= render @plans %>
+  <div class="row">
+    <div class="col offset-5">
+      <ul class="nav nav-pills" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" data-toggle="pill" href="#monthly"><%= t('pages.pricing.tab.monthly') %></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="pill" href="#yearly"><%= t('pages.pricing.tab.yearly') %></a>
+        </li>
+      </ul>
+    </div>
   </div>
+  <div class="tab-content">
+    <div id="monthly" class="container tab-pane active"><br>
+      <div class="card-deck mb-3 text-center">
+        <%= render partial: "free_plan", object: @free_plan %>
+        <%= render partial: "monthly_paid_plan", collection: @monthly_paid_plans %>
+      </div>
+    </div>
+    <div id="yearly" class="container tab-pane fade"><br>
+      <div class="card-deck mb-3 text-center">
+        <%= render partial: "free_plan", object: @free_plan %>
+        <%= render partial: "yearly_paid_plan", collection: @yearly_paid_plans %>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 
