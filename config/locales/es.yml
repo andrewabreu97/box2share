@@ -251,5 +251,8 @@ es:
     spanish: "Español"
   panel:
     pages:
-      dashboard: "Panel de control"
-      files: "Mis archivos"
+      sidebar:
+        dashboard: "Panel de control"
+        files: "Mis archivos"
+        plan: "Plan"
+

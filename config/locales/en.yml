@@ -247,5 +247,7 @@ en:
     spanish: "Spanish"
   panel:
     pages:
-      dashboard: "Dashboard"
-      files: "My files"
+      sidebar:
+        dashboard: "Dashboard"
+        files: "My files"
+        plan: "Plan"
