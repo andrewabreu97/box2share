@@ -1,13 +1,14 @@
 Rails.application.routes.draw do
-  get 'panel/home'
   resources :plans
   resources :payments
   resources :subscriptions
   resource :subscription_cart
   devise_for :users, :controllers => { registrations: 'registrations' }
   authenticated :user do
-    root 'panel#home', as: :authenticated_root
+    root 'panel#home'
   end
-  root 'static_pages#home'
+  unauthenticated :user do
+    root 'static_pages#home'
+  end
   post "stripe/webhook", to: "stripe_webhook#action"
 end
