@@ -13,7 +13,7 @@ class AddsPlanToCart
         user: user, plan: plan,
         start_date: Time.zone.now.to_date,
         end_date: plan.end_date_from,
-        status: :waiting)
+        status: :waiting, type: "PaidSubscription")
   end
 
   def success?

@@ -1,6 +1,6 @@
 class PaidSubscription < Subscription
 
-  validates_presence_of :start_date, :end_date, :payment_method, :remote_id
+  validates_presence_of :start_date, :end_date
 
   def make_stripe_payment(stripe_customer)
     update!(

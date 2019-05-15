@@ -241,6 +241,7 @@ en:
         yearly: "Yearly"
       buttons:
         current_plan: "You are subscribed to this plan"
+        subscribe: "Subscribe"
     footer:
       navigation_links:
         about: "About"

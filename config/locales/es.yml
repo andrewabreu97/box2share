@@ -245,6 +245,7 @@ es:
         yearly: "Anual"
       buttons:
         current_plan: "Estás suscrito a este plan"
+        subscribe: "Suscribirte"
     footer:
       navigation_links:
         about: "Sobre nosotros"
