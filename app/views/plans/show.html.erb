@@ -1,17 +1,15 @@
-<div class="container">
+<div class="container p-5">
   <div class="row">
-    <div class="col">
+    <div class="col-4 ml-auto mr-auto">
+      <div class="card-deck mb-3 text-center">
       <% if @paid_plan.month? %>
         <%= render partial: 'plans/monthly_paid_plan', object: @paid_plan %>
       <% else %>
         <%= render partial: 'plans/yearly_paid_plan', object: @paid_plan %>
       <% end %>
+      </div>
     </div>
-  </div>
-</div>
-<div class="container">
-  <div class="row">
-    <div class="col-5 offset-4">
+    <div class="col-6 ml-auto mr-auto">
       <div id="card-errors" class="alert-danger alert d-none" role="alert"></div>
       <div class="card">
         <div class="card-body">
@@ -19,6 +17,7 @@
           <hr>
           <%= form_tag(payments_path, id: "payment-form") do %>
           <%= hidden_field_tag(:purchase_amounts_cents, @paid_plan.price_cents) %>
+          <%= hidden_field_tag(:plan_id, @paid_plan.id) %>
           <div class="form-group">
             <%= label_tag(:card_name, "Nombre completo (en la tarjeta)") %>
             <%= text_field_tag(:card_name, nil, placeholder: "", class: "form-control") %>
@@ -35,5 +34,3 @@
     </div>
   </div>
 </div>
-
-

@@ -244,7 +244,7 @@ es:
         monthly: "Mensual"
         yearly: "Anual"
       buttons:
-        current_plan: "Estás suscrito a este plan"
+        current_plan: "Estás suscrito"
         subscribe: "Suscribirte"
     footer:
       navigation_links:
@@ -260,5 +260,9 @@ es:
       sidebar:
         dashboard: "Panel de control"
         files: "Mis archivos"
-        plan: "Plan"
+        plan: "Mi plan"
+      plan:
+        billing_cycle:
+          monthly: "Mensual"
+          yearly: "Anual"
 

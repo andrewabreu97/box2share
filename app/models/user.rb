@@ -14,9 +14,13 @@ class User < ApplicationRecord
   validates_processing_of :avatar
   validate :avatar_size
 
-  # has_many :subscriptions
+  has_many :subscriptions
 
-  has_one :subscription
+  def current_subscription
+    subscriptions.where(status: "active").last
+  end
+
+  # has_one :subscription
 
   # def subscriptions_in_cart
   #   subscriptions.waiting.all.to_a

@@ -12,15 +12,16 @@ module StripeHandler
     def run
       Subscription.transaction do
         return unless event
-        subscription.active!
-        subscription.update_end_date
+        current_subscription.inactive!
+        new_subscription.active!
+        new_subscription.update_end_date
         @payment = Payment.create!(
             user_id: user.id, price_cents: invoice.amount_paid,
             status: "succeeded", reference: Payment.generate_reference,
             payment_method: "stripe", response_id: invoice.charge,
             full_response: charge.to_json)
         payment.payment_line_items.create!(
-            buyable: subscription, price_cents: invoice.amount_paid)
+            buyable: new_subscription, price_cents: invoice.amount_paid)
         @success = true
       end
     end
@@ -29,8 +30,12 @@ module StripeHandler
       @event.data.object
     end
 
-    def subscription
-      @subscription ||= Subscription.find_by(remote_id: invoice.subscription)
+    def current_subscription
+       @current_subscription ||= user.current_subscription
+    end
+
+    def new_subscription
+      @new_subscription ||= Subscription.find_by(remote_id: invoice.subscription)
     end
 
     def user

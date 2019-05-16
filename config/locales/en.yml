@@ -240,7 +240,7 @@ en:
         monthly: "Monthly"
         yearly: "Yearly"
       buttons:
-        current_plan: "You are subscribed to this plan"
+        current_plan: "You are subscribed"
         subscribe: "Subscribe"
     footer:
       navigation_links:
@@ -256,4 +256,8 @@ en:
       sidebar:
         dashboard: "Dashboard"
         files: "My files"
-        plan: "Plan"
+        plan: "My plan"
+      plan:
+        billing_cycle:
+          monthly: "Monthly"
+          yearly: "Yearly"

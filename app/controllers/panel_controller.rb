@@ -8,7 +8,7 @@ class PanelController < ApplicationController
   end
 
   def plan
-    @subscription = current_user.subscription
+    @subscription = current_user.current_subscription
   end
 
 end

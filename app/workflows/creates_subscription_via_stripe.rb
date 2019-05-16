@@ -1,25 +1,25 @@
 class CreatesSubscriptionViaStripe
 
-  attr_accessor :user, :expected_subscription_id, :token, :success
+  attr_accessor :user, :token, :plan, :success
 
-  def initialize(user:, expected_subscription_id:, token:)
+  def initialize(user:, plan: , token:)
     @user = user
-    @expected_subscription_id = expected_subscription_id
+    @plan = plan
     @token = token
     @success = false
   end
 
   def subscription
-    @subscription ||= user.subscriptions_in_cart.first
-  end
-
-  def expected_plan_valid?
-    expected_subscription_id.first.to_i == subscription.id.to_i
+    #@subscription ||= user.subscriptions_in_cart.first
+    @subscription ||= Subscription.create!(
+        user: user, plan: plan,
+        start_date: Time.zone.now.to_date,
+        end_date: plan.end_date_from,
+        status: :waiting, type: "PaidSubscription")
   end
 
   def run
     Payment.transaction do
-      return unless expected_plan_valid?
       stripe_customer = StripeCustomer.new(user: user)
       return unless stripe_customer.valid?
       stripe_customer.source = token
