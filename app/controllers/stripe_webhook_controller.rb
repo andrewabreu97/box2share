@@ -7,9 +7,9 @@ class StripeWebhookController < ApplicationController
     workflow = workflow_class.new(verify_event)
     workflow.run
     if workflow.success
-      render nothing: true
+      head :ok
     else
-      render nothing: true, status: 500
+      head :internal_server_error
     end
   end
 
