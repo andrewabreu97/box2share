@@ -1,4 +1,5 @@
 class StripeWebhookController < ApplicationController
+  before_action :check_signature, only: [:action]
 
   protect_from_forgery except: :action
 
@@ -24,6 +25,21 @@ class StripeWebhookController < ApplicationController
     "StripeHandler::#{event_type.tr('.', '_').camelize}".constantize
   rescue NameError
     StripeHandler::NullHandler
+  end
+
+  private def check_signature
+    @event_data = JSON.parse(request.body.read)
+    @signature_header = request.env['HTTP_STRIPE_SIGNATURE']
+    @singing_key = Rails.application.secrets.stripe_singing_key
+    begin
+      @event = Stripe::Webhook.construct_event(
+        @event_data, @signature_header, @singing_key
+      )
+    rescue JSON::ParserError => e
+      head :bad_request
+    rescue Stripe::SignatureVerificationError => e
+      head :bad_request
+    end
   end
 
 end

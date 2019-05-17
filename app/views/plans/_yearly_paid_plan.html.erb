@@ -13,9 +13,18 @@
       <li>...</li>
       <li>...</li>
     </ul>
-    <%= form_tag(subscription_cart_path, method: :patch) do %>
-      <%= hidden_field_tag("plan_id", yearly_paid_plan.id) %>
-      <%= submit_tag("Add to Cart", class: "btn btn-lg btn-block btn-outline-primary", id: "add-to-cart") %>
+    <% if current_page?(action: 'index') %>
+      <% if user_signed_in? %>
+        <% if current_user.current_subscription.free? %>
+          <%= link_to t('pages.pricing.buttons.subscribe'), plan_path(yearly_paid_plan.id), class: "btn btn-lg btn-block btn-outline-primary" %>
+        <% else %>
+          <% if current_user.current_plan?(yearly_paid_plan.id) %>
+            <%= link_to t('pages.pricing.buttons.current_plan'), "#", class: "btn btn-lg btn-block btn-outline-primary disabled" %>
+          <% end %>
+        <% end %>
+      <% else %>
+        <%= link_to t('pages.pricing.buttons.subscribe'), new_user_session_path, class: "btn btn-lg btn-block btn-outline-primary" %>
+      <% end %>
     <% end %>
   </div>
 </div>

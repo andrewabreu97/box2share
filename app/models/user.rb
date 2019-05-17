@@ -20,6 +20,10 @@ class User < ApplicationRecord
     subscriptions.where(status: "active").last
   end
 
+  def current_plan?(plan_id)
+    current_subscription.plan.id == plan_id
+  end
+
   # has_one :subscription
 
   # def subscriptions_in_cart

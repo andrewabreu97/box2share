@@ -15,7 +15,13 @@
     </ul>
     <% if current_page?(action: 'index') %>
       <% if user_signed_in? %>
-        <%= link_to t('pages.pricing.buttons.subscribe'), plan_path(monthly_paid_plan.id), class: "btn btn-lg btn-block btn-outline-primary" %>
+        <% if current_user.current_subscription.free? %>
+          <%= link_to t('pages.pricing.buttons.subscribe'), plan_path(monthly_paid_plan.id), class: "btn btn-lg btn-block btn-outline-primary" %>
+        <% else %>
+          <% if current_user.current_plan?(monthly_paid_plan.id) %>
+            <%= link_to t('pages.pricing.buttons.current_plan'), "#", class: "btn btn-lg btn-block btn-outline-primary disabled" %>
+          <% end %>
+        <% end %>
       <% else %>
         <%= link_to t('pages.pricing.buttons.subscribe'), new_user_session_path, class: "btn btn-lg btn-block btn-outline-primary" %>
       <% end %>
