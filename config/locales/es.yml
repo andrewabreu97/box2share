@@ -268,4 +268,5 @@ es:
   messages:
     successful_subscription: "Te has suscrito exitosamente al plan %{name}"
     unsuccessful_subscription: "Ha ocurrido un error en el proceso de subscripción. Por favor, inténtelo de nuevo."
+    actually_paid_subscription: "Ya se encuentra suscrito a una suscripción de pago."
 

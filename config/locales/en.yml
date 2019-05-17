@@ -264,3 +264,4 @@ en:
   messages:
     successful_subscription: "You have successfully subscribed to the %{name} plan"
     unsuccessful_subscription: "An error has occurred in the subscription process. Please, try again."
+    actually_paid_subscription: "You are already subscribed to a paid subscription."
