@@ -22,10 +22,9 @@
   </ul>
 
   <div id="content-wrapper">
-
     <div class="container-fluid">
       <div class="row">
-        <div class="col-4 offset-4">
+        <div class="col-6 ml-auto mr-auto">
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Tipo de cuenta</h5>
@@ -69,7 +68,37 @@
                 </div>
               </div>
               <hr>
-
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-6 ml-auto mr-auto">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Historial de pagos</h5>
+              <hr>
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>Fecha/Hora</th>
+                    <th>Artículo</th>
+                    <th>Cantidad</th>
+                    <th>Método de pago</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% current_user.payments.each do |payment| %>
+                    <tr>
+                      <td><%= payment.created_at %></td>
+                      <td><%= payment.payment_line_items.first.buyable.plan.name %></td>
+                      <td><%= humanized_money(payment.price) %> &euro;</td>
+                      <td><%= payment.payment_method.capitalize %></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
