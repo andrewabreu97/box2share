@@ -53,17 +53,15 @@ $(document).on('turbolinks:load', function(){
 
     stripe.createToken(card).then(function (result) {
       if (result.error) {
-
-              // Inform the user if there was an error.
-              $('#card-errors').removeClass('d-none');
-              $('#card-errors').text(result.error.message);
-            } else {
-              // Send the token to your server.
-              $('#card-errors').addClass('d-none');
-              alert("Hola");
-              stripeTokenHandler(result.token);
-            }
-          });
+        // Inform the user if there was an error.
+        $('#card-errors').removeClass('d-none');
+        $('#card-errors').text(result.error.message);
+      } else {
+        // Send the token to your server.
+        $('#card-errors').addClass('d-none');
+        stripeTokenHandler(result.token);
+      }
+    });
   });
 
   // Submit the form with the token ID.

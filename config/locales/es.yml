@@ -265,4 +265,7 @@ es:
         billing_cycle:
           monthly: "Mensual"
           yearly: "Anual"
+  messages:
+    successful_subscription: "Te has suscrito exitosamente al plan %{name}"
+    unsuccessful_subscription: "Ha ocurrido un error en el proceso de subscripción. Por favor, inténtelo de nuevo."
 

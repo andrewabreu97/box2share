@@ -261,3 +261,6 @@ en:
         billing_cycle:
           monthly: "Monthly"
           yearly: "Yearly"
+  messages:
+    successful_subscription: "You have successfully subscribed to the %{name} plan"
+    unsuccessful_subscription: "An error has occurred in the subscription process. Please, try again."
