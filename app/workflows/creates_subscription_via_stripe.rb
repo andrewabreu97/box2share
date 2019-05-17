@@ -2,7 +2,7 @@ class CreatesSubscriptionViaStripe
 
   attr_accessor :user, :token, :plan, :success
 
-  def initialize(user:, plan: , token:)
+  def initialize(user:, plan:, token:)
     @user = user
     @plan = plan
     @token = token
@@ -10,7 +10,6 @@ class CreatesSubscriptionViaStripe
   end
 
   def subscription
-    #@subscription ||= user.subscriptions_in_cart.first
     @subscription ||= Subscription.create!(
         user: user, plan: plan,
         start_date: Time.zone.now.to_date,
@@ -27,8 +26,8 @@ class CreatesSubscriptionViaStripe
       stripe_customer.add_subscription(subscription)
       @success = true
     end
-  rescue Stripe::StripeError => exception
-    #Rollbar.error(exception)
+  rescue Stripe::StripeError => e
+    Rollbar.error(e)
   end
 
   def redirect_on_success_url

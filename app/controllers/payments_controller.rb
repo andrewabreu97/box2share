@@ -21,7 +21,6 @@ class PaymentsController < ApplicationController
     workflow = CreatesSubscriptionViaStripe.new(
         user: current_user,
         plan: @paid_plan,
-#        expected_subscription_id: params[:subscription_ids].first,
         token: StripeToken.new(**card_params))
     workflow.run
     workflow

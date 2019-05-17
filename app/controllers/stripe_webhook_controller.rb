@@ -16,7 +16,8 @@ class StripeWebhookController < ApplicationController
 
   private def verify_event
     Stripe::Event.retrieve(@event_data["id"])
-  rescue Stripe::InvalidRequestError
+  rescue Stripe::InvalidRequestError => e
+    Rollbar.error(e)
     nil
   end
 
@@ -36,8 +37,10 @@ class StripeWebhookController < ApplicationController
         @event_data, @signature_header, @singing_key
       )
     rescue JSON::ParserError => e
+      Rollbar.error(e)
       head :bad_request
     rescue Stripe::SignatureVerificationError => e
+      Rollbar.error(e)
       head :bad_request
     end
   end
