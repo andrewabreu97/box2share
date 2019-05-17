@@ -15,6 +15,7 @@ class User < ApplicationRecord
   validate :avatar_size
 
   has_many :subscriptions
+  has_many :payments
 
   def current_subscription
     subscriptions.where(status: "active").last
@@ -23,12 +24,6 @@ class User < ApplicationRecord
   def current_plan?(plan_id)
     current_subscription.plan.id == plan_id
   end
-
-  # has_one :subscription
-
-  # def subscriptions_in_cart
-  #   subscriptions.waiting.all.to_a
-  # end
 
   def full_name
     "#{name} #{last_name}"

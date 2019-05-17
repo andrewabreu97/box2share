@@ -3,7 +3,7 @@ class Payment < ApplicationRecord
   include HasReference
 
   belongs_to :user, optional: true
-  has_many :payment_line_items
+  has_many :payment_line_items, dependent: :destroy
 
   monetize :price_cents
 
