@@ -1,6 +1,6 @@
 class PaymentsController < ApplicationController
 
-  before_action :set_plan, only: [:create]
+  before_action :set_selected_plan, only: [:create]
 
   def show
     @reference = params[:id]
@@ -12,15 +12,14 @@ class PaymentsController < ApplicationController
     if workflow.success
       redirect_to root_path
     else
-      redirect_to plan_path(@paid_plan.id)
+      redirect_to plan_path(@selected_plan.id)
     end
-
   end
 
   private def stripe_subscription_workflow
     workflow = CreatesSubscriptionViaStripe.new(
         user: current_user,
-        plan: @paid_plan,
+        plan: @selected_plan,
         token: StripeToken.new(**card_params))
     workflow.run
     workflow
@@ -33,8 +32,8 @@ class PaymentsController < ApplicationController
         :stripe_token).to_h.symbolize_keys
   end
 
-  private def set_plan
-    @paid_plan = Plan.find(params[:plan_id])
+  private def set_selected_plan
+    @selected_plan = Plan.find(params[:plan_id])
   end
 
 end
