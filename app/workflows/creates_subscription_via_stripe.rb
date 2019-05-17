@@ -1,6 +1,6 @@
 class CreatesSubscriptionViaStripe
 
-  attr_accessor :user, :token, :plan, :success
+  attr_accessor :user, :token, :plan, :success, :error_message
 
   def initialize(user:, plan:, token:)
     @user = user
@@ -27,6 +27,7 @@ class CreatesSubscriptionViaStripe
       @success = true
     end
   rescue Stripe::StripeError => e
+    @error_message = I18n.t("stripe.errors.#{e.code}")
     Rollbar.error(e)
   end
 

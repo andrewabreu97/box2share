@@ -12,7 +12,7 @@ class PaymentsController < ApplicationController
     if workflow.success
       redirect_to root_path, notice: t('messages.successful_subscription', name: @selected_plan.name)
     else
-      redirect_to plan_path(@selected_plan.id), alert: t('messages.unsuccessful_subscription')
+      redirect_to plan_path(@selected_plan.id), alert: workflow.error_message
     end
   end
 
