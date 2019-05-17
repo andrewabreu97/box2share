@@ -34,7 +34,9 @@
                   <h6>Plan</h6>
                   <div>
                     <span><%= @subscription.plan.name %></span>
-                    <span><%= link_to "Cancelar suscripción", "#", class: "btn btn-danger float-right" , method: :delete, confirm: "¿Estás seguro de que quieres eliminar esta suscripción?" %></span>
+                    <% unless @subscription.free? %>
+                      <span><%= link_to "Cancelar suscripción", subscription_path(@subscription), class: "btn btn-danger float-right" , method: :delete, confirm: "¿Estás seguro de que quieres eliminar esta suscripción?" %></span>
+                    <% end %>
                   </div>
                 </div>
               </div>

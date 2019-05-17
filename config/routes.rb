@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'subscriptions/destroy'
   resources :plans
   resources :payments
   resources :subscriptions
