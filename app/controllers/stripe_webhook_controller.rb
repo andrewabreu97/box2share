@@ -29,12 +29,13 @@ class StripeWebhookController < ApplicationController
   end
 
   private def check_signature
-    @event_data = JSON.parse(request.body.read)
-    @signature_header = request.env['HTTP_STRIPE_SIGNATURE']
-    @singing_key = Rails.application.secrets.stripe_singing_key
+    payload = request.body.read
+    signature_header = request.env['HTTP_STRIPE_SIGNATURE']
+    singing_key = Rails.application.secrets.stripe_signing_key
+    event = nil
     begin
-      @event = Stripe::Webhook.construct_event(
-        @event_data, @signature_header, @singing_key
+      event = Stripe::Webhook.construct_event(
+        payload, signature_header, singing_key
       )
     rescue JSON::ParserError => e
       Rollbar.error(e)
