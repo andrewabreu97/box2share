@@ -32,7 +32,10 @@
               <div class="row">
                 <div class="col">
                   <h6>Plan</h6>
-                  <p><%= @subscription.plan.name %></p>
+                  <div>
+                    <span><%= @subscription.plan.name %></span>
+                    <span><%= link_to "Cancelar suscripción", "#", class: "btn btn-danger float-right" , method: :delete, confirm: "¿Estás seguro de que quieres eliminar esta suscripción?" %></span>
+                  </div>
                 </div>
               </div>
               <hr>
@@ -40,6 +43,9 @@
                 <div class="col">
                   <h6>Estado</h6>
                   <p><span class="badge badge-success"><%= @subscription.status.capitalize %></span></p>
+                  <% unless @subscription.free? %>
+                    <p>Tu suscripción finalizará el <%= l @subscription.end_date, format: :default %></p>
+                  <% end %>
                 </div>
               </div>
               <hr>
