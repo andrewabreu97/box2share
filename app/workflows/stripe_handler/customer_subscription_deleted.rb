@@ -17,8 +17,15 @@ module StripeHandler
       @subscription ||= Subscription.find_by(remote_id: remote_subscription.id)
     end
 
+    def free_subscription
+      @free_subscription ||= user.subscriptions.find_by(type: "FreeSubscription")
+    end
+
     def run
-      subscription&.canceled!
+      Subscription.transaction do
+        subscription&.canceled!
+        free_subscription.active!
+      end
     end
 
   end
