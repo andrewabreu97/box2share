@@ -35,7 +35,7 @@
                   <div>
                     <span><%= @subscription.plan.name %></span>
                     <% unless @subscription.free? %>
-                      <span><%= link_to "Cancelar suscripción", subscription_path(@subscription), class: "btn btn-danger float-right" , method: :delete, confirm: "¿Estás seguro de que quieres eliminar esta suscripción?" %></span>
+                      <span><%= link_to "Cancelar suscripción", subscription_path(@subscription), class: "btn btn-danger float-right" , method: :delete, data: {confirm: "¿Estás seguro de que quieres eliminar esta suscripción?"} %></span>
                     <% end %>
                   </div>
                 </div>
