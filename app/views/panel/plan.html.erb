@@ -91,10 +91,11 @@
                 <div class="col">
                   <% if current_user.payment_method? %>
                     <p>La tarjeta <%= current_user.card_brand %> termina en <%= current_user.card_last4 %></p>
-                    <p><%= link_to "Actualizar" %></p>
-                    <p><%= link_to "Eliminar" %></p>
+                    <p><%= link_to "Actualizar", edit_payment_method_path %></p>
+                    <p><%= link_to "Eliminar", payment_method_path, method: :delete, data: {confirm: "¿Deseas eliminar este método de pago?"} %></p>
                   <% else %>
                     <p>No tienes ningún método de pago asociado.</p>
+                    <p><%= link_to "Añadir", new_payment_method_path %></p></p>
                   <% end %>
                 </div>
               </div>
