@@ -87,3 +87,18 @@ section.masthead h1 {
 .avatar {
   border-radius: 50%;
 }
+
+/* PAYMENT FORM */
+
+#payment-form input[type=text]::-webkit-input-placeholder {
+  color: #aab7c4
+}
+
+#payment-form input[type=text]:-moz-placeholder {
+  color: #aab7c4
+}
+
+#payment-form input[type=text]::-moz-placeholder {
+  color: #aab7c4
+}
+
