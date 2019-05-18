@@ -18,5 +18,6 @@ Rails.application.routes.draw do
   resources :plans
   resources :payments
   resources :subscriptions, path_names: { new: 'new/:plan_id' }
+  resource :payment_method
 
 end

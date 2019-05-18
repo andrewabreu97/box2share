@@ -29,6 +29,10 @@ class User < ApplicationRecord
     "#{name} #{last_name}"
   end
 
+  def payment_method?
+    card_last4.present?
+  end
+
   def after_confirmation
     self.create_subscription(plan: Plan.free_plan.first, status: 0,
         type: 'FreeSubscription')
