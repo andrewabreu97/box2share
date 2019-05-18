@@ -1,5 +1,9 @@
 class SubscriptionsController < ApplicationController
 
+  def new
+    @paid_plan = Plan.find(params[:plan_id])
+  end
+
   def destroy
     puts "params: #{params[:id]}"
     workflow = CancelsStripeSubscription.new(

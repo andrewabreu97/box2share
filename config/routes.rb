@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   get 'subscriptions/destroy'
   resources :plans
   resources :payments
-  resources :subscriptions
+  resources :subscriptions, path_names: { new: 'new/:plan_id' }
   devise_for :users, :controllers => { registrations: 'registrations' }
   authenticated :user do
     root 'panel#dashboard'
