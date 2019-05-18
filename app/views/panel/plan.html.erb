@@ -46,7 +46,7 @@
                   <h6><%= t('panel.pages.plan.status') %></h6>
                   <p><span class="badge badge-success"><%= @subscription.status.capitalize %></span></p>
                   <% unless @subscription.free? %>
-                    <p><%= t('panel.pages.plan.end_of_subscription') %> <%= l @subscription.end_date, format: :default %></p>
+                    <p><%= t('panel.pages.plan.end_date_subscription') %> <%= l @subscription.end_date, format: :default %></p>
                   <% end %>
                 </div>
               </div>

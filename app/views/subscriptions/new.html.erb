@@ -2,10 +2,10 @@
   <div class="row">
     <div class="col-4 ml-auto mr-auto">
       <div class="card-deck mb-3 text-center">
-      <% if @paid_plan.month? %>
-        <%= render partial: 'plans/monthly_paid_plan', object: @paid_plan %>
+      <% if @selected_plan.month? %>
+        <%= render partial: 'plans/monthly_paid_plan', object: @selected_plan %>
       <% else %>
-        <%= render partial: 'plans/yearly_paid_plan', object: @paid_plan %>
+        <%= render partial: 'plans/yearly_paid_plan', object: @selected_plan %>
       <% end %>
       </div>
     </div>
@@ -15,9 +15,9 @@
         <div class="card-body">
           <h5 class="card-title">Datos de pago</h5>
           <hr>
-          <%= form_tag(payments_path, id: "payment-form") do %>
-          <%= hidden_field_tag(:purchase_amounts_cents, @paid_plan.price_cents) %>
-          <%= hidden_field_tag(:plan_id, @paid_plan.id) %>
+          <%= form_tag(subscriptions_path, id: "payment-form") do %>
+          <%= hidden_field_tag(:purchase_amounts_cents, @selected_plan.price_cents) %>
+          <%= hidden_field_tag(:plan_id, @selected_plan.id) %>
           <div class="form-group">
             <%= text_field_tag(:card_name, nil, placeholder: "Nombre completo (en la tarjeta)", class: "form-control") %>
           </div>
