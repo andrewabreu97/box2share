@@ -266,9 +266,12 @@ es:
           monthly: "Mensual"
           yearly: "Anual"
   messages:
-    successful_subscription: "Te has suscrito exitosamente al plan %{name}"
-    unsuccessful_subscription: "Ha ocurrido un error en el proceso de subscripción. Por favor, inténtelo de nuevo."
-    actually_paid_subscription: "Ya se encuentra suscrito a una suscripción de pago."
+    subscriptions:
+      subscribed: "Te has suscrito exitosamente al plan %{name}"
+      unsubscribed: "Su suscripción ha sido cancelada con éxito."
+    failure:
+      already_subscribed: "Ya se encuentra suscrito a una suscripción de pago."
+      not_unsubscribed: "Ha ocurrido un problema al cancelar su suscripción."
   stripe:
     errors:
       incorrect_number: "El número de tarjeta es incorrecto."

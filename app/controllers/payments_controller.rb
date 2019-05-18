@@ -10,7 +10,7 @@ class PaymentsController < ApplicationController
   def create
     workflow = stripe_subscription_workflow
     if workflow.success
-      redirect_to root_path, notice: t('messages.successful_subscription', name: @selected_plan.name)
+      redirect_to root_path, notice: t('messages.subscriptions.subscribed', name: @selected_plan.name)
     else
       redirect_to new_subscription_path(@selected_plan.id), alert: workflow.error_message
     end
