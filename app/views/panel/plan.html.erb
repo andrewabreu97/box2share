@@ -27,7 +27,7 @@
         <div class="col-6 ml-auto mr-auto">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Tipo de cuenta</h5>
+              <h5 class="card-title"><%= t('panel.pages.plan.account_type') %></h5>
               <hr>
               <div class="row">
                 <div class="col">
@@ -43,7 +43,7 @@
               <hr>
               <div class="row">
                 <div class="col">
-                  <h6>Estado</h6>
+                  <h6><%= t('panel.pages.plan.status') %></h6>
                   <p><span class="badge badge-success"><%= @subscription.status.capitalize %></span></p>
                   <% unless @subscription.free? %>
                     <p>Tu suscripción finalizará el <%= l @subscription.end_date, format: :default %></p>
@@ -53,8 +53,8 @@
               <hr>
               <div class="row">
                 <div class="col">
-                  <h6>Espacio de almacenamiento</h6>
-                  <p class="text-right font-weight-light"><span class="font-weight-bold">0 Bytes</span> de <%= @subscription.plan.space_allowed.gigabyte %> Bytes en uso</p>
+                  <h6><%= t('panel.pages.plan.storage_space') %></h6>
+                  <p class="text-right font-weight-light"><span class="font-weight-bold">0 Bytes</span> <%= t('panel.pages.plan.of') %> <%= @subscription.plan.space_allowed.gigabyte %> Bytes <%= t('panel.pages.plan.in_use') %></p>
                   <div class="progress">
                     <div class="progress-bar" role="progressbar" style="width: 50%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">50%</div>
                   </div>
@@ -63,9 +63,9 @@
               <hr>
               <div class="row">
                 <div class="col">
-                  <h6>Renovación</h6>
+                  <h6><%= t('panel.pages.plan.renewal') %></h6>
                   <% if @subscription.free? %>
-                    <p>Sin ciclo de facturación</p>
+                    <p><%= t('panel.pages.plan.no_billing_cycle') %></p>
                   <% else %>
                     <% if @subscription.plan.month? %>
                       <p><%= t('panel.pages.plan.billing_cycle.monthly') %></p>

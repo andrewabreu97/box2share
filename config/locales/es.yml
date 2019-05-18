@@ -265,6 +265,13 @@ es:
         billing_cycle:
           monthly: "Mensual"
           yearly: "Anual"
+        account_type: "Tipo de cuenta"
+        status: "Estado"
+        storage_space: "Espacio de almacenamiento"
+        renewal: "Renovación"
+        no_billing_cycle: "Sin ciclo de facturación"
+        in_use: "en uso"
+        of: "de"
   messages:
     subscriptions:
       subscribed: "Te has suscrito exitosamente al plan %{name}"

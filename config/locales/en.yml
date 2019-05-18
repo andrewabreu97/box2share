@@ -261,6 +261,13 @@ en:
         billing_cycle:
           monthly: "Monthly"
           yearly: "Yearly"
+        account_type: "Account type"
+        status: "Status"
+        storage_space: "Storage space"
+        renewal: "Renewal"
+        no_billing_cycle: "No billing cycle"
+        in_use: "in use"
+        of: "of"
   messages:
     subscriptions:
       subscribed: "You have successfully subscribed to the %{name} plan"
