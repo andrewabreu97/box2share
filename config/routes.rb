@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   end
 
   get 'panel/plan', to: 'panel#plan'
+  get 'panel/dashboard', to: 'panel#dashboard'
 
   post "stripe/webhook", to: "stripe_webhook#action"
 
