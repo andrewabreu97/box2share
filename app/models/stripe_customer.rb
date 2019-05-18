@@ -34,6 +34,13 @@ class StripeCustomer
     subscription.update!(remote_id: remote_subscription.id)
   end
 
+  def save_non_sensible_card_info
+    source = remote_customer.sources.first
+    card_brand = source.brand
+    card_last4 = source.last4
+    user.update_attributes(card_brand: card_brand, card_last4: card_last4)
+  end
+
   def source=(token)
     remote_customer.source = token.id
     remote_customer.save

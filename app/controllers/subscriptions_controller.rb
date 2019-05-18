@@ -1,5 +1,7 @@
 class SubscriptionsController < ApplicationController
 
+  before_action :authenticate_user!, only: [:new]
+  before_action :check_current_subscription, only: [:new]
   before_action :set_selected_plan, only: [:new, :create]
 
   def new
@@ -44,6 +46,13 @@ class SubscriptionsController < ApplicationController
 
   private def set_selected_plan
     @selected_plan = Plan.find(params[:plan_id])
+  end
+
+  private def check_current_subscription
+    unless current_user.current_subscription.free?
+      flash[:alert] = t('messages.actually_paid_subscription')
+      redirect_back(fallback_location: root_path)
+    end
   end
 
 end

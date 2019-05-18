@@ -19,9 +19,6 @@
           <%= hidden_field_tag(:purchase_amounts_cents, @selected_plan.price_cents) %>
           <%= hidden_field_tag(:plan_id, @selected_plan.id) %>
           <div class="form-group">
-            <%= text_field_tag(:card_name, nil, placeholder: "Nombre completo (en la tarjeta)", class: "form-control") %>
-          </div>
-          <div class="form-group">
             <%= content_tag(:div, nil , class: "form-control", id: "card-element") %>
           </div>
           <div class="form-group">

@@ -22,6 +22,7 @@ class CreatesSubscriptionViaStripe
       stripe_customer = StripeCustomer.new(user: user)
       return unless stripe_customer.valid?
       stripe_customer.source = token
+      stripe_customer.save_non_sensible_card_info
       subscription.make_stripe_payment(stripe_customer)
       stripe_customer.add_subscription(subscription)
       @success = true
