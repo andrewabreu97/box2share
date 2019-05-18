@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_14_173003) do
+ActiveRecord::Schema.define(version: 2019_05_18_184544) do
 
   create_table "payment_line_items", force: :cascade do |t|
     t.integer "payment_id"
@@ -86,6 +86,8 @@ ActiveRecord::Schema.define(version: 2019_05_14_173003) do
     t.boolean "admin", default: false
     t.string "stripe_id"
     t.string "avatar"
+    t.string "card_last4"
+    t.string "card_brand"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
