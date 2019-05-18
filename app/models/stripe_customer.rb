@@ -30,7 +30,7 @@ class StripeCustomer
 
   def add_subscription(subscription)
     remote_subscription = remote_customer.subscriptions.create(
-        plan: subscription.remote_plan_id)
+        plan: subscription.remote_plan_id, enable_incomplete_payments: false)
     subscription.update!(remote_id: remote_subscription.id)
   end
 
