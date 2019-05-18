@@ -35,7 +35,7 @@
                   <div>
                     <span><%= @subscription.plan.name %></span>
                     <% unless @subscription.free? %>
-                      <span><%= link_to "Cancelar suscripción", subscription_path(@subscription), class: "btn btn-danger float-right" , method: :delete, data: {confirm: "¿Estás seguro de que quieres eliminar esta suscripción?"} %></span>
+                      <span><%= link_to t('panel.pages.plan.buttons.cancel_subscription'), subscription_path(@subscription), class: "btn btn-danger float-right" , method: :delete, data: {confirm: t('panel.pages.plan.messages.confirm_cancel')} %></span>
                     <% end %>
                   </div>
                 </div>
@@ -46,7 +46,7 @@
                   <h6><%= t('panel.pages.plan.status') %></h6>
                   <p><span class="badge badge-success"><%= @subscription.status.capitalize %></span></p>
                   <% unless @subscription.free? %>
-                    <p>Tu suscripción finalizará el <%= l @subscription.end_date, format: :default %></p>
+                    <p><%= t('panel.pages.plan.end_of_subscription') %> <%= l @subscription.end_date, format: :default %></p>
                   <% end %>
                 </div>
               </div>

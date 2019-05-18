@@ -272,6 +272,11 @@ es:
         no_billing_cycle: "Sin ciclo de facturación"
         in_use: "en uso"
         of: "de"
+        buttons:
+          cancel_subscription: "Cancelar suscripción"
+        messages:
+          confirm_cancel: "Are you sure you want to cancel this subscription?"
+        end_date_subscription: "Tu suscripción finalizará el"
   messages:
     subscriptions:
       subscribed: "Te has suscrito exitosamente al plan %{name}"

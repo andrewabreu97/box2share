@@ -268,6 +268,11 @@ en:
         no_billing_cycle: "No billing cycle"
         in_use: "in use"
         of: "of"
+        buttons:
+          cancel_subscription: "Cancel subcription"
+        messages:
+          confirm_cancel: "Are you sure you want to cancel this subscription?"
+        end_date_subscription: "Your subscription will end on"
   messages:
     subscriptions:
       subscribed: "You have successfully subscribed to the %{name} plan"
