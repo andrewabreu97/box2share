@@ -1,0 +1,7 @@
+<p>El pago de tu suscripción al plan <%= @subscription.name %> para el periódo <%= l @subscription.start_date, format: :default %> - <%= l @subscription.end_date, format: :default %> se ha realizado correctamente</p>
+
+<p>El próximo pago se realizará el <%= l @subscription.end_date, format: :default %></p>
+
+<p>Para acceder a la factura asociada a este pago accede al siguiente link:</p>
+
+<p><%= @invoice.hosted_invoice_url %></p>

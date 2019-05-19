@@ -36,6 +36,7 @@ class CancelsStripeSubscription
       remote_subscription.delete
       subscription.canceled!
       free_subscription.active!
+      SubscriptionMailer.cancelled_subscription(user, subscription).deliver_now
       @success = true
     end
   end

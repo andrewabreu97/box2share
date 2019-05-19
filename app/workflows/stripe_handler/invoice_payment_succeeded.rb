@@ -12,16 +12,19 @@ module StripeHandler
     def run
       Subscription.transaction do
         return unless event
-        # If the user have actually a free subscription
-        if current_subscription.free?
-          current_subscription.inactive!
-          subscription.active!
-        end
-        subscription.update_end_date
-        if payment.present?
-          # Its mean that this payment have a failed status and we change to succeded
-          payment = Payment.update_attributes!(status: "succeeded")
+        if payment
+          if subscription.inactive?
+            subscription.active!
+            subscription.update_end_date
+          end
+          payment.update_attributes!(status: "succeeded")
+          SubscriptionMailer.successful_payment(user, subscription, invoice).deliver_now
         else
+          if subscription.pending_initial_payment?
+            SubscriptionMailer.successful_subscription(user, subscription).deliver_now
+          end
+          subscription.active!
+          subscription.update_end_date
           payment = Payment.create!(
               user_id: user.id, price_cents: invoice.amount_paid,
               status: "succeeded", reference: Payment.generate_reference,
@@ -29,6 +32,7 @@ module StripeHandler
               full_response: charge.to_json)
           payment.payment_line_items.create!(
               buyable: subscription, price_cents: invoice.amount_paid)
+          SubscriptionMailer.successful_payment(user, subscription, invoice).deliver_now
         end
         @success = true
       end

@@ -17,6 +17,16 @@ class User < ApplicationRecord
   has_many :subscriptions
   has_many :payments
 
+  # Get the default free subscription of user
+  def free_subscription
+    subscriptions.where(type: "FreeSubscription").first
+  end
+
+  # Get the lastest paid subscription of user
+  def paid_subscription
+    subscriptions.where(type: "PaidSubscription").last
+  end
+
   def current_subscription
     subscriptions.where(status: "active").last
   end
@@ -34,7 +44,7 @@ class User < ApplicationRecord
   end
 
   def after_confirmation
-    self.create_subscription(plan: Plan.free_plan.first, status: 0,
+    self.subscriptions.create!(plan: Plan.free_plan.first, status: 0,
         type: 'FreeSubscription')
   end
 
