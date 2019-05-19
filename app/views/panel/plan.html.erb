@@ -81,29 +81,28 @@
         </div>
       </div>
       <br>
-      <div class="row">
-        <div class="col-6 ml-auto mr-auto">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Facturación</h5>
-              <hr>
-              <div class="row">
-                <div class="col">
-                  <% if current_user.payment_method? %>
-                    <p>La tarjeta <%= current_user.card_brand %> termina en <%= current_user.card_last4 %></p>
-                    <p><%= link_to "Actualizar", edit_payment_method_path %></p>
-                  <% else %>
-                    <p>No tienes ningún método de pago asociado.</p>
-                    <p><%= link_to "Añadir", new_payment_method_path %></p></p>
-                  <% end %>
+      <% if current_user.paid_subscription.active? %>
+        <% if current_user.payment_method? %>
+          <div class="row">
+            <div class="col-6 ml-auto mr-auto">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Facturación</h5>
+                  <hr>
+                  <div class="row">
+                    <div class="col">
+                      <p>La tarjeta <%= current_user.card_brand %> termina en <%= current_user.card_last4 %></p>
+                      <p><%= link_to "Actualizar", edit_payment_method_path, class: "btn btn-warning" %></p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
+        <% end %>
+      <% end %>
     </div>
-
+    <br>
     <%= render 'shared/panel_footer' %>
 
   </div>
