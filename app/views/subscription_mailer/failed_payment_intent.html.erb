@@ -1,0 +1,28 @@
+<p>Hola, <%= @user.name %></p>
+
+<% if @invoice.attempt_count == 1 && @invoice.next_payment_attempt %>
+
+  <p>El intento de pago de la factura asociada a tu suscripción ha fallado.</p>
+
+  <p>Requerimos que actualices tu método de pago. Hasta entonces tu suscripción al plan <%= @subscription.name %> queda inactiva por el momento.</p>
+
+  <p>El próximo intento de pago se realizará el: <%= l Time.at(@invoice.next_payment_attempt).to_date, format: :default %> </p>
+
+<% elsif @invoice.attempt_count >= 1 && @invoice.next_payment_attempt %>
+
+  <p>El intento de pago de la factura asociada a tu suscripción ha fallado de nuevo.</p>
+
+  <p>Requerimos que actualices tu método de pago. Hasta entonces tu suscripción al plan <%= @subscription.name %> se matendrá inactiva por el momento.</p>
+
+  <p>El próximo intento de pago se realizará el: <%= l Time.at(@invoice.next_payment_attempt).to_date, format: :default %> </p>
+
+<% else %>
+
+  <p>El intento de pago de la factura asociada a tu suscripción ha fallado de nuevo.</p>
+
+  <p>Requerimos que actualices tu método de pago. El próximo intento de pago será el último. Si no actualizas su método de pago cancelaremos tu suscripción al plan <%= @subscription.name %>.</p>
+
+<% end %>
+
+
+

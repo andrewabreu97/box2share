@@ -12,17 +12,6 @@ module StripeHandler
     def run
       Subscription.transaction do
         return unless event
-        if invoice.attempt_count >= 1 && invoice.next_payment_attempt
-          # notify user first attempt to pay invoice
-        else
-          # final warning to user
-        end
-        unless current_subscription.free?
-          subscription.inactive!
-          user.free_subscription.active!
-        else
-          subscription.inactive!
-        end
         if payment
           payment.update_attributes(status: "failed", full_response: charge.to_json)
         else
@@ -34,6 +23,7 @@ module StripeHandler
           payment.payment_line_items.create!(
               buyable: subscription, price_cents: invoice.amount_paid)
         end
+        SubscriptionMailer.failed_payment_intent(user, subscription, invoice).deliver_now
         @success = true
       end
     end

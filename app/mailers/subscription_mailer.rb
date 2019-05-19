@@ -19,4 +19,11 @@ class SubscriptionMailer < ApplicationMailer
     mail to: user.email, subject: "Suscripción cancelada"
   end
 
+  def failed_payment_intent(user, subscription, invoice)
+    @user = user
+    @subscription = subscription
+    @invoice = invoice
+    mail to: user.email, subject: "Intento de pago fallido"
+  end
+
 end

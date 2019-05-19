@@ -13,11 +13,9 @@ module StripeHandler
       Subscription.transaction do
         return unless event
         if payment
-          if subscription.inactive?
-            subscription.active!
-            subscription.update_end_date
-          end
-          payment.update_attributes!(status: "succeeded")
+          subscription.active!
+          subscription.update_end_date
+          payment.update_attributes!(status: "succeeded", full_response: charge.to_json)
           SubscriptionMailer.successful_payment(user, subscription, invoice).deliver_now
         else
           if subscription.pending_initial_payment?
