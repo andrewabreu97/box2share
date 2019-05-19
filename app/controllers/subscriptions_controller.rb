@@ -1,7 +1,7 @@
 class SubscriptionsController < ApplicationController
 
-  before_action :authenticate_user!, only: [:new]
-  before_action :check_current_subscription, only: [:new]
+  before_action :authenticate_user!, only: [:new, :edit]
+  before_action :check_current_subscription, only: [:new, :edit]
   before_action :set_selected_plan, only: [:new, :create]
 
   def new
@@ -67,8 +67,11 @@ class SubscriptionsController < ApplicationController
   end
 
   private def check_current_subscription
-    unless current_user.current_subscription.free?
-      flash[:alert] = t('messages.actually_paid_subscription')
+    if current_user.current_subscription.free?
+      flash[:alert] = "Debes estar suscrito a una suscripción para cambiarla."
+      redirect_back(fallback_location: root_path)
+    else
+      flash[:alert] = t('messages.failure.already_subscribed')
       redirect_back(fallback_location: root_path)
     end
   end
