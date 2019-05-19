@@ -18,15 +18,24 @@ module StripeHandler
           subscription.active!
         end
         subscription.update_end_date
-        @payment = Payment.create!(
-            user_id: user.id, price_cents: invoice.amount_paid,
-            status: "succeeded", reference: Payment.generate_reference,
-            payment_method: "stripe", response_id: invoice.charge,
-            full_response: charge.to_json)
-        payment.payment_line_items.create!(
-            buyable: subscription, price_cents: invoice.amount_paid)
+        if payment.present?
+          # Its mean that this payment have a failed status and we change to succeded
+          payment = Payment.update_attributes!(status: "succeeded")
+        else
+          payment = Payment.create!(
+              user_id: user.id, price_cents: invoice.amount_paid,
+              status: "succeeded", reference: Payment.generate_reference,
+              payment_method: "stripe", response_id: invoice.id,
+              full_response: charge.to_json)
+          payment.payment_line_items.create!(
+              buyable: subscription, price_cents: invoice.amount_paid)
+        end
         @success = true
       end
+    end
+
+    def payment
+      @payment ||= Payment.find_by response_id: invoice.id
     end
 
     def invoice
