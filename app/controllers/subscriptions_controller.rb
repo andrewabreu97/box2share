@@ -16,6 +16,24 @@ class SubscriptionsController < ApplicationController
     end
   end
 
+  def edit
+    @monthly_paid_plans = PaidPlan.active.month.where.not(id: params[:id])
+    @yearly_paid_plans = PaidPlan.active.year.where.not(id: params[:id])
+  end
+
+  def update
+    workflow = ChangesStripeSubscriptionPlan.new(
+        subscription_id: current_user.paid_subscription.id,
+        user: current_user,
+        new_plan_id: params[:new_plan_id])
+    workflow.run
+    if workflow.success
+      redirect_to panel_plan_path, notice: "Tu subscripción ha sido cambiada correctamente."
+    else
+      redirect_to panel_plan_path, alert: "Ha ocurrido un error al cambiar tu suscripción."
+    end
+  end
+
   def destroy
     workflow = CancelsStripeSubscription.new(
         subscription_id: params[:id],

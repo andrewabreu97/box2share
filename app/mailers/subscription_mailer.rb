@@ -32,4 +32,10 @@ class SubscriptionMailer < ApplicationMailer
     mail to: user.email, subject: "Suscripción cancelada"
   end
 
+  def notify_change_subscription(user, subscription)
+    @user = user
+    @subscription = subscription
+    mail to: user.email, subject: "Cambio de suscripción"
+  end
+
 end

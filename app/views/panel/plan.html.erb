@@ -36,6 +36,7 @@
                     <span><%= @subscription.plan.name %></span>
                     <% unless @subscription.free? %>
                       <span><%= link_to t('panel.pages.plan.buttons.cancel_subscription'), subscription_path(@subscription), class: "btn btn-danger float-right" , method: :delete, data: {confirm: t('panel.pages.plan.messages.confirm_cancel')} %></span>
+                      <span><%= link_to "Cambiar suscripción", edit_subscription_path(@subscription.plan.id) , class: "btn btn-warning float-right mr-2" %></span>
                     <% end %>
                   </div>
                 </div>
