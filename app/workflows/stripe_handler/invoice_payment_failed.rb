@@ -13,8 +13,10 @@ module StripeHandler
       Subscription.transaction do
         return unless event
         if payment
+          subscription.inactive!
           payment.update_attributes(status: "failed", full_response: charge.to_json)
         else
+          subscription.inactive!
           payment = Payment.create!(
               user_id: user.id, price_cents: invoice.amount_paid,
               status: "failed", reference: Payment.generate_reference,

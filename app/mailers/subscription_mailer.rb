@@ -13,7 +13,7 @@ class SubscriptionMailer < ApplicationMailer
     mail to: user.email, subject: "Pago exitoso"
   end
 
-  def cancelled_subscription(user, subscription)
+  def notify_user_cancellation(user, subscription)
     @user = user
     @subscription = subscription
     mail to: user.email, subject: "Suscripción cancelada"
@@ -24,6 +24,12 @@ class SubscriptionMailer < ApplicationMailer
     @subscription = subscription
     @invoice = invoice
     mail to: user.email, subject: "Intento de pago fallido"
+  end
+
+  def notify_stripe_cancellation(user, subscription)
+    @user = user
+    @subscription = subscription
+    mail to: user.email, subject: "Suscripción cancelada"
   end
 
 end
