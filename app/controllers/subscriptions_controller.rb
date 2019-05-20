@@ -11,7 +11,7 @@ class SubscriptionsController < ApplicationController
   def create
     workflow = stripe_subscription_workflow
     if workflow.success
-      redirect_to root_path, notice: t('messages.subscriptions.subscribed', name: @selected_plan.name)
+      redirect_to root_path, notice: t('.success.subscribed', name: @selected_plan.name)
     else
       redirect_to new_subscription_path(@selected_plan.id), alert: workflow.error_message
     end
@@ -29,9 +29,9 @@ class SubscriptionsController < ApplicationController
         new_plan_id: params[:new_plan_id])
     workflow.run
     if workflow.success
-      redirect_to panel_plan_path, notice: "Tu subscripción ha sido cambiada correctamente."
+      redirect_to panel_plan_path, notice: t('.success.update_subscription')
     else
-      redirect_to panel_plan_path, alert: "Ha ocurrido un error al cambiar tu suscripción."
+      redirect_to panel_plan_path, alert: t('.failure.no_update_subscription')
     end
   end
 
@@ -41,9 +41,9 @@ class SubscriptionsController < ApplicationController
         user: current_user)
     workflow.run
     if workflow.success
-      redirect_to panel_plan_path, notice: t('messages.subscriptions.unsubscribed')
+      redirect_to panel_plan_path, notice: t('.success.unsubscribed')
     else
-      redirect_to panel_plan_path, alert: t('messages.failure.not_unsubscribed')
+      redirect_to panel_plan_path, alert: t('.failure.not_unsubscribed')
     end
   end
 
@@ -71,14 +71,14 @@ class SubscriptionsController < ApplicationController
 
     def check_edit_subscription
       if current_user.current_subscription.free?
-        flash[:alert] = "Debes estar suscrito a una suscripción de pago para cambiarla."
+        flash[:alert] = t('.failure.no_paid_subscription')
         redirect_back(fallback_location: root_path)
       end
     end
 
     def check_new_subscription
       unless current_user.current_subscription.free?
-        flash[:alert] = t('messages.failure.already_subscribed')
+        flash[:alert] = t('.failure.already_subscribed')
         redirect_back(fallback_location: root_path)
       end
     end

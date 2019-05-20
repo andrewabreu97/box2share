@@ -276,6 +276,26 @@ es:
       title: "Formulario de pago"
       buttons:
         purchase: "Comprar suscripción"
+    edit:
+      display: "Planes disponibles"
+      lead: "Elije el que quieras para cambiar tu suscripción."
+      tab:
+        monthly: "Mensual"
+        yearly: "Anual"
+      success:
+        update_subscription: "Tu subscripción ha sido cambiada correctamente."
+      failure:
+        no_update_subscription: "Ha ocurrido un error al cambiar tu suscripción."
+        no_paid_subscription: "Debes estar suscrito a una suscripción de pago para cambiarla."
+        already_subscribed: "Ya se encuentra suscrito a una suscripción de pago."
+    destroy:
+      success:
+        unsubscribed: "Su suscripción ha sido cancelada con éxito."
+      failure:
+        not_unsubscribed: "Ha ocurrido un problema al cancelar su suscripción."
+    create:
+      success:
+        subscribed: "Te has suscrito exitosamente al plan %{name}"
   payment_methods:
     update:
       success:

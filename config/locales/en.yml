@@ -272,6 +272,26 @@ en:
       title: "Payment form"
       buttons:
         purchase: "Purchase subscription"
+    edit:
+      display: "Available plans"
+      lead: "Choose the one you want to change your subscription."
+      tab:
+        monthly: "Monthly"
+        yearly: "Yearly"
+      success:
+        update_subscription: "Your subscription has been changed correctly."
+      failure:
+        no_update_subscription: "An error occurred while changing your subscription."
+        no_paid_subscription: "You must be subscribed to a payment subscription to change it."
+        already_subscribed: "You are already subscribed to a paid subscription."
+    destroy:
+      success:
+        unsubscribed: "Your subscription has been successfully cancelled."
+      failure:
+        not_unsubscribed: "There was a problem canceling your subscription."
+    create:
+      success:
+        subscribed: "You have successfully subscribed to the %{name} plan"
   payment_methods:
     update:
       success:
