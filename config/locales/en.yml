@@ -215,9 +215,6 @@ en:
     pm: pm
 
   # Custom translations
-  languages:
-    english: "English"
-    spanish: "Spanish"
   panel:
     pages:
       sidebar:
@@ -324,5 +321,14 @@ en:
         signup: Sign Up
         signout: Sign Out
         profile: Profile
-
-
+      languages:
+        english: "English"
+        spanish: "Spanish"
+    panel_header:
+      links:
+        home: Home
+        pricing: Pricing
+        signin: Sign In
+        signup: Sign Up
+        signout: Sign Out
+        profile: Profile

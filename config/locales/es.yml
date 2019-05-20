@@ -328,3 +328,11 @@ es:
       languages:
         english: "Inglés"
         spanish: "Español"
+    panel_header:
+      links:
+        home: Inicio
+        pricing: Precios
+        signin: Inicio de sesión
+        signup: Registrarse
+        signout: Cerrar sesión
+        profile: Perfil
