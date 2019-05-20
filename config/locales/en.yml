@@ -215,15 +215,6 @@ en:
     pm: pm
 
   # Custom translations
-  pages:
-    header:
-      navigation_links:
-        home: Home
-        pricing: Pricing
-        signin: Sign In
-        signup: Sign Up
-        signout: Sign Out
-        profile: Profile
   languages:
     english: "English"
     spanish: "Spanish"
@@ -325,5 +316,13 @@ en:
         terms_of_use: "Terms of Use"
         privacy_policy: "Privacy Policy"
       copyright: "All Rights Reserved."
+    header:
+      links:
+        home: Home
+        pricing: Pricing
+        signin: Sign In
+        signup: Sign Up
+        signout: Sign Out
+        profile: Profile
 
 

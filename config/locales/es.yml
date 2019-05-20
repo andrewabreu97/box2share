@@ -219,18 +219,6 @@ es:
     pm: pm
 
   # Custom translations
-  pages:
-    header:
-      navigation_links:
-        home: Inicio
-        pricing: Precios
-        signin: Inicio de sesión
-        signup: Registrarse
-        signout: Cerrar sesión
-        profile: Perfil
-  languages:
-    english: "Inglés"
-    spanish: "Español"
   panel:
     pages:
       sidebar:
@@ -329,4 +317,14 @@ es:
         terms_of_use: "Términos de uso"
         privacy_policy: "Política de privacidad"
       copyright: "Todos los derechos reservados."
-
+    header:
+      links:
+        home: Inicio
+        pricing: Precios
+        signin: Inicio de sesión
+        signup: Registrarse
+        signout: Cerrar sesión
+        profile: Perfil
+      languages:
+        english: "Inglés"
+        spanish: "Español"
