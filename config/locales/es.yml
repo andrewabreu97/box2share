@@ -228,26 +228,6 @@ es:
         signup: Registrarse
         signout: Cerrar sesión
         profile: Perfil
-    home:
-      features:
-        upload: "Sube"
-        upload_lead: "Almacena tus archivos de forma segura"
-        download: "Descarga"
-        download_lead: "Descarga tus archivos desde cualquier parte"
-        share: "Comparte"
-        share_lead: "Compártelos con quién quieras"
-    pricing:
-      title: "Precios"
-      subtitle: "Elige el plan que mejor se adapte a ti."
-      month: "mes"
-      year: "año"
-      of_storage: "de almacenamiento"
-      tab:
-        monthly: "Mensual"
-        yearly: "Anual"
-      buttons:
-        current_plan: "Estás suscrito"
-        subscribe: "Suscribirte"
     footer:
       navigation_links:
         about: "Sobre nosotros"
@@ -337,3 +317,12 @@ es:
       buttons:
         current_plan: "Estás suscrito"
         subscribe: "Suscribirte"
+  static_pages:
+    home:
+      features:
+        upload: "Sube"
+        upload_lead: "Almacena tus archivos de forma segura"
+        download: "Descarga"
+        download_lead: "Descarga tus archivos desde cualquier parte"
+        share: "Comparte"
+        share_lead: "Compártelos con quién quieras"

@@ -224,26 +224,6 @@ en:
         signup: Sign Up
         signout: Sign Out
         profile: Profile
-    home:
-      features:
-        upload: "Upload"
-        upload_lead: "Store your files securely"
-        download: "Download"
-        download_lead: "Download your files from anywhere"
-        share: "Share"
-        share_lead: "Share them with whoever you want"
-    pricing:
-      title: "Pricing"
-      subtitle: "Choose the plan that best suits you."
-      month: "month"
-      year: "year"
-      of_storage: "of storage"
-      tab:
-        monthly: "Monthly"
-        yearly: "Yearly"
-      buttons:
-        current_plan: "You are subscribed"
-        subscribe: "Subscribe"
     footer:
       navigation_links:
         about: "About"
@@ -333,6 +313,14 @@ en:
       buttons:
         current_plan: "You are subscribed"
         subscribe: "Subscribe"
-
+  static_pages:
+    home:
+      features:
+        upload: "Upload"
+        upload_lead: "Store your files securely"
+        download: "Download"
+        download_lead: "Download your files from anywhere"
+        share: "Share"
+        share_lead: "Share them with whoever you want"
 
 
