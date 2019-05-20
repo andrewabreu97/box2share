@@ -46,34 +46,36 @@ class SubscriptionsController < ApplicationController
     end
   end
 
-  private def stripe_subscription_workflow
-    workflow = CreatesSubscriptionViaStripe.new(
-        user: current_user,
-        plan: @selected_plan,
-        token: StripeToken.new(**card_params))
-    workflow.run
-    workflow
-  end
+  private
 
-  private def card_params
-    params.permit(
-        :credit_card_number, :expiration_month,
-        :expiration_year, :cvc,
-        :stripe_token).to_h.symbolize_keys
-  end
-
-  private def set_selected_plan
-    @selected_plan = Plan.find(params[:plan_id])
-  end
-
-  private def check_current_subscription
-    if current_user.current_subscription.free?
-      flash[:alert] = "Debes estar suscrito a una suscripción para cambiarla."
-      redirect_back(fallback_location: root_path)
-    else
-      flash[:alert] = t('messages.failure.already_subscribed')
-      redirect_back(fallback_location: root_path)
+    def stripe_subscription_workflow
+      workflow = CreatesSubscriptionViaStripe.new(
+          user: current_user,
+          plan: @selected_plan,
+          token: StripeToken.new(**card_params))
+      workflow.run
+      workflow
     end
-  end
+
+    def card_params
+      params.permit(
+          :credit_card_number, :expiration_month,
+          :expiration_year, :cvc,
+          :stripe_token).to_h.symbolize_keys
+    end
+
+    def set_selected_plan
+      @selected_plan = Plan.find(params[:plan_id])
+    end
+
+    def check_current_subscription
+      if current_user.current_subscription.free?
+        flash[:alert] = "Debes estar suscrito a una suscripción para cambiarla."
+        redirect_back(fallback_location: root_path)
+      else
+        flash[:alert] = t('messages.failure.already_subscribed')
+        redirect_back(fallback_location: root_path)
+      end
+    end
 
 end

@@ -5,7 +5,4 @@ class PaymentsController < ApplicationController
     @payment = Payment.find_by(reference: @reference)
   end
 
-  def create
-  end
-
 end
