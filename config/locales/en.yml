@@ -272,6 +272,17 @@ en:
       title: "Payment form"
       buttons:
         purchase: "Purchase subscription"
+  payment_methods:
+    update:
+      success:
+        update_payment_method: "Your payment method has been updated correctly."
+      failure:
+        no_paid_subscription: "You must be subscribed to a payment plan to change your payment method."
+    edit:
+      form:
+        title: "Update card form"
+        buttons:
+          update: "Update payment method"
   plans:
     index:
       title: "Pricing"

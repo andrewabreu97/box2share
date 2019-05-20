@@ -1,7 +1,7 @@
 class PaymentMethodsController < ApplicationController
 
   before_action :authenticate_user!
-  before_action :check_current_subscription
+  before_action :check_edit_payment_method, only: [:edit]
 
   def edit
   end
@@ -12,7 +12,7 @@ class PaymentMethodsController < ApplicationController
       token: StripeToken.new(**card_params))
     workflow.run
     if workflow.success
-      redirect_to panel_plan_path, notice: "Tu método de pago ha sido actualizado correctamente."
+      redirect_to panel_plan_path, notice: t('.success.update_payment_method')
     else
       redirect_to edit_payment_method_path, alert: workflow.error_message
     end
@@ -27,9 +27,9 @@ class PaymentMethodsController < ApplicationController
           :stripe_token).to_h.symbolize_keys
     end
 
-    def check_current_subscription
+    def check_edit_payment_method
       if current_user.current_subscription.free?
-        flash[:alert] = "Debes estar suscrito a un plan de pago para cambiar tu método de pago."
+        flash[:alert] = t('failure.no_paid_subscription')
         redirect_back(fallback_location: root_path)
       end
     end

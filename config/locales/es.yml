@@ -276,6 +276,17 @@ es:
       title: "Formulario de pago"
       buttons:
         purchase: "Comprar suscripción"
+  payment_methods:
+    update:
+      success:
+        update_payment_method: "Tu método de pago ha sido actualizado correctamente."
+      failure:
+        no_paid_subscription: "Debes estar suscrito a un plan de pago para cambiar tu método de pago."
+    edit:
+      form:
+        title: "Formulario para actualizar la tarjeta"
+        buttons:
+          update: "Actualizar método de pago"
   plans:
     index:
       title: "Precios"
