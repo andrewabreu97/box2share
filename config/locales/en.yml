@@ -224,12 +224,6 @@ en:
         signup: Sign Up
         signout: Sign Out
         profile: Profile
-    footer:
-      navigation_links:
-        about: "About"
-        contact: "Contact"
-        terms_of_use: "Terms of Use"
-        privacy_policy: "Privacy Policy"
   languages:
     english: "English"
     spanish: "Spanish"
@@ -315,6 +309,7 @@ en:
         subscribe: "Subscribe"
   static_pages:
     home:
+      title: "Home"
       features:
         upload: "Upload"
         upload_lead: "Store your files securely"
@@ -322,5 +317,13 @@ en:
         download_lead: "Download your files from anywhere"
         share: "Share"
         share_lead: "Share them with whoever you want"
+  layouts:
+    footer:
+      links:
+        about: "About"
+        contact: "Contact"
+        terms_of_use: "Terms of Use"
+        privacy_policy: "Privacy Policy"
+      copyright: "All Rights Reserved."
 
 

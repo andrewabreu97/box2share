@@ -228,12 +228,6 @@ es:
         signup: Registrarse
         signout: Cerrar sesión
         profile: Perfil
-    footer:
-      navigation_links:
-        about: "Sobre nosotros"
-        contact: "Contacto"
-        terms_of_use: "Términos de uso"
-        privacy_policy: "Política de privacidad"
   languages:
     english: "Inglés"
     spanish: "Español"
@@ -319,6 +313,7 @@ es:
         subscribe: "Suscribirte"
   static_pages:
     home:
+      title: "Inicio"
       features:
         upload: "Sube"
         upload_lead: "Almacena tus archivos de forma segura"
@@ -326,3 +321,12 @@ es:
         download_lead: "Descarga tus archivos desde cualquier parte"
         share: "Comparte"
         share_lead: "Compártelos con quién quieras"
+  layouts:
+    footer:
+      links:
+        about: "Sobre nosotros"
+        contact: "Contacto"
+        terms_of_use: "Términos de uso"
+        privacy_policy: "Política de privacidad"
+      copyright: "Todos los derechos reservados."
+
