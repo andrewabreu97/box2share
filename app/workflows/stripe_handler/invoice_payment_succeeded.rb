@@ -15,6 +15,7 @@ module StripeHandler
         if payment
           subscription.active!
           subscription.update_end_date
+          user.free_subscription.inactive!
           payment.update_attributes!(status: "succeeded", full_response: charge.to_json)
           SubscriptionMailer.successful_payment(user, subscription, invoice).deliver_now
         else
@@ -23,6 +24,7 @@ module StripeHandler
           end
           subscription.active!
           subscription.update_end_date
+          user.free_subscription.inactive!
           payment = Payment.create!(
               user_id: user.id, price_cents: invoice.amount_paid,
               status: "succeeded", reference: Payment.generate_reference,

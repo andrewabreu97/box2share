@@ -25,6 +25,7 @@ module StripeHandler
       Subscription.transaction do
         if subscription.active?
           subscription&.canceled!
+          user.free_subscription.active!
           SubscriptionMailer.notify_stripe_cancellation(user, subscription).deliver_now
           @success = true
         end

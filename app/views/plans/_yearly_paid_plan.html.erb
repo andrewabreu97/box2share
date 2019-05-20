@@ -26,11 +26,6 @@
         <% else %>
           <%= link_to t('pages.pricing.buttons.subscribe'), new_user_session_path, class: "btn btn-lg btn-block btn-outline-primary" %>
         <% end %>
-      <% elsif current_page?(controller: 'subscriptions', action: 'edit') %>
-        <%= form_tag(subscription_path, method: :patch) do %>
-          <%= hidden_field_tag(:new_plan_id, yearly_paid_plan.id) %>
-          <%= submit_tag("Cambiar", class: "btn btn-lg btn-block btn-outline-primary") %>
-        <% end %>
       <% end %>
     </div>
   </div>

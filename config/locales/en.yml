@@ -213,6 +213,8 @@ en:
       long: "%B %d, %Y %H:%M"
       short: "%d %b %H:%M"
     pm: pm
+
+  # Custom translations
   pages:
     header:
       navigation_links:
@@ -294,3 +296,12 @@ en:
       missing: "There is no card on a customer that is being charged."
       processing_error: "An error occurred while processing the card."
       rate_limit: "An error occurred due to requests hitting the API too quickly. Please let us know if you're consistently running into this error."
+  subscriptions:
+    new:
+      title: "Payment form"
+      buttons:
+        purchase: "Purchase subscription"
+  plans:
+    index:
+      title: "Pricing"
+

@@ -4,7 +4,7 @@
       <div id="card-errors" class="alert-danger alert d-none" role="alert"></div>
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">Datos de pago</h5>
+          <h5 class="card-title"><%= t('.title') %></h5>
           <hr>
           <%= form_tag(payment_method_path, id: "update-card-form", method: :patch) do %>
           <div class="form-group">

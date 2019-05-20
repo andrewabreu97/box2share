@@ -1,7 +1,8 @@
 class SubscriptionsController < ApplicationController
 
   before_action :authenticate_user!, only: [:new, :edit]
-  before_action :check_current_subscription, only: [:new, :edit]
+  before_action :check_edit_subscription, only: [:edit]
+  before_action :check_new_subscription, only: [:new]
   before_action :set_selected_plan, only: [:new, :create]
 
   def new
@@ -68,11 +69,15 @@ class SubscriptionsController < ApplicationController
       @selected_plan = Plan.find(params[:plan_id])
     end
 
-    def check_current_subscription
+    def check_edit_subscription
       if current_user.current_subscription.free?
-        flash[:alert] = "Debes estar suscrito a una suscripción para cambiarla."
+        flash[:alert] = "Debes estar suscrito a una suscripción de pago para cambiarla."
         redirect_back(fallback_location: root_path)
-      else
+      end
+    end
+
+    def check_new_subscription
+      unless current_user.current_subscription.free?
         flash[:alert] = t('messages.failure.already_subscribed')
         redirect_back(fallback_location: root_path)
       end
