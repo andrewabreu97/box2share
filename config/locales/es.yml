@@ -7,6 +7,14 @@ es:
         restrict_dependent_destroy:
           has_one: No se puede eliminar el registro porque existe un %{record} dependiente
           has_many: No se puede eliminar el registro porque existen %{record} dependientes
+    attributes:
+      subscription:
+        status:
+          active: "Activa"
+          inactive: "Inactiva"
+          waiting: "Esperando"
+          pending_initial_payment: "Pendiente del pago inicial"
+          cancelled: "Cancelada"
   date:
     abbr_day_names:
     - dom
@@ -244,6 +252,12 @@ es:
         of: "de"
         end_date_subscription: "Tu suscripción finalizará el"
         payment_method: "La tarjeta %{card_brand} termina en %{card_last4}"
+        status:
+          active: "Activa"
+          inactive: "Inactiva"
+          waiting: "Esperando"
+          pending_initial_payment: "Pendiente del pago inicial"
+          cancelled: "Cancelada"
       buttons:
         cancel_subscription: "Cancelar suscripción"
         change_subscription: "Cambiar suscripción"

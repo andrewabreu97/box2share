@@ -240,6 +240,12 @@ en:
         of: "of"
         end_date_subscription: "Your subscription will end on"
         payment_method: "%{card_brand} card ending in %{card_last4}"
+        status:
+          active: "Active"
+          inactive: "Inactive"
+          waiting: "Waiting"
+          pending_initial_payment: "Pending initial payment"
+          cancelled: "Cancelled"
       buttons:
         cancel_subscription: "Cancel subcription"
         change_subscription: "Change subscription"
