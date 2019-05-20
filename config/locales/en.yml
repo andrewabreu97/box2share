@@ -304,4 +304,35 @@ en:
   plans:
     index:
       title: "Pricing"
+      subtitle: "Choose the plan that best suits you."
+      tab:
+        monthly: "Monthly"
+        yearly: "Yearly"
+    free_plan:
+      text:
+        month: "month"
+        year: "year"
+        of_storage: "of storage"
+      buttons:
+        current_plan: "You are subscribed"
+        subscribe: "Subscribe"
+        signup: "Sign Up"
+    monthly_paid_plan:
+      text:
+        month: "month"
+        year: "year"
+        of_storage: "of storage"
+      buttons:
+        current_plan: "You are subscribed"
+        subscribe: "Subscribe"
+    yearly_paid_plan:
+      text:
+        month: "month"
+        year: "year"
+        of_storage: "of storage"
+      buttons:
+        current_plan: "You are subscribed"
+        subscribe: "Subscribe"
+
+
 

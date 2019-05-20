@@ -8,17 +8,17 @@
       0 &euro;<small class="text-muted"></small>
     </h1>
     <ul class="list-unstyled mt-3 mb-4">
-      <li><%= free_plan.space_allowed %> GB <%= t('pages.pricing.of_storage') %></li>
+      <li><%= free_plan.space_allowed %> GB <%= t('.text.of_storage') %></li>
       <li>...</li>
       <li>...</li>
       <li>...</li>
     </ul>
     <% if user_signed_in? %>
       <% if current_user.current_subscription.free? %>
-        <%= link_to t('pages.pricing.buttons.current_plan'), "#", class: "btn btn-lg btn-block btn-outline-primary disabled" %>
+        <%= link_to t('.buttons.current_plan'), "#", class: "btn btn-lg btn-block btn-outline-primary disabled" %>
       <% end %>
     <% else %>
-      <%= link_to t('pages.header.navigation_links.signup'), new_user_registration_path, class: "btn btn-lg btn-block btn-outline-primary" %>
+      <%= link_to t('.buttons.signup'), new_user_registration_path, class: "btn btn-lg btn-block btn-outline-primary" %>
     <% end %>
   </div>
 </div>

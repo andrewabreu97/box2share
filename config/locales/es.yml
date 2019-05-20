@@ -305,3 +305,35 @@ es:
       title: "Formulario de pago"
       buttons:
         purchase: "Comprar suscripción"
+  plans:
+    index:
+      title: "Precios"
+      subtitle: "Elige el plan que mejor se adapte a ti."
+      tab:
+        monthly: "Mensual"
+        yearly: "Anual"
+    free_plan:
+      text:
+        month: "mes"
+        year: "año"
+        of_storage: "de almacenamiento"
+      buttons:
+        current_plan: "Estás suscrito"
+        subscribe: "Suscribirte"
+        signup: "Registrarse"
+    monthly_paid_plan:
+      text:
+        month: "mes"
+        year: "año"
+        of_storage: "de almacenamiento"
+      buttons:
+        current_plan: "Estás suscrito"
+        subscribe: "Suscribirte"
+    yearly_paid_plan:
+      text:
+        month: "mes"
+        year: "año"
+        of_storage: "de almacenamiento"
+      buttons:
+        current_plan: "Estás suscrito"
+        subscribe: "Suscribirte"

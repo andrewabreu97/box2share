@@ -6,10 +6,10 @@
     <div class="card-body">
       <%= image_tag(yearly_paid_plan.name.downcase, alt: "#{yearly_paid_plan.name}_icon") %>
       <h1 class="card-title pricing-card-title">
-        <%= humanized_money(yearly_paid_plan.price) %> &euro;<small class="text-muted">/ <%= t('pages.pricing.year') %></small>
+        <%= humanized_money(yearly_paid_plan.price) %> &euro;<small class="text-muted">/ <%= t('.text.year') %></small>
       </h1>
       <ul class="list-unstyled mt-3 mb-4">
-        <li><%= yearly_paid_plan.space_allowed %> GB <%= t('pages.pricing.of_storage') %></li>
+        <li><%= yearly_paid_plan.space_allowed %> GB <%= t('.text.of_storage') %></li>
         <li>...</li>
         <li>...</li>
         <li>...</li>
@@ -17,14 +17,14 @@
       <% if current_page?(action: 'index') %>
         <% if user_signed_in? %>
           <% if current_user.current_subscription.free? %>
-            <%= link_to t('pages.pricing.buttons.subscribe'), new_subscription_path(yearly_paid_plan.id), class: "btn btn-lg btn-block btn-outline-primary" %>
+            <%= link_to t('.buttons.subscribe'), new_subscription_path(yearly_paid_plan.id), class: "btn btn-lg btn-block btn-outline-primary" %>
           <% else %>
             <% if current_user.current_plan?(yearly_paid_plan.id) %>
-              <%= link_to t('pages.pricing.buttons.current_plan'), "#", class: "btn btn-lg btn-block btn-outline-primary disabled" %>
+              <%= link_to t('.buttons.current_plan'), "#", class: "btn btn-lg btn-block btn-outline-primary disabled" %>
             <% end %>
           <% end %>
         <% else %>
-          <%= link_to t('pages.pricing.buttons.subscribe'), new_user_session_path, class: "btn btn-lg btn-block btn-outline-primary" %>
+          <%= link_to t('.buttons.subscribe'), new_user_session_path, class: "btn btn-lg btn-block btn-outline-primary" %>
         <% end %>
       <% end %>
     </div>
