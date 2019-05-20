@@ -216,27 +216,36 @@ en:
 
   # Custom translations
   panel:
-    pages:
+    dashboard:
       sidebar:
         dashboard: "Dashboard"
         files: "My files"
         plan: "My plan"
-      plan:
-        billing_cycle:
-          monthly: "Monthly"
-          yearly: "Yearly"
+    plan:
+      sidebar:
+        dashboard: "Dashboard"
+        files: "My files"
+        plan: "My plan"
+      titles:
         account_type: "Account type"
         status: "Status"
         storage_space: "Storage space"
         renewal: "Renewal"
+      text:
+        billing_cycle:
+          monthly: "Monthly"
+          yearly: "Yearly"
         no_billing_cycle: "No billing cycle"
         in_use: "in use"
         of: "of"
-        buttons:
-          cancel_subscription: "Cancel subcription"
-        messages:
-          confirm_cancel: "Are you sure you want to cancel this subscription?"
         end_date_subscription: "Your subscription will end on"
+        payment_method: "%{card_brand} card ending in %{card_last4}"
+      buttons:
+        cancel_subscription: "Cancel subcription"
+        change_subscription: "Change subscription"
+        update_payment_method: "Update"
+      messages:
+        confirm_cancel: "Are you sure you want to cancel this subscription?"
   messages:
     subscriptions:
       subscribed: "You have successfully subscribed to the %{name} plan"
