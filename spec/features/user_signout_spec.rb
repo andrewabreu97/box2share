@@ -8,7 +8,7 @@ RSpec.feature "User sign out", type: :feature do
 
 		sign_in "test@example.com", "foobar"
 
-		click_link I18n.t('pages.header.navigation_links.signout')
+		click_link I18n.t('layouts.header.links.signout')
 
 		expect(current_path).to eq root_path
     expect(page).to have_content I18n.t('devise.sessions.signed_out')
