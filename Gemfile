@@ -78,7 +78,7 @@ group :test do
   gem 'webmock'
   gem 'vcr'
   gem 'email_spec'
-  gem 'byebug'
+  gem 'poltergeist'
 end
 
 group :production do
