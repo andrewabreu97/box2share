@@ -3,9 +3,10 @@ require 'rails_helper'
 RSpec.feature "User edit profile", type: :feature do
 
 	before(:each) do
+		create(:plan)
 		create(:user, email: "test@example.com", password: "foobar")
 		sign_in "test@example.com", "foobar"
-		click_link I18n.t('pages.header.navigation_links.profile')
+		click_link I18n.t('layouts.header.links.profile')
 		expect(current_path).to eq edit_user_registration_path
 	end
 
