@@ -2,14 +2,13 @@ require 'rails_helper'
 
 RSpec.feature "User sign in", type: :feature do
 
-	# Spec will run using the ':selenium browser driver configured in spec/support/capybara.rb'
 	scenario "with valid information" do
-		
+
 		create(:user, email: "test@example.com", password: "foobar")
 
 		visit root_path
 
-		click_link I18n.t('pages.header.navigation_links.signin')
+		click_link I18n.t('layouts.header.links.signin')
 		expect(current_path).to eq new_user_session_path
 
 		sign_in_with "test@example.com", "foobar"
@@ -20,7 +19,7 @@ RSpec.feature "User sign in", type: :feature do
 	end
 
 	scenario "unconfirmed user cannot login" do
-		
+
 		create(:user, skip_confirmation: false, email: "test@example.com", password: "foobar")
 
 		visit new_user_session_path
@@ -29,7 +28,7 @@ RSpec.feature "User sign in", type: :feature do
 
 		expect(current_path).to eq new_user_session_path
   	expect(page).not_to have_content I18n.t('devise.sessions.signed_in')
-  	expect(page).to have_content I18n.t('devise.failure.unconfirmed')  			
+  	expect(page).to have_content I18n.t('devise.failure.unconfirmed')
 
 	end
 
