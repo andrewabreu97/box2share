@@ -1,14 +1,15 @@
 require 'rails_helper'
 
 RSpec.feature "User cancel accounts", type: :feature do
-  
+
 	scenario "successfully after sign in", js: true do
-		
+
 		create(:user, email: "test@example.com", password: "foobar")
 
 		sign_in "test@example.com", "foobar"
 
-		click_link I18n.t('pages.header.navigation_links.profile')
+		page.find("#userDropdown").click
+		click_link I18n.t('layouts.header.links.profile')
 
 		expect(current_path).to eq edit_user_registration_path
 
@@ -17,7 +18,7 @@ RSpec.feature "User cancel accounts", type: :feature do
 		end
 
 		expect(page).to have_content I18n.t('devise.registrations.destroyed')
- 
+
 	end
 
 end
