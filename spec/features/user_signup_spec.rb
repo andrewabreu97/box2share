@@ -4,8 +4,10 @@ RSpec.feature "User sign up", type: :feature do
 
   scenario "with valid information" do
 
+    create(:plan)
+
   	visit root_path
-  	click_link I18n.t('pages.header.navigation_links.signup')
+  	click_link I18n.t('layouts.header.links.signup')
   	expect(current_path).to eq(new_user_registration_path)
 
     sign_up_with "test-name", "test-last-name", "test@example.com", "test-password", "test-password"
