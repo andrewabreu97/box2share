@@ -14,15 +14,13 @@ class User < ApplicationRecord
   validates_processing_of :avatar
   validate :avatar_size
 
-  has_many :subscriptions
-  has_many :payments
+  has_many :subscriptions, dependent: :destroy
+  has_many :payments, dependent: :destroy
 
-  # Get the default free subscription of user
   def free_subscription
     subscriptions.where(type: "FreeSubscription").first
   end
 
-  # Get the lastest paid subscription of user
   def paid_subscription
     subscriptions.where(type: "PaidSubscription").last
   end
