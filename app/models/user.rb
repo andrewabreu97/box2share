@@ -9,13 +9,13 @@ class User < ApplicationRecord
 
  	validates :name, presence: true
  	validates :last_name, presence: true
-  #validates_presence_of :avatar
   validates_integrity_of :avatar
   validates_processing_of :avatar
   validate :avatar_size
 
   has_many :subscriptions, dependent: :destroy
   has_many :payments, dependent: :destroy
+  has_many :assets, dependent: :destroy
 
   def free_subscription
     subscriptions.where(type: "FreeSubscription").first
