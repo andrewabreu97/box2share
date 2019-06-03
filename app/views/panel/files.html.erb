@@ -33,27 +33,34 @@
 
       <div class="row">
         <div class="col">
-          <div class="table-responsive">
-            <table class="table table-border-top-less">
-              <thead>
-                <tr>
-                  <th scope="col"></th>
-                  <th scope="col">Nombre</th>
-                  <th scope="col">Fecha de subida</th>
-                  <th scope="col">Tamaño</th>
-                </tr>
-              </thead>
-              <tbody>
-                <% @assets.each do |asset| %>
-                <tr>
-                  <th scope="row">1</th>
-                  <td><%= asset.uploaded_file.filename %></td>
-                  <td><%= l asset.uploaded_file.created_at.to_date, format: :default %></td>
-                  <td><%= number_to_human_size(asset.uploaded_file.byte_size) %></td>
-                </tr>
-                <% end %>
-              </tbody>
-            </table>
+          <div class="card">
+            <div class="card-header">
+              Mis archivos
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table id="files" class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col"></th>
+                      <th scope="col">Nombre</th>
+                      <th scope="col">Fecha de subida</th>
+                      <th scope="col">Tamaño</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% @assets.each do |asset| %>
+                    <tr>
+                      <th scope="row">1</th>
+                      <td><%= asset.uploaded_file.filename %></td>
+                      <td><%= l asset.uploaded_file.created_at.to_date, format: :default %></td>
+                      <td><%= number_to_human_size(asset.uploaded_file.byte_size) %></td>
+                    </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
         </div>
       </div>
