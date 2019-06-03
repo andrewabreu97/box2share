@@ -21,7 +21,7 @@ class AssetsController < ApplicationController
 
     respond_to do |format|
       if @asset.save
-        format.html { redirect_to assets_path, notice: 'El archivo se ha subido correctamente.' }
+        format.html { redirect_to panel_files_path, notice: 'El archivo se ha subido correctamente.' }
         #format.json { render :show, status: :created, location: @asset }
       else
         format.html { render :new }
