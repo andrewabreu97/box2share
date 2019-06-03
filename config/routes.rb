@@ -12,16 +12,18 @@ Rails.application.routes.draw do
 
   get 'panel/plan', to: 'panel#plan'
   get 'panel/dashboard', to: 'panel#dashboard'
+  get 'panel/files', to: 'panel#files'
 
   post "stripe/webhook", to: "stripe_webhook#action"
 
   resources :plans, only: [:index]
   resources :payments, only: [:show]
   resources :subscriptions, path_names: { new: 'new/:plan_id' }
-  resources :assets
+  #resources :assets
 
   scope :panel do
     resource :payment_method, only: [:edit, :update]
+    resources :assets, except: [:index]
   end
 
 end

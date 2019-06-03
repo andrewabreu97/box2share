@@ -102,3 +102,12 @@ section.masthead h1 {
   color: #aab7c4
 }
 
+/* PANEL */
+
+.breadcrumb-right-arrow .breadcrumb-item+.breadcrumb-item::before {
+    content: "›";
+  vertical-align:top;
+  font-size:40px;
+  line-height:15px;
+}
+
