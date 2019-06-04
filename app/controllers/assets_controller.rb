@@ -44,13 +44,14 @@ class AssetsController < ApplicationController
   #   end
   # end
 
-  # def destroy
-  #   @asset.destroy
-  #   respond_to do |format|
-  #     format.html { redirect_to assets_url, notice: 'Asset was successfully destroyed.' }
-  #     format.json { head :no_content }
-  #   end
-  # end
+  def destroy
+    @asset.uploaded_file.purge
+    @asset.destroy
+    respond_to do |format|
+      format.html { redirect_to panel_files_path, notice: 'El archivo se ha eliminado correctamente.' }
+      #format.json { head :no_content }
+    end
+  end
 
   def download
     send_data @asset.uploaded_file.download, filename: @asset.uploaded_file.filename.to_s, content_type: @asset.uploaded_file.content_type
