@@ -8,10 +8,10 @@
       <% end %>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">
+      <%= link_to panel_files_path, class: "nav-link" do %>
         <i class="fas fa-fw fa-folder-open"></i>
         <span><%= t('.sidebar.files') %></span>
-      </a>
+      <% end %>
     </li>
     <li class="nav-item">
       <%= link_to panel_plan_path, class: "nav-link active" do %>
@@ -82,26 +82,6 @@
         </div>
       </div>
       <br>
-      <% if current_user.paid_subscription.active? %>
-        <% if current_user.payment_method? %>
-          <div class="row">
-            <div class="col-6 ml-auto mr-auto">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title"><%= t('.titles.billing') %></h5>
-                  <hr>
-                  <div class="row">
-                    <div class="col">
-                      <p><%= t('.text.payment_method', card_brand: current_user.card_brand, card_last4: current_user.card_last4) %></p>
-                      <p><%= link_to t('.buttons.update_payment_method'), edit_payment_method_path, class: "btn btn-warning" %></p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        <% end %>
-      <% end %>
     </div>
     <br>
     <%= render 'shared/panel_footer' %>
