@@ -1,5 +1,5 @@
 class AssetsController < ApplicationController
-  before_action :set_asset, only: [:show, :edit, :update, :destroy]
+  before_action :set_asset, only: [:show, :edit, :update, :destroy, :download]
   before_action :authenticate_user!
 
   layout 'panel'
@@ -51,6 +51,10 @@ class AssetsController < ApplicationController
   #     format.json { head :no_content }
   #   end
   # end
+
+  def download
+    send_data @asset.uploaded_file.download, filename: @asset.uploaded_file.filename.to_s, content_type: @asset.uploaded_file.content_type
+  end
 
   private
     def set_asset
