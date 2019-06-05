@@ -20,11 +20,10 @@ Rails.application.routes.draw do
   resources :plans, only: [:index]
   resources :payments, only: [:show]
   resources :subscriptions, path_names: { new: 'new/:plan_id' }
-  #resources :assets
 
   scope :panel do
     resource :payment_method, only: [:edit, :update]
-    resources :assets, except: [:index]
+    resources :assets, except: [:index, :edit, :update]
   end
 
 end
