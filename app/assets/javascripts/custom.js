@@ -2,7 +2,7 @@ $(document).on('turbolinks:load', function(){
   bsCustomFileInput.init()
   $("#files").dataTable({
     "columnDefs": [
-      { "targets": 0, "orderable": false}
+      { "targets": [0,4], "orderable": false, "searchable": false}
     ],
     "language": {
       "sProcessing":     "Procesando...",

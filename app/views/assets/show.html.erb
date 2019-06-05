@@ -27,6 +27,11 @@
         <div class="col-6 ml-auto mr-auto">
           <div class="card">
             <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <%= image_tag @asset.uploaded_file.preview(resize_to_limit: [100, 100]) %>
+                </div>
+              </div>
               <ul class="list-unstyled">
                 <li>Subido por: <%= @asset.user.full_name %></li>
                 <li>Fecha de subida: <%= @asset.uploaded_file.created_at.to_date %></li>
