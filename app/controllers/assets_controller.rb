@@ -4,18 +4,11 @@ class AssetsController < ApplicationController
 
   layout 'panel'
 
-  def index
-    @assets = current_user.assets
-  end
-
   def show
   end
 
   def new
     @asset = current_user.assets.build
-  end
-
-  def edit
   end
 
   def create
@@ -26,9 +19,6 @@ class AssetsController < ApplicationController
     else
       render :new
     end
-  end
-
-  def update
   end
 
   def destroy
