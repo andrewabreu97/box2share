@@ -37,6 +37,6 @@ class AssetsController < ApplicationController
     end
 
     def asset_params
-      params.require(:asset).permit(:uploaded_file)
+      params.fetch(:asset,{}).permit(:uploaded_file)
     end
 end
