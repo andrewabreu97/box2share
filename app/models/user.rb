@@ -55,6 +55,10 @@ class User < ApplicationRecord
     current_subscription.plan.space_allowed.gigabyte
   end
 
+  def percentage_used_storage_space
+    (used_storage_space.to_f / total_storage_space.to_f) * 100
+  end
+
   def has_available_storage_space?(file_byte_size)
     used_storage_space + file_byte_size < total_storage_space
   end

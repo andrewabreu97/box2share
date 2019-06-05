@@ -55,9 +55,15 @@
               <div class="row">
                 <div class="col">
                   <h6><%= t('.titles.storage_space') %></h6>
-                  <p class="text-right font-weight-light"><span class="font-weight-bold"><%= current_user.used_storage_space %> Bytes</span> <%= t('.text.of') %> <%= current_user.total_storage_space %> Bytes <%= t('.text.in_use') %></p>
+                  <span class="float-left"><%= number_to_percentage(current_user.percentage_used_storage_space, precision: 0) %></span>
+                  <p class="text-right font-weight-light">
+                    <span class="font-weight-bold">
+                      <%= current_user.used_storage_space %> Bytes
+                    </span>
+                    <%= t('.text.of') %> <%= current_user.total_storage_space %> Bytes <%= t('.text.in_use') %>
+                  </p>
                   <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 50%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">50%</div>
+                    <div class="progress-bar" role="progressbar" style="width: <%=current_user.percentage_used_storage_space%>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
                 </div>
               </div>
