@@ -55,6 +55,10 @@ class User < ApplicationRecord
     current_subscription.plan.space_allowed.gigabyte
   end
 
+  def files_count
+    self.assets.count
+  end
+
   def after_confirmation
     self.subscriptions.create!(plan: Plan.free_plan.first, status: 0,
         type: 'FreeSubscription')

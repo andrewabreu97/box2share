@@ -21,6 +21,7 @@ class AssetsController < ApplicationController
   def create
     @asset = current_user.assets.build(asset_params)
     if @asset.save
+      current_user.increment!(:uploaded_files_count)
       redirect_to panel_files_path, notice: 'El archivo se ha subido correctamente.'
     else
       render :new

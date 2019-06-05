@@ -1,1 +1,11 @@
-
+<%= form_for(@asset, html: { multipart: true }) do |f| %>
+  <div class="form-group">
+    <div class="custom-file">
+      <%= f.file_field :uploaded_file, class: "custom-file-input", id: "customFile" %>
+      <%= f.label :uploaded_file, "Seleccionar archivo", class: "custom-file-label", for: "customFile" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.submit "Subir archivo", class: "btn btn-block btn-primary" %>
+  </div>
+<% end %>
