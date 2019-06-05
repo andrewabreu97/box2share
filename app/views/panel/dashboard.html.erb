@@ -34,28 +34,27 @@
                 </div>
                 <div class="col">
                   <span>Archivos subidos</span>
-                  <h3 class="mb-0 font-weight-bold text-gray">0</h3>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-3 col-lg-6 col-xs-12">
-          <div class="card h-100 py-2">
-            <div class="card-body">
-              <div class="row no-gutters align-items-center">
-                <div class="col">
-                    <i class="fas fa-file-download fa-3x"></i>
-                </div>
-                <div class="col">
-                  <span>Archivos descargados</span>
-                  <h3 class="mb-0 font-weight-bold text-gray">0</h3>
+                  <h3 class="mb-0 font-weight-bold text-gray"><%= current_user.uploaded_files_count %></h3>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <br>
+      <div class="row">
+        <div class="col">
+          <ul class="list-group">
+            <li class="list-group-item">Espacio de almacenamiento usado: <span><%= number_to_human_size(current_user.used_storage_space) %></span></li>
+            <li class="list-group-item">Espacio de almacenamiento disponible: <span><%= number_to_human_size(current_user.available_storage_space) %></span></li>
+            <li class="list-group-item">Espacio de almacenamiento total: <span><%= number_to_human_size(current_user.total_storage_space) %></span></li>
+            <li class="list-group-item">Número de archivos subidos: <span><%= current_user.uploaded_files_count %></span></li>
+            <li class="list-group-item">Número de archivos descargados: <span><%= current_user.downloaded_files_count %></span></li>
+            <li class="list-group-item">Número de archivos compartidos: <span><%= current_user.shared_files_count %></span></li>
+          </ul>
+        </div>
+      </div>
+      <br>
     </div>
 
     <%= render 'shared/panel_footer' %>
