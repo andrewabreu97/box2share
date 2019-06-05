@@ -55,6 +55,10 @@ class User < ApplicationRecord
     current_subscription.plan.space_allowed.gigabyte
   end
 
+  def has_available_storage_space?(file_byte_size)
+    used_storage_space + file_byte_size < total_storage_space
+  end
+
   def files_count
     self.assets.count
   end

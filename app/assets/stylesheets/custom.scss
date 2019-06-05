@@ -103,4 +103,8 @@ section.masthead h1 {
 }
 
 
+/* CUSTOM FILE INPUT */
 
+.custom-file-input ~ .custom-file-label::after {
+    content: "Examinar";
+}

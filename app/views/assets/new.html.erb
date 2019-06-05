@@ -30,7 +30,9 @@
               <%= render 'form', asset: @asset %>
             </div>
           </div>
-          <%= link_to 'Atrás', panel_files_path, class: "btn btn-light mt-1" %>
+          <%= link_to panel_files_path, class: "btn btn-light mt-2" do %>
+            <i class="fas fa-arrow-left"></i> Atrás
+          <% end %>
         </div>
       </div>
       <br>

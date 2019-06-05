@@ -387,3 +387,10 @@ es:
         signup: Registrarse
         signout: Cerrar sesión
         profile: Perfil
+  assets:
+    new:
+      sidebar:
+        dashboard: "Panel de control"
+        files: "Mis archivos"
+        plan: "Mi plan"
+

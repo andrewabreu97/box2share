@@ -13,16 +13,21 @@ class AssetsController < ApplicationController
 
   def create
     @asset = current_user.assets.build(asset_params)
-    if @asset.save
-      current_user.increment!(:uploaded_files_count)
-      redirect_to panel_files_path, notice: 'El archivo se ha subido correctamente.'
+    puts @asset.uploaded_file.byte_size
+    if current_user.has_available_storage_space?(@asset.uploaded_file.byte_size)
+      if @asset.save
+        current_user.increment!(:uploaded_files_count)
+        redirect_to panel_files_path, notice: 'El archivo se ha subido correctamente.'
+      else
+        render :new
+      end
     else
+      flash[:alert] = "No tienes suficiente espacio de almacenamiento."
       render :new
     end
   end
 
   def destroy
-    @asset.uploaded_file.purge
     @asset.destroy
     redirect_to panel_files_path, notice: 'El archivo se ha eliminado correctamente.'
   end

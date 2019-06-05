@@ -1,7 +1,7 @@
 <% if object.errors.any? %>
   <div class="alert alert-danger">
     <a class="close" data-dismiss="alert">&#215;</a>
-    <ul>
+    <ul class="mb-0">
       <% object.errors.full_messages.each do |msg| %>
         <%= content_tag :li, "#{msg}.", :id => "error_#{msg}" if msg.is_a?(String) %>
       <% end %>
