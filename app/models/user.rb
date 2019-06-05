@@ -41,6 +41,14 @@ class User < ApplicationRecord
     card_last4.present?
   end
 
+  def used_storage_space
+    total_file_size = 0
+    assets.each do |asset|
+      total_file_size += asset.uploaded_file.byte_size
+    end
+    total_file_size
+  end
+
   def after_confirmation
     self.subscriptions.create!(plan: Plan.free_plan.first, status: 0,
         type: 'FreeSubscription')
