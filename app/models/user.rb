@@ -2,8 +2,6 @@ class User < ApplicationRecord
 
   mount_uploader :avatar, AvatarUploader
 
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
 
@@ -43,10 +41,14 @@ class User < ApplicationRecord
 
   def used_storage_space
     total_file_size = 0
-    assets.each do |asset|
+    self.assets.each do |asset|
       total_file_size += asset.uploaded_file.byte_size
     end
     total_file_size
+  end
+
+  def total_storage_space
+    current_subscription.plan.space_allowed.gigabyte
   end
 
   def after_confirmation
