@@ -39,6 +39,10 @@ class User < ApplicationRecord
     card_last4.present?
   end
 
+  def available_storage_space
+    total_storage_space - used_storage_space
+  end
+
   def used_storage_space
     total_file_size = 0
     self.assets.each do |asset|

@@ -230,11 +230,6 @@ es:
         dashboard: "Panel de control"
         files: "Mis archivos"
         plan: "Mi plan"
-    files:
-      sidebar:
-        dashboard: "Panel de control"
-        files: "Mis archivos"
-        plan: "Mi plan"
       titles:
         account_type: "Tipo de cuenta"
         status: "Estado"
@@ -261,6 +256,11 @@ es:
         update_payment_method: "Actualizar"
       messages:
         confirm_cancel: "¿Estás seguro de cancelar esta suscripción?"
+    files:
+      sidebar:
+        dashboard: "Panel de control"
+        files: "Mis archivos"
+        plan: "Mi plan"
   messages:
     subscriptions:
       subscribed: "Te has suscrito exitosamente al plan %{name}"
