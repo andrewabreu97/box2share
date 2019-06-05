@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  after_create :create_free_subscription
 
   mount_uploader :avatar, AvatarUploader
 
@@ -67,16 +68,16 @@ class User < ApplicationRecord
     self.assets.count
   end
 
-  def after_confirmation
-    self.subscriptions.create!(plan: Plan.free_plan.first, status: 0,
-        type: 'FreeSubscription')
-  end
-
   private
     def avatar_size
       if avatar.size > 5.megabytes
         errors.add(:avatar, "should be less than 5MB")
       end
+    end
+
+    def create_free_subscription
+      self.subscriptions.create!(plan: Plan.free_plan.first, status: 0,
+          type: 'FreeSubscription')
     end
 
 end
