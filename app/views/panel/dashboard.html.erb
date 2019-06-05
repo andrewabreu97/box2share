@@ -24,7 +24,38 @@
   <div id="content-wrapper">
 
     <div class="container-fluid">
-
+      <div class="row">
+        <div class="col-xl-3 col-lg-6 col-xs-12">
+          <div class="card h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col">
+                    <i class="fas fa-file-upload fa-3x"></i>
+                </div>
+                <div class="col">
+                  <span>Archivos subidos</span>
+                  <h3 class="mb-0 font-weight-bold text-gray">0</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-lg-6 col-xs-12">
+          <div class="card h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col">
+                    <i class="fas fa-file-download fa-3x"></i>
+                </div>
+                <div class="col">
+                  <span>Archivos descargados</span>
+                  <h3 class="mb-0 font-weight-bold text-gray">0</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <%= render 'shared/panel_footer' %>
