@@ -57,11 +57,11 @@
                   <tbody>
                     <% @assets.each do |asset| %>
                     <tr>
-                      <th scope="row"> <%= image_tag(file_icon(asset.uploaded_file.filename.extension), size: '40x40') %> </th>
-                      <td><%= asset.uploaded_file.filename %></td>
-                      <td><%= l asset.uploaded_file.created_at.to_date, format: :default %></td>
-                      <td><%= number_to_human_size(asset.uploaded_file.byte_size) %></td>
-                      <td class="text-center">
+                      <th scope="row" class="align-middle"> <%= image_tag(file_icon(asset.uploaded_file.filename.extension), size: '40x40') %> </th>
+                      <td class="align-middle"><%= asset.uploaded_file.filename %></td>
+                      <td class="align-middle"><%= l asset.uploaded_file.created_at.to_date, format: :default %></td>
+                      <td class="align-middle"><%= number_to_human_size(asset.uploaded_file.byte_size) %></td>
+                      <td class="text-center align-middle">
                         <div class="dropdown">
                           <button class="btn dropdown-toggle" href="#" id="fileDropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-ellipsis-h"></i>
