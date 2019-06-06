@@ -70,7 +70,7 @@
                             <%= link_to asset, class: "dropdown-item" do %>
                               <i class="fas fa-info mr-1"></i> Detalles
                             <% end %>
-                            <%= link_to download_path(asset), class: "dropdown-item" do %>
+                            <%= link_to download_path(asset), class: "dropdown-item", method: "post" do %>
                               <i class="fas fa-file-download mr-1"></i> Descargar
                             <% end %>
                             <%= link_to "#", class: "dropdown-item" do %>

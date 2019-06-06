@@ -33,7 +33,14 @@ class AssetsController < ApplicationController
   end
 
   def download
-    send_data @asset.uploaded_file.download, filename: @asset.uploaded_file.filename.to_s, content_type: @asset.uploaded_file.content_type
+    if @asset
+      cookies['fileDownload'] = 'true'
+      current_user.increment!(:downloaded_files_count)
+      send_data @asset.uploaded_file.download, filename: @asset.uploaded_file.filename.to_s, content_type: @asset.uploaded_file.content_type
+    else
+      flash[:alert] = "Este archivo no es tuyo, no puedes descargarlo."
+      redirect_to root_path
+    end
   end
 
   private
