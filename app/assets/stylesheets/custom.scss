@@ -108,3 +108,13 @@ section.masthead h1 {
 .custom-file-input ~ .custom-file-label::after {
     content: "Examinar";
 }
+
+/* BREADCRUMBS */
+
+.breadcrumb-right-arrow .breadcrumb-item+ .breadcrumb-item::before {
+  content: "›";
+}
+
+.breadcrumb-right-arrow {
+  border-radius: 0px;
+}
