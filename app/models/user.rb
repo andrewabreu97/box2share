@@ -15,6 +15,7 @@ class User < ApplicationRecord
   has_many :subscriptions, dependent: :destroy
   has_many :payments, dependent: :destroy
   has_many :assets, dependent: :destroy
+  has_many :folders, dependent: :destroy
 
   def free_subscription
     subscriptions.where(type: "FreeSubscription").first
