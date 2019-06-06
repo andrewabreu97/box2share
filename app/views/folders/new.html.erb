@@ -1,2 +1,54 @@
-<h1>Folders#new</h1>
-<p>Find me in app/views/folders/new.html.erb</p>
+<div id="wrapper">
+
+  <ul class="sidebar navbar-nav">
+    <li class="nav-item">
+      <%= link_to root_path, class: "nav-link" do %>
+        <i class="fas fa-fw fa-tachometer-alt"></i>
+        <span><%= t('.sidebar.dashboard') %></span>
+      <% end %>
+    </li>
+    <li class="nav-item">
+      <%= link_to panel_files_path, class: "nav-link active" do %>
+        <i class="fas fa-fw fa-folder-open"></i>
+        <span><%= t('.sidebar.files') %></span>
+      <% end %>
+    </li>
+    <li class="nav-item">
+      <%= link_to panel_plan_path, class: "nav-link" do %>
+        <i class="fas fa-fw fa-calendar"></i>
+        <span><%= t('.sidebar.plan') %></span>
+      <% end %>
+    </li>
+  </ul>
+
+  <div id="content-wrapper">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-6 ml-auto mr-auto">
+          <div class="card">
+            <div class="card-body">
+              <%= form_for @folder do |f| %>
+                <%= render 'shared/error_messages', object: f.object %>
+                <div class="form-group">
+                  <%= f.label :name, "Nombre de la carpeta" %>
+                  <%= f.text_field :name, class: "form-control" %>
+                </div>
+                <div class="form-group">
+                  <%= f.submit "Crear carpeta", class: "btn btn-block btn-primary" %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+          <%= link_to panel_files_path, class: "btn btn-light mt-2" do %>
+            <i class="fas fa-arrow-left"></i> Atrás
+          <% end %>
+        </div>
+      </div>
+      <br>
+    </div>
+    <br>
+    <%= render 'shared/panel_footer' %>
+
+  </div>
+
+</div>
