@@ -12,8 +12,8 @@ class AssetsController < ApplicationController
   end
 
   def create
-    @asset = current_user.assets.build(asset_params)
-    puts @asset.uploaded_file.byte_size
+    @asset = current_user.assets.build(asset_create_params)
+    @asset.update(name: @asset.uploaded_file.filename.base)
     if current_user.has_available_storage_space?(@asset.uploaded_file.byte_size)
       if @asset.save
         current_user.increment!(:uploaded_files_count)
@@ -27,6 +27,19 @@ class AssetsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    @asset.update(asset_update_params)
+    if @asset.save
+      @asset.uploaded_file.blob.update(filename: "#{@asset.name}.#{@asset.uploaded_file.filename.extension}")
+      redirect_to panel_files_path, notice: "El archivo ha sido renombrado correctamente."
+    else
+      render :edit
+    end
+  end
+
   def destroy
     @asset.destroy
     redirect_to panel_files_path, notice: 'El archivo se ha eliminado correctamente.'
@@ -34,7 +47,6 @@ class AssetsController < ApplicationController
 
   def download
     if @asset
-      cookies['fileDownload'] = 'true'
       current_user.increment!(:downloaded_files_count)
       send_data @asset.uploaded_file.download, filename: @asset.uploaded_file.filename.to_s, content_type: @asset.uploaded_file.content_type
     else
@@ -48,7 +60,11 @@ class AssetsController < ApplicationController
       @asset = current_user.assets.find(params[:id])
     end
 
-    def asset_params
+    def asset_create_params
       params.fetch(:asset,{}).permit(:uploaded_file)
+    end
+
+    def asset_update_params
+      params.fetch(:asset,{}).permit(:name)
     end
 end

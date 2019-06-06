@@ -23,7 +23,7 @@ Rails.application.routes.draw do
 
   scope :panel do
     resource :payment_method, only: [:edit, :update]
-    resources :assets, except: [:index, :edit, :update]
+    resources :assets, except: [:index]
   end
 
 end
