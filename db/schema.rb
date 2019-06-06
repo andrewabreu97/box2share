@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_06_173729) do
+ActiveRecord::Schema.define(version: 2019_06_06_184311) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -38,6 +38,8 @@ ActiveRecord::Schema.define(version: 2019_06_06_173729) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"
+    t.integer "folder_id"
+    t.index ["folder_id"], name: "index_assets_on_folder_id"
     t.index ["user_id"], name: "index_assets_on_user_id"
   end
 
