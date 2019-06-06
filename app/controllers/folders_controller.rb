@@ -45,7 +45,7 @@ class FoldersController < ApplicationController
   def browse
     if @current_folder
       @folders = @current_folder.children
-      @assets = current_user.assets
+      @assets = @current_folder.assets
     else
       flash[:alert] = "No tienes permiso para acceder a esta carpeta."
       redirect_to panel_files_path
