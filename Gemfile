@@ -74,4 +74,4 @@ gem 'mini_magick'
 gem 'rollbar'
 gem 'jquery-datatables'
 gem 'active_storage_validations'
-
+gem 'acts_as_tree'
