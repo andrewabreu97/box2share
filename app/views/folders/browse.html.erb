@@ -1,0 +1,122 @@
+<div id="wrapper">
+
+  <ul class="sidebar navbar-nav">
+    <li class="nav-item">
+      <%= link_to root_path, class: "nav-link" do %>
+        <i class="fas fa-fw fa-tachometer-alt"></i>
+        <span><%= t('.sidebar.dashboard') %></span>
+      <% end %>
+    </li>
+    <li class="nav-item">
+      <%= link_to panel_files_path, class: "nav-link active" do %>
+        <i class="fas fa-fw fa-folder-open"></i>
+        <span><%= t('.sidebar.files') %></span>
+      <% end %>
+    </li>
+    <li class="nav-item">
+      <%= link_to panel_plan_path, class: "nav-link" do %>
+        <i class="fas fa-fw fa-calendar"></i>
+        <span><%= t('.sidebar.plan') %></span>
+      <% end %>
+    </li>
+  </ul>
+
+  <div id="content-wrapper">
+
+    <div class="container-fluid">
+
+      <div class="row pt-4 pb-4">
+        <div class="col">
+          <div class="float-right">
+            <%= link_to new_asset_path, class: "btn btn-primary" do %>
+              <i class="fas fa-file-upload mr-1"></i>
+              Subir archivo
+            <% end %>
+            <%= link_to new_sub_folder_path, class: "btn btn-primary" do %>
+              <i class="fas fa-folder-plus mr-1"></i>
+              Nueva carpeta
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="card">
+            <div class="card-body">
+              <div class="table-responsive">
+                <table id="folder" class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col"></th>
+                      <th scope="col">Nombre</th>
+                      <th scope="col">Fecha de subida</th>
+                      <th scope="col">Tamaño</th>
+                      <th scope="col"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% @folders.each do |folder| %>
+                      <tr>
+                        <th scope="row" class="align-middle"> <%= image_tag("fileicons/folder.png", size: '40x40') %> </th>
+                        <td class="align-middle"> <%= link_to folder.name, browse_path(folder) %> </td>
+                        <td class="align-middle"> <%= l folder.created_at.to_date, format: :default %> </td>
+                        <td class="align-middle"> - </td>
+                        <td class="text-center align-middle">
+                          <div class="dropdown">
+                            <button class="btn dropdown-toggle" href="#" id="folderDropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <i class="fas fa-ellipsis-h"></i>
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="folderDropdown">
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    <% end %>
+                    <% @assets.each do |asset| %>
+                      <tr>
+                        <th scope="row" class="align-middle"> <%= image_tag(file_icon(asset.uploaded_file.filename.extension), size: '40x40') %> </th>
+                        <td class="align-middle"><%= link_to asset.uploaded_file.filename, asset %></td>
+                        <td class="align-middle"><%= l asset.uploaded_file.created_at.to_date, format: :default %></td>
+                        <td class="align-middle"><%= number_to_human_size(asset.uploaded_file.byte_size) %></td>
+                        <td class="text-center align-middle">
+                          <div class="dropdown">
+                            <button class="btn dropdown-toggle" href="#" id="fileDropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <i class="fas fa-ellipsis-h"></i>
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="fileDropdown">
+                              <%= link_to asset, class: "dropdown-item" do %>
+                                <i class="fas fa-info mr-1"></i> Detalles
+                              <% end %>
+                              <%= link_to edit_asset_path(asset), class: "dropdown-item" do %>
+                                <i class="fas fa-edit mr-1"></i> Renombrar
+                              <% end %>
+                              <%= link_to download_path(asset), class: "dropdown-item", method: "post" do %>
+                                <i class="fas fa-file-download mr-1"></i> Descargar
+                              <% end %>
+                              <%= link_to "#", class: "dropdown-item" do %>
+                                <i class="fas fa-share-alt mr-1"></i> Compartir
+                              <% end %>
+                              <%= link_to asset, class: "dropdown-item", method: :delete, data: {confirm: '¿Deseas eliminar este archivo?'} do %>
+                                <i class="fas fa-trash-alt mr-1"></i> Eliminar
+                              <% end %>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <br>
+        </div>
+      </div>
+
+    </div>
+
+    <%= render 'shared/panel_footer' %>
+
+  </div>
+
+</div>

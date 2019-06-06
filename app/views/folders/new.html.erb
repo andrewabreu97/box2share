@@ -33,14 +33,21 @@
                   <%= f.label :name, "Nombre de la carpeta" %>
                   <%= f.text_field :name, class: "form-control" %>
                 </div>
+                <%= f.hidden_field :parent_id %>
                 <div class="form-group">
                   <%= f.submit "Crear carpeta", class: "btn btn-block btn-primary" %>
                 </div>
               <% end %>
             </div>
           </div>
-          <%= link_to panel_files_path, class: "btn btn-light mt-2" do %>
-            <i class="fas fa-arrow-left"></i> Atrás
+          <% if @folder.parent %>
+            <%= link_to browse_path(@folder.parent), class: "btn btn-light mt-2" do %>
+              <i class="fas fa-arrow-left"></i> Atrás
+            <% end %>
+          <% else %>
+            <%= link_to panel_files_path, class: "btn btn-light mt-2" do %>
+              <i class="fas fa-arrow-left"></i> Atrás
+            <% end %>
           <% end %>
         </div>
       </div>

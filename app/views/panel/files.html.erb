@@ -58,7 +58,7 @@
                     <% @folders.each do |folder| %>
                       <tr>
                         <th scope="row" class="align-middle"> <%= image_tag("fileicons/folder.png", size: '40x40') %> </th>
-                        <td class="align-middle"> <%= folder.name %> </td>
+                        <td class="align-middle"> <%= link_to folder.name, browse_path(folder) %> </td>
                         <td class="align-middle"> <%= l folder.created_at.to_date, format: :default %> </td>
                         <td class="align-middle"> - </td>
                         <td class="text-center align-middle">

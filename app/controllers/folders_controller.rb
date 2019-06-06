@@ -2,6 +2,8 @@ class FoldersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_current_folder, only: [:browse]
 
+  layout 'panel'
+
   def index
   end
 
@@ -12,7 +14,9 @@ class FoldersController < ApplicationController
     @folder = current_user.folders.build
 
     if params[:folder_id]
+      puts "Hola"
       @current_folder = current_user.folders.find(params[:folder_id])
+      puts @current_folder.name
       @folder.parent_id = @current_folder.id
     end
   end
@@ -54,7 +58,7 @@ class FoldersController < ApplicationController
 
   private
     def folder_params
-      params.require(:folder).permit(:name)
+      params.require(:folder).permit(:name, :parent_id)
     end
 
     def set_current_folder
