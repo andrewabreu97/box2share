@@ -12,8 +12,8 @@ class PanelController < ApplicationController
   end
 
   def files
-    @assets = current_user.assets.all
-    @folders = current_user.folders.all
+    @folders = current_user.folders.roots
+    @assets = current_user.assets.where("folder_id IS NULL")
   end
 
 end
