@@ -28,16 +28,53 @@
           <div class="card">
             <div class="card-body">
               <div class="row">
+                <div class="col align-self-center text-center">
+                  <% if  @asset.uploaded_file.variable? %>
+                    <%= image_tag @asset.uploaded_file.variant(resize: "250x250"), class: "img-thumbnail" %>
+                  <% elsif @asset.uploaded_file.previewable? %>
+                    <%= image_tag @asset.uploaded_file.preview(resize: "250x250"), class: "img-thumbnail" %>
+                  <% else %>
+                    <div>
+                      <span>No hay vista previa para este archivo.</span>
+                    </div>
+                  <% end %>
+                </div>
                 <div class="col">
-                  <%= image_tag @asset.uploaded_file.preview(resize_to_limit: [100, 100]) %>
+                  <div class="card">
+                    <div class="card-header">
+                      Detalles del archivo
+                    </div>
+                    <div class="card-body">
+                      <ul class="list-unstyled"
+                        <li class="mt-2 mb-2">
+                          <span class="h6">Dueño:</span>
+                          <span class="float-right"><%= @asset.user.full_name %></span>
+                        </li>
+                        <li class="mt-2 mb-2">
+                          <span class="h6">Fecha de subida:</span>
+                          <span class="float-right"><%= @asset.created_at.to_date %></span>
+                        </li>
+                        <li class="mt-2 mb-2">
+                          <span class="h6">Ultima modificación:</span>
+                          <span class="float-right"><%= @asset.updated_at.to_date %></span>
+                        </li>
+                        <li class="mt-2 mb-2">
+                          <span class="h6">Tamaño:</span>
+                          <span class="float-right"><%= number_to_human_size(@asset.uploaded_file.byte_size) %></span>
+                        </li>
+                        <li class="mt-2 mb-2">
+                          <span class="h6">Tipo:</span>
+                          <span class="float-right"><%= @asset.uploaded_file.content_type %></span>
+                        </li>
+                        <li class="mt-2 mb-2">
+                          <span class="h6">Extensión:</span>
+                          <span class="float-right"><%= @asset.uploaded_file.filename.extension %></span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <ul class="list-unstyled">
-                <li>Subido por: <%= @asset.user.full_name %></li>
-                <li>Fecha de subida: <%= @asset.uploaded_file.created_at.to_date %></li>
-                <li>Ultima modificación: <%= @asset.uploaded_file.created_at.to_date %></li>
-                <li>Tamaño: <%= number_to_human_size(@asset.uploaded_file.byte_size) %></li>
-              </ul>
             </div>
           </div>
           <%= link_to panel_files_path, class: "btn btn-light mt-2" do %>
