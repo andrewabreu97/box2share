@@ -13,6 +13,7 @@ class PanelController < ApplicationController
 
   def files
     @assets = current_user.assets.all
+    @folders = current_user.folders.all
   end
 
 end

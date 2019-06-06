@@ -3,6 +3,7 @@ $(document).on('turbolinks:load', function(){
   bsCustomFileInput.init()
 
   $("#files").dataTable({
+    "order": [[ 1, "asc" ]],
     "columnDefs": [
       { "targets": [0,4], "orderable": false, "searchable": false}
     ],

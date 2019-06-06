@@ -55,37 +55,54 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <% @assets.each do |asset| %>
-                    <tr>
-                      <th scope="row" class="align-middle"> <%= image_tag(file_icon(asset.uploaded_file.filename.extension), size: '40x40') %> </th>
-                      <td class="align-middle"><%= link_to asset.uploaded_file.filename, asset %></td>
-                      <td class="align-middle"><%= l asset.uploaded_file.created_at.to_date, format: :default %></td>
-                      <td class="align-middle"><%= number_to_human_size(asset.uploaded_file.byte_size) %></td>
-                      <td class="text-center align-middle">
-                        <div class="dropdown">
-                          <button class="btn dropdown-toggle" href="#" id="fileDropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-ellipsis-h"></i>
-                          </button>
-                          <div class="dropdown-menu" aria-labelledby="fileDropdown">
-                            <%= link_to asset, class: "dropdown-item" do %>
-                              <i class="fas fa-info mr-1"></i> Detalles
-                            <% end %>
-                            <%= link_to edit_asset_path(asset), class: "dropdown-item" do %>
-                              <i class="fas fa-edit mr-1"></i> Renombrar
-                            <% end %>
-                            <%= link_to download_path(asset), class: "dropdown-item", method: "post" do %>
-                              <i class="fas fa-file-download mr-1"></i> Descargar
-                            <% end %>
-                            <%= link_to "#", class: "dropdown-item" do %>
-                              <i class="fas fa-share-alt mr-1"></i> Compartir
-                            <% end %>
-                            <%= link_to asset, class: "dropdown-item", method: :delete, data: {confirm: '¿Deseas eliminar este archivo?'} do %>
-                              <i class="fas fa-trash-alt mr-1"></i> Eliminar
-                            <% end %>
+                    <% @folders.each do |folder| %>
+                      <tr>
+                        <th scope="row" class="align-middle"> <%= image_tag("fileicons/folder.png", size: '40x40') %> </th>
+                        <td class="align-middle"> <%= folder.name %> </td>
+                        <td class="align-middle"> </td>
+                        <td class="align-middle"> </td>
+                        <td class="text-center align-middle">
+                          <div class="dropdown">
+                            <button class="btn dropdown-toggle" href="#" id="folderDropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <i class="fas fa-ellipsis-h"></i>
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="folderDropdown">
+                            </div>
                           </div>
-                        </div>
-                      </td>
-                    </tr>
+                        </td>
+                      </tr>
+                    <% end %>
+                    <% @assets.each do |asset| %>
+                      <tr>
+                        <th scope="row" class="align-middle"> <%= image_tag(file_icon(asset.uploaded_file.filename.extension), size: '40x40') %> </th>
+                        <td class="align-middle"><%= link_to asset.uploaded_file.filename, asset %></td>
+                        <td class="align-middle"><%= l asset.uploaded_file.created_at.to_date, format: :default %></td>
+                        <td class="align-middle"><%= number_to_human_size(asset.uploaded_file.byte_size) %></td>
+                        <td class="text-center align-middle">
+                          <div class="dropdown">
+                            <button class="btn dropdown-toggle" href="#" id="fileDropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <i class="fas fa-ellipsis-h"></i>
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="fileDropdown">
+                              <%= link_to asset, class: "dropdown-item" do %>
+                                <i class="fas fa-info mr-1"></i> Detalles
+                              <% end %>
+                              <%= link_to edit_asset_path(asset), class: "dropdown-item" do %>
+                                <i class="fas fa-edit mr-1"></i> Renombrar
+                              <% end %>
+                              <%= link_to download_path(asset), class: "dropdown-item", method: "post" do %>
+                                <i class="fas fa-file-download mr-1"></i> Descargar
+                              <% end %>
+                              <%= link_to "#", class: "dropdown-item" do %>
+                                <i class="fas fa-share-alt mr-1"></i> Compartir
+                              <% end %>
+                              <%= link_to asset, class: "dropdown-item", method: :delete, data: {confirm: '¿Deseas eliminar este archivo?'} do %>
+                                <i class="fas fa-trash-alt mr-1"></i> Eliminar
+                              <% end %>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
                     <% end %>
                   </tbody>
                 </table>
