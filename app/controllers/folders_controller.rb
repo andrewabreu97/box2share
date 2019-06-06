@@ -1,5 +1,6 @@
 class FoldersController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_current_folder, only: [:browse]
 
   def index
   end
@@ -41,9 +42,23 @@ class FoldersController < ApplicationController
   def destroy
   end
 
+  def browse
+    if @current_folder
+      @folders = @current_folder.children
+      @assets = current_user.assets
+    else
+      flash[:alert] = "No tienes permiso para acceder a esta carpeta."
+      redirect_to panel_files_path
+    end
+  end
+
   private
     def folder_params
       params.require(:folder).permit(:name)
+    end
+
+    def set_current_folder
+      @current_folder = current_user.folders.find(params[:folder_id])
     end
 
 end

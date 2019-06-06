@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     root 'static_pages#home'
   end
 
+  get "browse/:folder_id" => "assets#browse", :as => "browse"
   post 'assets/download/:id', to: 'assets#download', as: 'download'
   get 'panel/plan', to: 'panel#plan'
   get 'panel/dashboard', to: 'panel#dashboard'
