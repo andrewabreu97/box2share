@@ -24,7 +24,23 @@
   <div id="content-wrapper">
 
     <div class="container-fluid">
-
+      <div class="row">
+        <div class="col">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <% if @current_folder %>
+                <%= link_to "Mis archivos", panel_files_path, class: "breadcrumb-item" %>
+                <% @current_folder.ancestors.reverse.each do |folder| %>
+                  <%= link_to folder.name, browse_path(folder), class: "breadcrumb-item" %>
+                <% end %>
+                <li class="breadcrumb-item active" aria-current="page"><%= @current_folder.name %></li>
+              <% else %>
+                <li class="breadcrumb-item active" aria-current="page">Home</li>
+              <% end %>
+            </ol>
+          </nav>
+        </div>
+      </div>
       <div class="row pt-4 pb-4">
         <div class="col">
           <div class="float-right">
