@@ -1,6 +1,7 @@
 class AssetsController < ApplicationController
-  before_action :set_asset, only: [:show, :edit, :update, :destroy, :download]
   before_action :authenticate_user!
+  before_action :require_existing_asset, only: [:show, :edit, :update, :destroy, :download]
+  before_action :require_asset_owner, only: [:show, :edit, :update, :destroy, :download]
 
   layout 'panel'
 
@@ -78,9 +79,9 @@ class AssetsController < ApplicationController
   end
 
   private
-    def set_asset
-      @asset = current_user.assets.find(params[:id])
-    end
+    # def set_asset
+    #   @asset = current_user.assets.find(params[:id])
+    # end
 
     def asset_create_params
       params.fetch(:asset,{}).permit(:uploaded_file, :folder_id)
@@ -89,4 +90,17 @@ class AssetsController < ApplicationController
     def asset_update_params
       params.fetch(:asset,{}).permit(:name)
     end
+
+    def require_existing_asset
+      @asset = Asset.find(params[:id])
+    rescue
+      redirect_to panel_files_path, alert: "Este archivo no existe o ya ha sido eliminado."
+    end
+
+    def require_asset_owner
+      unless @asset.user == current_user
+        redirect_to panel_files_path, alert: "No tienes acceso a este archivo."
+      end
+    end
+
 end
