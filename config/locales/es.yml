@@ -1,12 +1,20 @@
 ---
 es:
   activerecord:
+    attributes:
+      folder:
+        name: El nombre de la carpeta
     errors:
       messages:
         record_invalid: 'La validación falló: %{errors}'
         restrict_dependent_destroy:
           has_one: No se puede eliminar el registro porque existe un %{record} dependiente
           has_many: No se puede eliminar el registro porque existen %{record} dependientes
+      models:
+        folder:
+          attributes:
+            name:
+              blank: no puede estar en blanco.
   date:
     abbr_day_names:
     - dom

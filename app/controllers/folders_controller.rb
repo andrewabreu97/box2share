@@ -1,7 +1,7 @@
 class FoldersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_current_folder, only: [:browse]
-  before_action :set_folder, only: [:destroy]
+  before_action :set_folder, only: [:destroy, :edit, :update]
 
   layout 'panel'
 
@@ -40,6 +40,16 @@ class FoldersController < ApplicationController
   end
 
   def update
+    if @folder.update_attributes(folder_params)
+      flash[:notice] = "La caperta se ha renombrado correctamente."
+      if @folder.parent
+        redirect_to browse_path(@folder.parent)
+      else
+        redirect_to panel_files_path
+      end
+    else
+      render :edit
+    end
   end
 
   def destroy
