@@ -4,6 +4,8 @@ es:
     attributes:
       folder:
         name: El nombre de la carpeta
+      asset:
+        name: El nombre del archivo
     errors:
       messages:
         record_invalid: 'La validación falló: %{errors}'
@@ -12,6 +14,10 @@ es:
           has_many: No se puede eliminar el registro porque existen %{record} dependientes
       models:
         folder:
+          attributes:
+            name:
+              blank: no puede estar en blanco
+        asset:
           attributes:
             name:
               blank: no puede estar en blanco
