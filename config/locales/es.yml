@@ -14,7 +14,7 @@ es:
         folder:
           attributes:
             name:
-              blank: no puede estar en blanco.
+              blank: no puede estar en blanco
   date:
     abbr_day_names:
     - dom
