@@ -24,28 +24,19 @@
   <div id="content-wrapper">
     <div class="container-fluid">
       <div class="row">
-        <div class="col-6 ml-auto mr-auto">
+        <div class="col-xl-8 col-lg-6 col-xs-4 col-2 ml-auto mr-auto">
           <div class="card">
             <div class="card-body">
               <%= render 'form', asset: @asset %>
             </div>
           </div>
-          <% if @asset.folder %>
-            <%= link_to browse_path(@asset.folder), class: "btn btn-light mt-2" do %>
-              <i class="fas fa-arrow-left"></i> Atrás
-            <% end %>
-          <% else %>
-            <%= link_to panel_files_path, class: "btn btn-light mt-2" do %>
-              <i class="fas fa-arrow-left"></i> Atrás
-            <% end %>
-          <% end %>
+          <%= render 'back_link' %>
         </div>
       </div>
       <br>
     </div>
     <br>
     <%= render 'shared/panel_footer' %>
-
   </div>
 
 </div>
