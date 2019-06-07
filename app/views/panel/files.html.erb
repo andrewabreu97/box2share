@@ -27,12 +27,13 @@
       <div class="row">
         <div class="col">
           <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
+            <ol class="breadcrumb bg-white breadcrumb-right-arrow">
               <% if @current_folder %>
-                <%= link_to "Mis archivos", panel_files_path, class: "breadcrumb-item" %>
+                <li class="breadcrumb-item"><%= link_to "Mis archivos", panel_files_path %></li>
                 <% @current_folder.ancestors.reverse.each do |folder| %>
-                  <%= link_to folder.name, browse_path(folder), class: "breadcrumb-item" %>
+                  <li class="breadcrumb-item"><%= link_to folder.name, browse_path(folder) %></li>
                 <% end %>
+                <li class="breadcrumb-item active" aria-current="page"><%= @current_folder.name %></li>
               <% else %>
                 <li class="breadcrumb-item active" aria-current="page">Mis archivos</li>
               <% end %>
@@ -78,7 +79,7 @@
                         <td class="align-middle"> - </td>
                         <td class="text-center align-middle">
                           <div class="dropdown">
-                            <button class="btn dropdown-toggle" href="#" id="folderDropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <button class="btn" href="#" id="folderDropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                               <i class="fas fa-ellipsis-h"></i>
                             </button>
                             <div class="dropdown-menu" aria-labelledby="folderDropdown">
@@ -95,7 +96,7 @@
                         <td class="align-middle"><%= number_to_human_size(asset.uploaded_file.byte_size) %></td>
                         <td class="text-center align-middle">
                           <div class="dropdown">
-                            <button class="btn dropdown-toggle" href="#" id="fileDropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <button class="btn" href="#" id="fileDropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                               <i class="fas fa-ellipsis-h"></i>
                             </button>
                             <div class="dropdown-menu" aria-labelledby="fileDropdown">

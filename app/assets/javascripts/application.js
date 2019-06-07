@@ -19,5 +19,3 @@
 //= require datatables
 //= require_tree .
 
-
-

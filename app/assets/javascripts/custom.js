@@ -1,5 +1,11 @@
 $(document).on('turbolinks:load', function(){
 
+  // $(".custom-file-input").on("change", function() {
+  //   alert("Hola")
+  //   var fileName = $(this).val().split("\\").pop();
+  //   $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+  // });
+
   bsCustomFileInput.init()
 
   $("#files").dataTable({
@@ -65,4 +71,3 @@ $(document).on('turbolinks:load', function(){
   });
 
 })
-

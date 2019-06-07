@@ -6,6 +6,7 @@
       <%= f.label :uploaded_file, "Seleccionar archivo", class: "custom-file-label", for: "customFile" %>
     </div>
   </div>
+  <%= f.hidden_field :folder_id %>
   <div class="form-group">
     <%= f.submit "Subir archivo", class: "btn btn-block btn-primary" %>
   </div>

@@ -9,21 +9,37 @@ class AssetsController < ApplicationController
 
   def new
     @asset = current_user.assets.build
+    if params[:folder_id]
+      @current_folder = current_user.folders.find(params[:folder_id])
+      @asset.folder_id = @current_folder.id
+    end
   end
 
   def create
     @asset = current_user.assets.build(asset_create_params)
-    @asset.update(name: @asset.uploaded_file.filename.base)
-    if current_user.has_available_storage_space?(@asset.uploaded_file.byte_size)
-      if @asset.save
-        current_user.increment!(:uploaded_files_count)
-        redirect_to panel_files_path, notice: 'El archivo se ha subido correctamente.'
-      else
+    unless @asset.uploaded_file.attachment
+      unless @asset.save
+        @asset.errors.delete(:name) if @asset.errors[:name].any?
         render :new
       end
     else
-      flash[:alert] = "No tienes suficiente espacio de almacenamiento."
-      render :new
+      @asset.update(name: @asset.uploaded_file.filename.base)
+      if current_user.has_available_storage_space?(@asset.uploaded_file.byte_size)
+        if @asset.save
+          current_user.increment!(:uploaded_files_count)
+          flash[:notice] = 'El archivo se ha subido correctamente.'
+          if @asset.folder
+            redirect_to browse_path(@asset.folder)
+          else
+            redirect_to panel_files_path
+          end
+        else
+          render :new
+        end
+      else
+        flash[:alert] = "No tienes suficiente espacio de almacenamiento."
+        render :new
+      end
     end
   end
 
@@ -61,7 +77,7 @@ class AssetsController < ApplicationController
     end
 
     def asset_create_params
-      params.fetch(:asset,{}).permit(:uploaded_file)
+      params.fetch(:asset,{}).permit(:uploaded_file, :folder_id)
     end
 
     def asset_update_params
