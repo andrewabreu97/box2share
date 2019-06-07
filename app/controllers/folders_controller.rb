@@ -1,6 +1,7 @@
 class FoldersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_current_folder, only: [:browse]
+  before_action :set_folder, only: [:destroy]
 
   layout 'panel'
 
@@ -42,6 +43,14 @@ class FoldersController < ApplicationController
   end
 
   def destroy
+    @parent_folder = @folder.parent
+    @folder.destroy
+    flash[:notice] = "La carpeta y todo su contenido se han eliminado correctamente."
+    if @parent_folder
+      redirect_to browse_path(@parent_folder)
+    else
+      redirect_to panel_files_path
+    end
   end
 
   def browse
@@ -61,6 +70,10 @@ class FoldersController < ApplicationController
 
     def set_current_folder
       @current_folder = current_user.folders.find(params[:folder_id])
+    end
+
+    def set_folder
+      @folder = current_user.folders.find(params[:id])
     end
 
 end
