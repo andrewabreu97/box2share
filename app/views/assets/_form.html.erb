@@ -1,13 +1,22 @@
 <%= form_for(@asset, html: { multipart: true }) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
-  <div class="form-group">
-    <div class="custom-file">
-      <%= f.file_field :uploaded_file, class: "custom-file-input", id: "customFile" %>
-      <%= f.label :uploaded_file, "Seleccionar archivo", class: "custom-file-label", for: "customFile" %>
+  <% if @asset.new_record? %>
+    <div class="form-group">
+      <div class="custom-file">
+        <%= f.file_field :uploaded_file, class: "custom-file-input", id: "customFile" %>
+        <%= f.label :uploaded_file, "Seleccionar archivo", class: "custom-file-label", for: "customFile" %>
+      </div>
     </div>
-  </div>
-  <%= f.hidden_field :folder_id %>
-  <div class="form-group">
-    <%= f.submit "Subir archivo", class: "btn btn-block btn-primary" %>
-  </div>
+    <%= f.hidden_field :folder_id %>
+    <div class="form-group">
+      <%= f.submit "Subir archivo", class: "btn btn-block btn-primary" %>
+    </div>
+  <% else %>
+    <div class="form-group">
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.submit "Renombrar archivo", class: "btn btn-block btn-primary" %>
+    </div>
+  <% end %>
 <% end %>
