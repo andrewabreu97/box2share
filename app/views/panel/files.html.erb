@@ -83,6 +83,18 @@
                               <i class="fas fa-ellipsis-h"></i>
                             </button>
                             <div class="dropdown-menu" aria-labelledby="folderDropdown">
+                              <%= link_to folder, class: "dropdown-item" do %>
+                                <i class="fas fa-info mr-1"></i> Detalles
+                              <% end %>
+                              <%= link_to edit_folder_path(folder), class: "dropdown-item" do %>
+                                <i class="fas fa-edit mr-1"></i> Renombrar
+                              <% end %>
+                              <%= link_to "#", class: "dropdown-item" do %>
+                                <i class="fas fa-share-alt mr-1"></i> Compartir
+                              <% end %>
+                              <%= link_to folder, class: "dropdown-item", method: :delete, data: {confirm: '¿Deseas eliminar esta carpeta?'} do %>
+                                <i class="fas fa-trash-alt mr-1"></i> Eliminar
+                              <% end %>
                             </div>
                           </div>
                         </td>
