@@ -6,4 +6,8 @@ class Folder < ApplicationRecord
 
   validates_presence_of :name
 
+  def files_and_subfolders_count
+    assets.count + children.count
+  end
+
 end
