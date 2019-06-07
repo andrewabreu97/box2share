@@ -57,8 +57,14 @@ class AssetsController < ApplicationController
   end
 
   def destroy
+    @parent_folder = @asset.folder
     @asset.destroy
-    redirect_to panel_files_path, notice: 'El archivo se ha eliminado correctamente.'
+    flash[:notice] = 'El archivo se ha eliminado correctamente.'
+    if @parent_folder
+      redirect_to browse_path(@parent_folder)
+    else
+      redirect_to panel_files_path
+    end
   end
 
   def download
