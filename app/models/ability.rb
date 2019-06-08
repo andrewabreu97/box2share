@@ -32,6 +32,8 @@ class Ability
     # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
 
     can :show, Asset, user_id: user.id
+    can :show, Folder, user_id: user.id
+    can :browse, Folder, user_id: user.id
 
   end
 end

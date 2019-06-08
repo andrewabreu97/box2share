@@ -1,7 +1,6 @@
 class FoldersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_current_folder, only: [:browse]
-  before_action :set_folder, only: [:show, :destroy, :edit, :update]
+  before_action :require_existing_folder, only: [:show, :edit, :update, :destroy, :browse]
 
   layout 'panel'
 
@@ -9,6 +8,7 @@ class FoldersController < ApplicationController
   end
 
   def show
+    authorize! :show, @folder, message: "No tienes acceso a esta carpeta."
   end
 
   def new
@@ -64,6 +64,7 @@ class FoldersController < ApplicationController
   end
 
   def browse
+    authorize! :browse, @folder, message: "No tienes acceso a esta carpeta."
     if @current_folder
       @folders = @current_folder.children
       @assets = @current_folder.assets
@@ -78,12 +79,10 @@ class FoldersController < ApplicationController
       params.require(:folder).permit(:name, :parent_id)
     end
 
-    def set_current_folder
-      @current_folder = current_user.folders.find(params[:folder_id])
-    end
-
-    def set_folder
-      @folder = current_user.folders.find(params[:id])
+    def require_existing_folder
+      @folder = Folder.find(params[:id])
+    rescue
+      redirect_to panel_files_path, alert: "Esta carpeta no existe o ya ha sido eliminada."
     end
 
 end
