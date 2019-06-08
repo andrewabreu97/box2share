@@ -4,9 +4,6 @@ class FoldersController < ApplicationController
 
   layout 'panel'
 
-  def index
-  end
-
   def show
     authorize! :show, @folder, message: "No tienes acceso a esta carpeta."
   end
