@@ -37,11 +37,11 @@
                         </li>
                         <li class="mt-2 mb-2">
                           <span class="h6">Fecha de subida:</span>
-                          <span class="float-right"><%= @folder.created_at.to_date %></span>
+                          <span class="float-right"><%= l @folder.created_at.to_datetime, format: :short %></span>
                         </li>
                         <li class="mt-2 mb-2">
                           <span class="h6">Ultima modificación:</span>
-                          <span class="float-right"><%= @folder.updated_at.to_date %></span>
+                          <span class="float-right"><%= l @folder.updated_at.to_datetime, format: :short %></span>
                         </li>
                         <li class="mt-2 mb-2">
                           <span class="h6">Tamaño:</span>
