@@ -77,3 +77,4 @@ gem 'active_storage_validations'
 gem 'acts_as_tree'
 gem 'active_link_to'
 gem 'cancancan'
+gem "aws-sdk-s3", require: false
