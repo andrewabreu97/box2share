@@ -6,5 +6,5 @@ class Asset < ApplicationRecord
 
   validates :uploaded_file, attached: true
   validates_presence_of :name
-  validates_uniqueness_of :name, scope: :folder_id
+  validates_uniqueness_of :name, scope: [:folder_id, :user_id]
 end

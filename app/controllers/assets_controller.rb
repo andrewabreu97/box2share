@@ -1,11 +1,12 @@
 class AssetsController < ApplicationController
   before_action :authenticate_user!
   before_action :require_existing_asset, only: [:show, :edit, :update, :destroy, :download]
-  before_action :require_asset_owner, only: [:show, :edit, :update, :destroy, :download]
+  #before_action :require_asset_owner, only: [:show, :edit, :update, :destroy, :download]
 
   layout 'panel'
 
   def show
+    authorize! :show, @asset, message: "No tienes acceso a este archivo."
   end
 
   def new
