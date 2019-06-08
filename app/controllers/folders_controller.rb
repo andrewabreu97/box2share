@@ -11,8 +11,8 @@ class FoldersController < ApplicationController
   def new
     @folder = current_user.folders.build
 
-    if params[:folder_id]
-      @current_folder = current_user.folders.find(params[:folder_id])
+    if params[:id]
+      @current_folder = current_user.folders.find(params[:id])
       @folder.parent_id = @current_folder.id
     end
   end
