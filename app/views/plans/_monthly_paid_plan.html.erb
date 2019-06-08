@@ -4,7 +4,7 @@
       <h4 class="my-0 font-weight-normal"><%= monthly_paid_plan.name %></h4>
     </div>
     <div class="card-body">
-      <%= image_tag(monthly_paid_plan.name.downcase, alt: "#{monthly_paid_plan.name}_icon") %>
+      <%= image_tag("#{monthly_paid_plan.name.downcase}.png", alt: "#{monthly_paid_plan.name}_icon") %>
       <h1 class="card-title pricing-card-title">
         <%= humanized_money(monthly_paid_plan.price) %> &euro;<small class="text-muted">/ <%= t('.text.month') %></small>
       </h1>
