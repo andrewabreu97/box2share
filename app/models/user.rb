@@ -69,6 +69,10 @@ class User < ApplicationRecord
     self.assets.count
   end
 
+  def folders_count
+    self.folders.count
+  end
+
   private
     def avatar_size
       if avatar.size > 5.megabytes
