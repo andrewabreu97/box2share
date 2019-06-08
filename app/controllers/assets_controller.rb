@@ -1,7 +1,7 @@
 class AssetsController < ApplicationController
   before_action :authenticate_user!
   before_action :require_existing_asset, only: [:show, :edit, :update, :destroy, :download]
-  before_action :require_existing_folder, only: [:new]
+  before_action :require_existing_current_folder, only: [:new]
 
   layout 'panel'
 
@@ -12,8 +12,7 @@ class AssetsController < ApplicationController
   def new
     @asset = current_user.assets.build
     if params[:id]
-      authorize! :new, @folder, message: "No tienes acceso a esta carpeta."
-      @current_folder = current_user.folders.find(params[:id])
+      authorize! :new, @current_folder, message: "No tienes acceso a esta carpeta."
       @asset.folder_id = @current_folder.id
     end
   end
@@ -47,9 +46,11 @@ class AssetsController < ApplicationController
   end
 
   def edit
+    authorize! :edit, @asset, message: "No tienes acceso a este archivo."
   end
 
   def update
+    authorize! :update, @asset, message: "No tienes acceso a este archivo."
     @asset.update(asset_update_params)
     if @asset.save
       @asset.uploaded_file.blob.update(filename: "#{@asset.name}.#{@asset.uploaded_file.filename.extension}")
@@ -60,6 +61,7 @@ class AssetsController < ApplicationController
   end
 
   def destroy
+    authorize! :destroy, @asset, message: "No tienes acceso a este archivo."
     @parent_folder = @asset.folder
     @asset.destroy
     flash[:notice] = 'El archivo se ha eliminado correctamente.'
@@ -71,12 +73,10 @@ class AssetsController < ApplicationController
   end
 
   def download
+    authorize! :download, @asset, message: "No tienes acceso a este archivo."
     if @asset
       current_user.increment!(:downloaded_files_count)
       send_data @asset.uploaded_file.download, filename: @asset.uploaded_file.filename.to_s, content_type: @asset.uploaded_file.content_type
-    else
-      flash[:alert] = "Este archivo no es tuyo, no puedes descargarlo."
-      redirect_to root_path
     end
   end
 
@@ -95,8 +95,8 @@ class AssetsController < ApplicationController
       redirect_to panel_files_path, alert: "Este archivo no existe o ya ha sido eliminado."
     end
 
-    def require_existing_folder
-      @folder = Folder.find(params[:id])
+    def require_existing_current_folder
+      @current_folder = Folder.find(params[:id]) if params[:id]
     rescue
       redirect_to panel_files_path, alert: "Esta carpeta no existe o ya ha sido eliminada."
     end

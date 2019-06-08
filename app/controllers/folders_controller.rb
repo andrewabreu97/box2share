@@ -1,7 +1,7 @@
 class FoldersController < ApplicationController
   before_action :authenticate_user!
   before_action :require_existing_folder, only: [:show, :edit, :update, :destroy, :browse]
-  before_action :require_existing_subfolder, only: [:new]
+  before_action :require_existing_current_folder, only: [:new]
 
   layout 'panel'
 
@@ -11,20 +11,16 @@ class FoldersController < ApplicationController
 
   def new
     @folder = current_user.folders.build
-
     if params[:id]
       authorize! :new, @current_folder, message: "No tienes acceso a esta carpeta."
-      #@current_folder = current_user.folders.find(params[:id])
       @folder.parent_id = @current_folder.id
     end
   end
 
   def create
     @folder = current_user.folders.build(folder_params)
-
     if @folder.save
       flash[:notice] = "La carpeta se ha creado correctamente."
-
       if @folder.parent
         redirect_to browse_path(@folder.parent)
       else
@@ -36,11 +32,13 @@ class FoldersController < ApplicationController
   end
 
   def edit
+    authorize! :edit, @folder, message: "No tienes acceso a esta carpeta."
   end
 
   def update
+    authorize! :update, @folder, message: "No tienes acceso a esta carpeta."
     if @folder.update_attributes(folder_params)
-      flash[:notice] = "La caperta se ha renombrado correctamente."
+      flash[:notice] = "La carpeta se ha renombrado correctamente."
       if @folder.parent
         redirect_to browse_path(@folder.parent)
       else
@@ -52,6 +50,7 @@ class FoldersController < ApplicationController
   end
 
   def destroy
+    authorize! :destroy, @folder, message: "No tienes acceso a esta carpeta."
     @parent_folder = @folder.parent
     @folder.destroy
     flash[:notice] = "La carpeta y todo su contenido se han eliminado correctamente."
@@ -67,9 +66,6 @@ class FoldersController < ApplicationController
     if @folder
       @subfolders = @folder.children
       @assets = @folder.assets
-    else
-      flash[:alert] = "No tienes permiso para acceder a esta carpeta."
-      redirect_to panel_files_path
     end
   end
 
@@ -84,8 +80,8 @@ class FoldersController < ApplicationController
       redirect_to panel_files_path, alert: "Esta carpeta no existe o ya ha sido eliminada."
     end
 
-    def require_existing_subfolder
-      @current_folder = Folder.find(params[:id])
+    def require_existing_current_folder
+      @current_folder = Folder.find(params[:id]) if params[:id]
     rescue
       redirect_to panel_files_path, alert: "Esta carpeta no existe o ya ha sido eliminada."
     end

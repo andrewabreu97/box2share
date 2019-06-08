@@ -31,11 +31,10 @@ class Ability
     # See the wiki for details:
     # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
 
-    can :show, Asset, user_id: user.id
-    can :show, Folder, user_id: user.id
-    can :browse, Folder, user_id: user.id
-    can :new, Folder, user_id: user.id
-    #can :new, Asset, user_id: user.id
+    unless user.admin?
+      can [:show, :edit, :update, :destroy, :download], Asset, user_id: user.id
+      can [:show, :new, :edit, :update, :destroy, :browse], Folder, user_id: user.id
+    end
 
   end
 end
