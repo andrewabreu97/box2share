@@ -9,12 +9,12 @@
         <div class="col">
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb bg-white breadcrumb-right-arrow">
-              <% if @current_folder %>
+              <% if @folder %>
                 <li class="breadcrumb-item"><%= link_to "Mis archivos", panel_files_path %></li>
-                <% @current_folder.ancestors.reverse.each do |folder| %>
+                <% @folder.ancestors.reverse.each do |folder| %>
                   <li class="breadcrumb-item"><%= link_to folder.name, browse_path(folder) %></li>
                 <% end %>
-                <li class="breadcrumb-item active" aria-current="page"><%= @current_folder.name %></li>
+                <li class="breadcrumb-item active" aria-current="page"><%= @folder.name %></li>
               <% else %>
                 <li class="breadcrumb-item active" aria-current="page">Mis archivos</li>
               <% end %>
@@ -25,7 +25,7 @@
       <div class="row pt-4 pb-4">
         <div class="col">
           <div class="float-right">
-            <%= link_to new_sub_file_path(@current_folder), class: "btn btn-primary" do %>
+            <%= link_to new_sub_file_path(@folder), class: "btn btn-primary" do %>
               <i class="fas fa-file-upload mr-1"></i>
               Subir archivo
             <% end %>
@@ -52,7 +52,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <% @folders.each do |folder| %>
+                    <% @subfolders.each do |folder| %>
                       <tr>
                         <th scope="row" class="align-middle"> <%= image_tag("fileicons/folder.png", size: '40x40') %> </th>
                         <td class="align-middle"> <%= link_to folder.name, browse_path(folder) %> </td>

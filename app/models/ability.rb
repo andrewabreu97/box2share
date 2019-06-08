@@ -34,6 +34,8 @@ class Ability
     can :show, Asset, user_id: user.id
     can :show, Folder, user_id: user.id
     can :browse, Folder, user_id: user.id
+    can :new, Folder, user_id: user.id
+    #can :new, Asset, user_id: user.id
 
   end
 end

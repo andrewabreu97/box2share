@@ -1,6 +1,7 @@
 class FoldersController < ApplicationController
   before_action :authenticate_user!
   before_action :require_existing_folder, only: [:show, :edit, :update, :destroy, :browse]
+  before_action :require_existing_subfolder, only: [:new]
 
   layout 'panel'
 
@@ -12,7 +13,8 @@ class FoldersController < ApplicationController
     @folder = current_user.folders.build
 
     if params[:id]
-      @current_folder = current_user.folders.find(params[:id])
+      authorize! :new, @current_folder, message: "No tienes acceso a esta carpeta."
+      #@current_folder = current_user.folders.find(params[:id])
       @folder.parent_id = @current_folder.id
     end
   end
@@ -62,9 +64,9 @@ class FoldersController < ApplicationController
 
   def browse
     authorize! :browse, @folder, message: "No tienes acceso a esta carpeta."
-    if @current_folder
-      @folders = @current_folder.children
-      @assets = @current_folder.assets
+    if @folder
+      @subfolders = @folder.children
+      @assets = @folder.assets
     else
       flash[:alert] = "No tienes permiso para acceder a esta carpeta."
       redirect_to panel_files_path
@@ -78,6 +80,12 @@ class FoldersController < ApplicationController
 
     def require_existing_folder
       @folder = Folder.find(params[:id])
+    rescue
+      redirect_to panel_files_path, alert: "Esta carpeta no existe o ya ha sido eliminada."
+    end
+
+    def require_existing_subfolder
+      @current_folder = Folder.find(params[:id])
     rescue
       redirect_to panel_files_path, alert: "Esta carpeta no existe o ya ha sido eliminada."
     end

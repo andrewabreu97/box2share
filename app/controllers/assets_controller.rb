@@ -1,6 +1,7 @@
 class AssetsController < ApplicationController
   before_action :authenticate_user!
   before_action :require_existing_asset, only: [:show, :edit, :update, :destroy, :download]
+  before_action :require_existing_folder, only: [:new]
 
   layout 'panel'
 
@@ -11,6 +12,7 @@ class AssetsController < ApplicationController
   def new
     @asset = current_user.assets.build
     if params[:id]
+      authorize! :new, @folder, message: "No tienes acceso a esta carpeta."
       @current_folder = current_user.folders.find(params[:id])
       @asset.folder_id = @current_folder.id
     end
@@ -91,6 +93,12 @@ class AssetsController < ApplicationController
       @asset = Asset.find(params[:id])
     rescue
       redirect_to panel_files_path, alert: "Este archivo no existe o ya ha sido eliminado."
+    end
+
+    def require_existing_folder
+      @folder = Folder.find(params[:id])
+    rescue
+      redirect_to panel_files_path, alert: "Esta carpeta no existe o ya ha sido eliminada."
     end
 
 end
