@@ -54,7 +54,7 @@ namespace :users do
 
   def create_users_with_free_subscriptions
     puts "Create users with free subscriptions"
-    10.times do
+    5.times do
       first_name = Faker::Name.first_name
       last_name = Faker::Name.last_name
       email = Faker::Internet.free_email("#{first_name} #{last_name}")
@@ -73,7 +73,7 @@ namespace :users do
     standard_yearly_plan = Plan.find_by_remote_id("standard_yearly")
 
     professional_monthly_plan = Plan.find_by_remote_id("professional_monthly")
-    professional_monthly_plan = Plan.find_by_remote_id("professional_yearly")
+    professional_yearly_plan = Plan.find_by_remote_id("professional_yearly")
 
     card_params = {
       credit_card_number: '4242424242424242',
@@ -84,7 +84,7 @@ namespace :users do
 
     puts "Create users with paid subscriptions to Standard plan"
 
-    5.times do
+    2.times do
       first_name = Faker::Name.first_name
       last_name = Faker::Name.last_name
       email = Faker::Internet.free_email("#{first_name} #{last_name}")
@@ -112,7 +112,7 @@ namespace :users do
       sleep 30
     end
 
-    5.times do
+    2.times do
       first_name = Faker::Name.first_name
       last_name = Faker::Name.last_name
       email = Faker::Internet.free_email("#{first_name} #{last_name}")
@@ -142,7 +142,7 @@ namespace :users do
 
     puts "Create users with paid subscriptions to Professional plan"
 
-    5.times do
+    2.times do
       first_name = Faker::Name.first_name
       last_name = Faker::Name.last_name
       email = Faker::Internet.free_email("#{first_name} #{last_name}")
@@ -170,7 +170,7 @@ namespace :users do
       sleep 30
     end
 
-    5.times do
+    2.times do
       first_name = Faker::Name.first_name
       last_name = Faker::Name.last_name
       email = Faker::Internet.free_email("#{first_name} #{last_name}")
