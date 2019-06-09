@@ -21,7 +21,6 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'rspec-rails'
   gem 'factory_bot_rails'
-  gem 'faker'
   gem 'sqlite3', '1.3.13'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'pry'
@@ -78,3 +77,4 @@ gem 'acts_as_tree'
 gem 'active_link_to'
 gem 'cancancan'
 gem "aws-sdk-s3", require: false
+gem 'faker'
