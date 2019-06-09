@@ -51,7 +51,7 @@ module StripeHandler
     end
 
     def subscription
-      @subscription ||= Subscription.find_by(remote_id: invoice.subscription)
+      @subscription ||= Subscription.find_by(remote_id: invoice.lines.data[0].subscription)
     end
 
     def user
