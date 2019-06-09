@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   post "stripe/webhook", to: "stripe_webhook#action"
 
   resources :plans, only: [:index]
-  resources :payments, only: [:show]
+  resources :payments, only: [:show, :index]
   resources :subscriptions, path_names: { new: 'new/:plan_id' }
 
   scope :panel do

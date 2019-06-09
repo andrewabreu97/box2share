@@ -2,7 +2,7 @@
 namespace :users do
   desc "Create users in Box2Share application"
   task create: :environment do
-    clear_database
+    # clear_database
     destroy_subscriptions
     destroy_plans
     create_plans
