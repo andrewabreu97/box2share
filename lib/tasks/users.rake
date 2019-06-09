@@ -2,18 +2,13 @@
 namespace :users do
   desc "Create users in Box2Share application"
   task create: :environment do
-    begin
-      clear_database
-      destroy_subscriptions
-      destroy_plans
-      create_plans
-      create_admin_user
-      create_users_with_free_subscriptions
-      create_users_with_paid_subscriptions
-    rescue Exception => e
-      puts "An error occurred during the execution of this task."
-      puts "The error message is: #{e.message}"
-    end
+    clear_database
+    destroy_subscriptions
+    destroy_plans
+    create_plans
+    create_admin_user
+    create_users_with_free_subscriptions
+    create_users_with_paid_subscriptions
   end
 
   task destroy: :environment do
@@ -100,6 +95,7 @@ namespace :users do
         password: password,
         password_confirmation: password,
         confirmed_at: Time.zone.now)
+      create_folders(user)
       subscription = Subscription.create!(
           user: user, plan: standard_monthly_plan,
           start_date: Time.zone.now.to_date,
@@ -127,6 +123,7 @@ namespace :users do
         password: password,
         password_confirmation: password,
         confirmed_at: Time.zone.now)
+      create_folders(user)
       subscription = Subscription.create!(
           user: user, plan: standard_yearly_plan,
           start_date: Time.zone.now.to_date,
@@ -156,6 +153,7 @@ namespace :users do
         password: password,
         password_confirmation: password,
         confirmed_at: Time.zone.now)
+      create_folders(user)
       subscription = Subscription.create!(
           user: user, plan: professional_monthly_plan,
           start_date: Time.zone.now.to_date,
@@ -183,6 +181,7 @@ namespace :users do
         password: password,
         password_confirmation: password,
         confirmed_at: Time.zone.now)
+      create_folders(user)
       subscription = Subscription.create!(
           user: user, plan: professional_yearly_plan,
           start_date: Time.zone.now.to_date,
@@ -199,6 +198,31 @@ namespace :users do
       sleep 30
     end
 
+  end
+
+  def create_folders(user)
+    ['Documentos', 'Música', 'Vídeos', 'Imágenes'].each do |name|
+      folder = user.folders.create!(name: name)
+      case name
+      when "Documentos"
+        create_assets('document.pdf', user, folder)
+      when "Música"
+        create_assets('audio.mp3', user, folder)
+      when "Vídeos"
+        create_assets('video.mp4', user, folder)
+      else
+        create_assets('image.jpg', user, folder)
+      end
+    end
+  end
+
+  def create_assets(filename, user, folder)
+    file = File.open("#{Rails.root}/public/resources/#{filename}")
+    blob = ActiveStorage::Blob.create_after_upload!(
+      io: file,
+      filename: File.basename(file)
+    )
+    user.assets.create!(name: blob.filename.base, uploaded_file: blob, folder_id: folder.id)
   end
 
 end
