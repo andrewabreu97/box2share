@@ -46,7 +46,7 @@ namespace :paid_plans do
         begin
           Stripe::Plan.delete(plan_data[:remote_id])
         rescue Stripe::StripeError => exception
-          puts "No existe el plan con id: #{plan_data[:remote_id]} en tu cuenta de Stripe"
+          puts "There is no plan with id #{plan_data[:remote_id]} in your Stripe account"
         end
       end
       Plan.paid_plan.destroy_all
@@ -55,7 +55,7 @@ namespace :paid_plans do
       begin
         Stripe::Product.delete(product[:id])
       rescue Stripe::StripeError => exception
-        puts "No existe el producto con id: #{product[:id]} en tu cuenta de Stripe"
+        puts "There is no product with id #{product[:id]} in your Stripe account"
       end
     end
   end
