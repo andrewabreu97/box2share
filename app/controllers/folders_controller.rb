@@ -24,7 +24,7 @@ class FoldersController < ApplicationController
       if @folder.parent
         redirect_to browse_path(@folder.parent)
       else
-        redirect_to panel_files_path
+        redirect_to files_path
       end
     else
       render :new
@@ -42,7 +42,7 @@ class FoldersController < ApplicationController
       if @folder.parent
         redirect_to browse_path(@folder.parent)
       else
-        redirect_to panel_files_path
+        redirect_to files_path
       end
     else
       render :edit
@@ -57,7 +57,7 @@ class FoldersController < ApplicationController
     if @parent_folder
       redirect_to browse_path(@parent_folder)
     else
-      redirect_to panel_files_path
+      redirect_to files_path
     end
   end
 
@@ -77,13 +77,13 @@ class FoldersController < ApplicationController
     def require_existing_folder
       @folder = Folder.find(params[:id])
     rescue
-      redirect_to panel_files_path, alert: "Esta carpeta no existe o ya ha sido eliminada."
+      redirect_to files_path, alert: "Esta carpeta no existe o ya ha sido eliminada."
     end
 
     def require_existing_current_folder
       @current_folder = Folder.find(params[:id]) if params[:id]
     rescue
-      redirect_to panel_files_path, alert: "Esta carpeta no existe o ya ha sido eliminada."
+      redirect_to files_path, alert: "Esta carpeta no existe o ya ha sido eliminada."
     end
 
 end

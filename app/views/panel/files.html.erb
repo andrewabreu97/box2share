@@ -10,7 +10,7 @@
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb bg-white breadcrumb-right-arrow">
               <% if @current_folder %>
-                <li class="breadcrumb-item"><%= link_to "Mis archivos", panel_files_path %></li>
+                <li class="breadcrumb-item"><%= link_to "Mis archivos", files_path %></li>
                 <% @current_folder.ancestors.reverse.each do |folder| %>
                   <li class="breadcrumb-item"><%= link_to folder.name, browse_path(folder) %></li>
                 <% end %>

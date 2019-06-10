@@ -33,7 +33,7 @@ class AssetsController < ApplicationController
           if @asset.folder
             redirect_to browse_path(@asset.folder)
           else
-            redirect_to panel_files_path
+            redirect_to files_path
           end
         else
           render :new
@@ -54,7 +54,7 @@ class AssetsController < ApplicationController
     @asset.update(asset_update_params)
     if @asset.save
       @asset.uploaded_file.blob.update(filename: "#{@asset.name}.#{@asset.uploaded_file.filename.extension}")
-      redirect_to panel_files_path, notice: "El archivo ha sido renombrado correctamente."
+      redirect_to files_path, notice: "El archivo ha sido renombrado correctamente."
     else
       render :edit
     end
@@ -68,7 +68,7 @@ class AssetsController < ApplicationController
     if @parent_folder
       redirect_to browse_path(@parent_folder)
     else
-      redirect_to panel_files_path
+      redirect_to files_path
     end
   end
 
@@ -92,13 +92,13 @@ class AssetsController < ApplicationController
     def require_existing_asset
       @asset = Asset.find(params[:id])
     rescue
-      redirect_to panel_files_path, alert: "Este archivo no existe o ya ha sido eliminado."
+      redirect_to files_path, alert: "Este archivo no existe o ya ha sido eliminado."
     end
 
     def require_existing_current_folder
       @current_folder = Folder.find(params[:id]) if params[:id]
     rescue
-      redirect_to panel_files_path, alert: "Esta carpeta no existe o ya ha sido eliminada."
+      redirect_to files_path, alert: "Esta carpeta no existe o ya ha sido eliminada."
     end
 
 end
