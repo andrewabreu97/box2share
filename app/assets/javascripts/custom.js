@@ -67,7 +67,7 @@ $(document).on('turbolinks:load', function(){
   $("#payments").dataTable({
     "order": [[ 1, "asc" ]],
     "columnDefs": [
-      { "targets": [0,4], "orderable": false, "searchable": false}
+      { "targets": [0,6], "orderable": false, "searchable": false}
     ],
     "language": {
       "sProcessing":     "Procesando...",
