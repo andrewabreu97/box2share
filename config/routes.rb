@@ -30,7 +30,7 @@ Rails.application.routes.draw do
   resources :folders, except: [:index]
 
   namespace :admin do
-
+    get "service_statistics", to: "panel#service_statistics"
   end
 
 end
