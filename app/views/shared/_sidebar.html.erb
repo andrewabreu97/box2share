@@ -30,4 +30,24 @@
       <span>Historial de pagos</span>
     <% end %>
   </li>
+  <% if current_user.admin? %>
+    <li class="nav-item">
+      <%= link_to "#", class: "nav-link" do %>
+        <i class="fas fa-fw fa-chart-bar"></i>
+        <span>Estadísticas del servicio</span>
+      <% end %>
+    </li>
+    <li class="nav-item">
+      <%= link_to "#", class: "nav-link" do %>
+        <i class="fas fa-fw fa-chart-bar"></i>
+        <span>Usuarios</span>
+      <% end %>
+    </li>
+    <li class="nav-item">
+      <%= link_to "#", class: "nav-link" do %>
+        <i class="fas fa-fw fa-chart-bar"></i>
+        <span>Historial de pagos del servicio</span>
+      <% end %>
+    </li>
+  <% end %>
 </ul>
