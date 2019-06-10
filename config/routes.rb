@@ -29,4 +29,8 @@ Rails.application.routes.draw do
   resources :assets, except: [:index]
   resources :folders, except: [:index]
 
+  namespace :admin do
+
+  end
+
 end
