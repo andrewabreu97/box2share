@@ -15,9 +15,9 @@ Rails.application.routes.draw do
   get "browse/:id/new_file", to: "assets#new", as: "new_sub_file"
   get "browse/:id/rename", to: "folders#edit", as: "rename_folder"
   post 'assets/download/:id', to: 'assets#download', as: 'download'
-  get 'panel/plan', to: 'panel#plan'
-  get 'panel/dashboard', to: 'panel#dashboard'
-  get 'panel/files', to: 'panel#files'
+  get 'plan', to: 'panel#plan'
+  get 'dashboard', to: 'panel#dashboard'
+  get 'files', to: 'panel#files'
 
   post "stripe/webhook", to: "stripe_webhook#action"
 
