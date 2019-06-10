@@ -3,25 +3,31 @@
     <% if current_page?("/") %>
       <%= link_to root_path, class: "nav-link active" do %>
         <i class="fas fa-fw fa-tachometer-alt"></i>
-        <span><%= t('shared.sidebar.dashboard') %></span>
+        <span>Panel de control</span>
       <% end %>
     <% else %>
       <%= active_link_to dashboard_path, class: "nav-link" do %>
         <i class="fas fa-fw fa-tachometer-alt"></i>
-        <span><%= t('shared.sidebar.dashboard') %></span>
+        <span>Panel de control</span>
       <% end %>
     <% end %>
   </li>
   <li class="nav-item">
     <%= active_link_to files_path, class: "nav-link" do %>
       <i class="fas fa-fw fa-folder-open"></i>
-      <span><%= t('shared.sidebar.files') %></span>
+      <span>Mis archivos</span>
     <% end %>
   </li>
   <li class="nav-item">
     <%= active_link_to plan_path, class: "nav-link" do %>
       <i class="fas fa-fw fa-calendar"></i>
-      <span><%= t('shared.sidebar.plan') %></span>
+      <span>Mi plan</span>
+    <% end %>
+  </li>
+  <li class="nav-item">
+    <%= active_link_to payments_path, class: "nav-link" do %>
+      <i class="fas fa-fw fa-file-invoice"></i>
+      <span>Historial de pagos</span>
     <% end %>
   </li>
 </ul>
