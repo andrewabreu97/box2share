@@ -367,6 +367,13 @@ es:
       buttons:
         current_plan: "Estás suscrito"
         subscribe: "Suscribirte"
+  payments:
+    index:
+      status:
+        created: "Creado"
+        succeeded: "Exitoso"
+        pending: "Pendiente"
+        failed: "Fallido"
   static_pages:
     home:
       title: "Inicio"
