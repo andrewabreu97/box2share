@@ -236,11 +236,6 @@ es:
     pm: pm
 
   # Custom translations
-  shared:
-    sidebar:
-      dashboard: "Panel de control"
-      files: "Mis archivos"
-      plan: "Mi plan"
   panel:
     plan:
       text:
