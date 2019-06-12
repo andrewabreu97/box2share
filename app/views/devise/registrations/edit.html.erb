@@ -73,7 +73,9 @@
   </div>
   <div class="row">
     <div class="col-sm-2 col-md-3 col-lg-4 col-xl-5 mx-auto">
-      <%= link_to t('devise.shared.links.back'), :back %>
+      <%= link_to :back, class: "btn btn-light" do %>
+        <i class="fas fa-arrow-left"></i> <%= t('devise.shared.links.back') %>
+      <% end %>
     </div>
   </div>
 </div>
