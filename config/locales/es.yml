@@ -6,7 +6,7 @@ es:
         name: El nombre de la carpeta
       asset:
         name: El nombre del archivo
-        uploaded_file: Debe seleccionar un archivo
+        uploaded_file: ""
     errors:
       messages:
         record_invalid: 'La validación falló: %{errors}'
@@ -23,7 +23,7 @@ es:
             name:
               blank: no puede estar en blanco
             uploaded_file:
-              blank: a subir
+              blank: Debe seleccionar un archivo a subir
   date:
     abbr_day_names:
     - dom
