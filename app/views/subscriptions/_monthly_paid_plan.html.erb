@@ -14,20 +14,10 @@
         <li>...</li>
         <li>...</li>
       </ul>
-      <% if current_page?(action: 'index') %>
-        <% if user_signed_in? %>
-          <% if current_user.current_subscription.free? %>
-            <%= link_to "Suscribirte", new_subscription_path(monthly_paid_plan.id), class: "btn btn-lg btn-block btn-outline-primary" %>
-          <% else %>
-            <% if current_user.current_plan?(monthly_paid_plan.id) %>
-              <%= link_to "Estás suscrito", "#", class: "btn btn-lg btn-block btn-outline-primary disabled" %>
-            <% end %>
-          <% end %>
-        <% else %>
-          <%= link_to "Suscribirte", new_user_session_path, class: "btn btn-lg btn-block btn-outline-primary" %>
-        <% end %>
+      <%= form_tag(subscription_path, method: :patch) do %>
+        <%= hidden_field_tag(:new_plan_id, monthly_paid_plan.id) %>
+        <%= submit_tag("Cambiar", class: "btn btn-lg btn-block btn-outline-primary") %>
       <% end %>
-
     </div>
   </div>
 </div>

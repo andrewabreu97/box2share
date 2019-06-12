@@ -19,12 +19,12 @@
   <div class="tab-content">
     <div id="monthly" class="container tab-pane active"><br>
       <div class="row card-deck mb-3 text-center">
-        <%= render partial: "plans/monthly_paid_plan", collection: @monthly_paid_plans %>
+        <%= render partial: "subscriptions/monthly_paid_plan", collection: @monthly_paid_plans %>
       </div>
     </div>
     <div id="yearly" class="container tab-pane fade"><br>
       <div class="row card-deck mb-3 text-center">
-        <%= render partial: "plans/yearly_paid_plan", collection: @yearly_paid_plans %>
+        <%= render partial: "subscriptions/yearly_paid_plan", collection: @yearly_paid_plans %>
       </div>
     </div>
   </div>
