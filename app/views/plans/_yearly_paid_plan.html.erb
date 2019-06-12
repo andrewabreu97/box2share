@@ -20,6 +20,8 @@
         <% else %>
           <% if current_user.current_plan?(yearly_paid_plan.id) %>
             <%= link_to "Estás suscrito", "#", class: "btn btn-lg btn-block btn-outline-primary disabled" %>
+          <% else %>
+            <%= link_to "No estás suscrito", "#", class: "btn btn-lg btn-block btn-outline-primary disabled" %>
           <% end %>
         <% end %>
       <% else %>

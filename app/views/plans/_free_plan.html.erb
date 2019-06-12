@@ -17,7 +17,9 @@
       <% if user_signed_in? %>
         <% if current_user.current_subscription.free? %>
           <%= link_to "Estás suscrito", "#", class: "btn btn-lg btn-block btn-outline-primary disabled" %>
-        <% end %>
+          <% else %>
+            <%= link_to "No estás suscrito", "#", class: "btn btn-lg btn-block btn-outline-primary disabled" %>
+          <% end %>
       <% else %>
         <%= link_to "Registrarse", new_user_registration_path, class: "btn btn-lg btn-block btn-outline-primary" %>
       <% end %>
