@@ -8,7 +8,7 @@
           <hr>
           <%= form_tag(payment_method_path, id: "update-card-form", method: :patch) do %>
           <div class="form-group">
-            <%= content_tag(:div, nil , class: "form-control", id: "card-element") %>
+            <%= content_tag(:div, nil , class: "form-control", id: "card-element-two") %>
           </div>
           <div class="form-group">
             <%= submit_tag(t('.form.buttons.update'), class: "btn btn-block btn-primary", id: "update-card-submit", data: { disable_with: false }) %>

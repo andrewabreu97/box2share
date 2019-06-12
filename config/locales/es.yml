@@ -253,38 +253,12 @@ es:
         storage_space: "Espacio de almacenamiento"
         renewal: "Renovación"
       text:
-        billing_cycle:
-          monthly: "Mensual"
-          yearly: "Anual"
-        no_billing_cycle: "Sin ciclo de facturación"
-        in_use: "en uso"
-        of: "de"
-        end_date_subscription: "Tu suscripción finalizará el"
-        payment_method: "La tarjeta %{card_brand} termina en %{card_last4}"
         status:
           active: "Activa"
           inactive: "Inactiva"
           waiting: "Esperando"
           pending_initial_payment: "Pendiente del pago inicial"
           cancelled: "Cancelada"
-      buttons:
-        cancel_subscription: "Cancelar suscripción"
-        change_subscription: "Cambiar suscripción"
-        update_payment_method: "Actualizar"
-      messages:
-        confirm_cancel: "¿Estás seguro de cancelar esta suscripción?"
-    files:
-      sidebar:
-        dashboard: "Panel de control"
-        files: "Mis archivos"
-        plan: "Mi plan"
-  messages:
-    subscriptions:
-      subscribed: "Te has suscrito exitosamente al plan %{name}"
-      unsubscribed: "Su suscripción ha sido cancelada con éxito."
-    failure:
-      already_subscribed: "Ya se encuentra suscrito a una suscripción de pago."
-      not_unsubscribed: "Ha ocurrido un problema al cancelar su suscripción."
   stripe:
     errors:
       incorrect_number: "El número de tarjeta es incorrecto."
@@ -310,20 +284,6 @@ es:
       tab:
         monthly: "Mensual"
         yearly: "Anual"
-      success:
-        update_subscription: "Tu subscripción ha sido cambiada correctamente."
-      failure:
-        no_update_subscription: "Ha ocurrido un error al cambiar tu suscripción."
-        no_paid_subscription: "Debes estar suscrito a una suscripción de pago para cambiarla."
-        already_subscribed: "Ya se encuentra suscrito a una suscripción de pago."
-    destroy:
-      success:
-        unsubscribed: "Su suscripción ha sido cancelada con éxito."
-      failure:
-        not_unsubscribed: "Ha ocurrido un problema al cancelar su suscripción."
-    create:
-      success:
-        subscribed: "Te has suscrito exitosamente al plan %{name}"
   payment_methods:
     update:
       success:

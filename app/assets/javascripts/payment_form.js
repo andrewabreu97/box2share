@@ -1,7 +1,7 @@
 $(document).on('turbolinks:load', function(){
 
   // Retrieve language
-  var locale = $('html').attr('lang');
+  var locale = 'es'
 
   // Retrieve the Stripe publishable key.
   const STRIPE_PUBLISHABLE_KEY = $("meta[name='stripe-publishable-key']").attr("content");
@@ -34,7 +34,7 @@ $(document).on('turbolinks:load', function(){
   var card = elements.create('card', { style: style, hidePostalCode: true });
 
   // Add an instance of the card Element into the `card-element` <div>.
-  card.mount('#card-element');
+  card.mount('#card-element-one');
 
   // Handle real-time validation errors from the card Element.
   card.on('change', function (event) {
