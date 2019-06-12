@@ -1,3 +1,5 @@
+<% provide(:title, "Panel de control") %>
+
 <div id="wrapper">
 
   <%= render 'shared/sidebar' %>
@@ -8,23 +10,65 @@
         <div class="col">
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb bg-white breadcrumb-right-arrow">
-              <li class="breadcrumb-item active" aria-current="page">Panel de control</li>
+              <li class="breadcrumb-item active" aria-current="page">
+                Panel de control
+              </li>
             </ol>
           </nav>
         </div>
       </div>
       <div class="row">
-        <%= render "stat", locals: { statistic: current_user.uploaded_files_count, title: "Archivos subidos" } %>
-        <%= render "stat", locals: { statistic: current_user.downloaded_files_count, title: "Archivos descargados" } %>
-        <%= render "stat", locals: { statistic: current_user.files_count, title: "Archivos" } %>
-        <%= render "stat", locals: { statistic: current_user.shared_files_count, title: "Archivos compartidos" } %>
+        <%= render "stat", locals: {
+                              statistic: current_user.uploaded_files_count,
+                              title: "Archivos subidos",
+                              icon: "file-upload"
+                            }
+        %>
+        <%= render "stat", locals: {
+                              statistic: current_user.downloaded_files_count,
+                              title: "Archivos descargados",
+                              icon: "file-download"
+                            }
+        %>
+        <%= render "stat", locals: {
+                              statistic: current_user.files_count,
+                              title: "Archivos",
+                              icon: "file"
+                            }
+        %>
+        <%= render "stat", locals: {
+                              statistic: current_user.files_count,
+                              title: "Archivos compartidos",
+                              icon: "share-alt"
+                            }
+        %>
       </div>
       <br>
       <div class="row">
-        <%= render "stat", locals: { statistic: current_user.folders_count, title: "Carpetas" } %>
-        <%= render "stat", locals: { statistic: number_to_human_size(current_user.used_storage_space), title: "Espacio de almacenamiento usado" } %>
-        <%= render "stat", locals: { statistic: number_to_human_size(current_user.available_storage_space), title: "Espacio de almacenamiento disponible" } %>
-        <%= render "stat", locals: { statistic: number_to_human_size(current_user.total_storage_space), title: "Espacio de almacenamiento total" } %>
+        <%= render "stat", locals: {
+                              statistic: current_user.folders_count,
+                              title: "Carpetas",
+                              icon: "folder"
+                            }
+        %>
+        <%= render "stat", locals: {
+                              statistic: number_to_human_size(current_user.used_storage_space),
+                              title: "Espacio de almacenamiento usado",
+                              icon: "hdd"
+                            }
+        %>
+        <%= render "stat", locals: {
+                              statistic: number_to_human_size(current_user.available_storage_space),
+                              title: "Espacio de almacenamiento disponible",
+                              icon: "hdd"
+                            }
+        %>
+        <%= render "stat", locals: {
+                              statistic: number_to_human_size(current_user.total_storage_space),
+                              title: "Espacio de almacenamiento total",
+                              icon: "hdd"
+                            }
+        %>
       </div>
       <br>
     </div>
