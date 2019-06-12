@@ -2,19 +2,6 @@
 	<nav class="navbar navbar-expand navbar-dark bg-custom static-top">
 		<%= link_to image_tag("logo.png", alt: "logo", height: '42'), root_path, class: "navbar-brand mr-1" %>
 		<ul class="navbar-nav navbar-right ml-auto align-items-center">
-      <li class="nav-item dropdown">
-        <% if default_locale?(I18n.locale) %>
-          <a class="nav-link dropdown-toggle" href="#" id="dropdown09" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <%= image_tag("united-kingdom-flag-icon.png", height: '20') %> <%=  t('.languages.english') %> </a>
-          <div class="dropdown-menu" aria-labelledby="dropdown09">
-            <%= link_to(image_tag("spain-flag-icon.png", height: '20') + t('.languages.spanish'), url_for(locale: 'es'), class: "dropdown-item")  %>
-          </div>
-        <% else %>
-          <a class="nav-link dropdown-toggle" href="#" id="dropdown09" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <%= image_tag("spain-flag-icon.png", height: '20') %> <%=  t('.languages.spanish') %></a>
-          <div class="dropdown-menu" aria-labelledby="dropdown09">
-            <%= link_to(image_tag("united-kingdom-flag-icon.png", height: '20') + t('.languages.english'), url_for(locale: 'en'), class: "dropdown-item")  %>
-          </div>
-        <% end %>
-      </li>
       <li class="nav-item">
       	<%= link_to t('.links.home'), root_path, class: "nav-link" %>
       </li>
