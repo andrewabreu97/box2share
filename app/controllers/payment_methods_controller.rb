@@ -29,7 +29,7 @@ class PaymentMethodsController < ApplicationController
 
     def check_edit_payment_method
       if current_user.current_subscription.free?
-        flash[:alert] = "Debes estar suscrito a un plan de pago."
+        flash[:alert] = "Debes estar suscrito a un plan de pago para cambiar tu método de pago."
         redirect_back(fallback_location: root_path)
       end
     end

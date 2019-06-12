@@ -4,14 +4,14 @@
       <div id="card-errors" class="alert-danger alert d-none" role="alert"></div>
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title"><%= t('.form.title') %></h5>
+          <h5 class="card-title">Formulario para actualizar la tarjeta</h5>
           <hr>
           <%= form_tag(payment_method_path, id: "update-card-form", method: :patch) do %>
           <div class="form-group">
             <%= content_tag(:div, nil , class: "form-control", id: "card-element-two") %>
           </div>
           <div class="form-group">
-            <%= submit_tag(t('.form.buttons.update'), class: "btn btn-block btn-primary", id: "update-card-submit", data: { disable_with: false }) %>
+            <%= submit_tag("Actualizar método de pago", class: "btn btn-block btn-primary", id: "update-card-submit", data: { disable_with: false }) %>
           </div>
           <% end %>
         </div>

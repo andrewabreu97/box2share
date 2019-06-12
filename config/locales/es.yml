@@ -273,17 +273,6 @@ es:
       missing: "No existe una tarjeta asociada al cliente al que se le está cobrando."
       processing_error: "Ocurrió un error mientras se procesaba la tarjeta."
       rate_limit: "Ocurrió un error debido a las solicitudes que llegan a IPA muy rápido. Háganos saber si este error se le presenta de manera constante."
-  subscriptions:
-    new:
-      title: "Formulario de pago"
-      buttons:
-        purchase: "Comprar suscripción"
-    edit:
-      display: "Planes disponibles"
-      lead: "Elije el que quieras para cambiar tu suscripción."
-      tab:
-        monthly: "Mensual"
-        yearly: "Anual"
   payment_methods:
     update:
       success:
