@@ -48,7 +48,7 @@ $(document).on('turbolinks:load', function(){
   });
 
   // Handle form submission.
-  $('#payment-form').on('submit', function (event) {
+  $('#update-card-form').on('submit', function (event) {
     event.preventDefault();
 
     stripe.createToken(card).then(function (result) {
@@ -59,23 +59,23 @@ $(document).on('turbolinks:load', function(){
       } else {
         // Send the token to your server.
         $('#card-errors').addClass('d-none');
-        paymentFormStripeTokenHandler(result.token);
+        updateCardFormStripeTokenHandler(result.token);
       }
     });
   });
 
   // Submit the form with the token ID.
-  function paymentFormStripeTokenHandler(token) {
+  function updateCardFormStripeTokenHandler(token) {
       // Insert the token ID into the form so it gets submitted to the server
       var hiddenInput = $('<input>')
       .attr('type', 'hidden')
       .attr('name', 'stripe_token')
       .val(token.id);
 
-      $('#payment-form').append(hiddenInput);
+      $('#update-card-form').append(hiddenInput);
       alert("Estoy en el stripe token handler: " + token.id);
       // Submit the form
-      $('#payment-form').get(0).submit();
+      $('#update-card-form').get(0).submit();
     }
 
 });
