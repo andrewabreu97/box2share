@@ -3,10 +3,10 @@
 		<%= link_to image_tag("logo.png", alt: "logo", height: '42'), root_path, class: "navbar-brand mr-1" %>
 		<ul class="navbar-nav navbar-right ml-auto align-items-center">
       <li class="nav-item">
-      	<%= link_to t('.links.home'), root_path, class: "nav-link" %>
+      	<%= link_to "Inicio", root_path, class: "nav-link" %>
       </li>
       <li class="nav-item">
-        <%= link_to t('.links.pricing'), plans_path, class: "nav-link" %>
+        <%= link_to "Precios", plans_path, class: "nav-link" %>
       </li>
 			<% if user_signed_in? %>
 			<li class="nav-item dropdown no-arrow">
@@ -14,17 +14,17 @@
           <%= current_user.full_name %> <%= image_tag current_user.avatar.profile.url, class: "avatar ml-2", height: '40' %>
 				</a>
 				<div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-					<%= link_to t('.links.profile'), edit_user_registration_path, class: "dropdown-item" %>
+					<%= link_to "Perfil", edit_user_registration_path, class: "dropdown-item" %>
 					<div class="dropdown-divider"></div>
-					<%= link_to t('.links.signout'), destroy_user_session_path , class: "dropdown-item", method: :delete %>
+					<%= link_to "Cerrar sesión", destroy_user_session_path , class: "dropdown-item", method: :delete %>
 				</div>
 			</li>
 			<% else %>
 			<li class="nav-item">
-				<%= link_to t('.links.signin'), new_user_session_path, class: "nav-link" %>
+				<%= link_to "Inicio de sesión", new_user_session_path, class: "nav-link" %>
 			</li>
 			<li class="nav-item">
-				<%= link_to t('.links.signup'), new_user_registration_path, class: "btn btn-outline-light" %>
+				<%= link_to "Registrarse", new_user_registration_path, class: "btn btn-outline-light" %>
 			</li>
 			<% end %>
 		</ul>
