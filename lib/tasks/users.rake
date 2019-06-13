@@ -2,7 +2,7 @@
 namespace :users do
   desc "Create users in Box2Share application"
   task create: :environment do
-    clear_database
+    clear_database if Rails.env.development?
     destroy_subscriptions
     destroy_plans
     create_plans
@@ -86,7 +86,7 @@ namespace :users do
 
     puts "Create users with paid subscriptions to Standard plan"
 
-    1.times do
+    2.times do
       first_name = Faker::Name.first_name
       last_name = Faker::Name.last_name
       email = Faker::Internet.free_email("#{first_name} #{last_name}")
@@ -116,7 +116,7 @@ namespace :users do
       sleep 30
     end
 
-    1.times do
+    2.times do
       first_name = Faker::Name.first_name
       last_name = Faker::Name.last_name
       email = Faker::Internet.free_email("#{first_name} #{last_name}")
@@ -148,7 +148,7 @@ namespace :users do
 
     puts "Create users with paid subscriptions to Professional plan"
 
-    1.times do
+    2.times do
       first_name = Faker::Name.first_name
       last_name = Faker::Name.last_name
       email = Faker::Internet.free_email("#{first_name} #{last_name}")
@@ -178,7 +178,7 @@ namespace :users do
       sleep 30
     end
 
-    1.times do
+    2.times do
       first_name = Faker::Name.first_name
       last_name = Faker::Name.last_name
       email = Faker::Internet.free_email("#{first_name} #{last_name}")
@@ -211,23 +211,17 @@ namespace :users do
   end
 
   def create_folders(user)
-    ['Documentos', 'Música', 'Vídeos', 'Imágenes'].each do |name|
-      folder = user.folders.create!(name: name)
-      case name
-      when "Documentos"
-        create_assets('document.pdf', user, folder)
-      when "Música"
-        create_assets('audio.mp3', user, folder)
-      when "Vídeos"
-        create_assets('video.mp4', user, folder)
-      else
-        create_assets('image.jpg', user, folder)
+    5.times do |n|
+      folder = user.folders.create!(name: "Carpeta #{n+1}")
+      assets = Dir["#{Rails.root}/public/resources/*"]
+      assets.each do |asset|
+        create_assets(asset, user, folder)
       end
     end
   end
 
-  def create_assets(filename, user, folder)
-    file = File.open("#{Rails.root}/public/resources/#{filename}")
+  def create_assets(path, user, folder)
+    file = File.open(path)
     blob = ActiveStorage::Blob.create_after_upload!(
       io: file,
       filename: File.basename(file)

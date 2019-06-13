@@ -38,3 +38,6 @@
 
 #Exclude upload directory
 /public/uploads/*
+
+#Exclude resources directory
+/public/resources/*
