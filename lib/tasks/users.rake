@@ -9,7 +9,7 @@ namespace :users do
     create_plans
     create_admin_user
     create_users_with_free_subscriptions
-    create_users_with_paid_subscriptions
+    #create_users_with_paid_subscriptions
   end
 
   task destroy: :environment do
