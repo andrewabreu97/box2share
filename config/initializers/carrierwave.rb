@@ -9,9 +9,9 @@ if Rails.env.production?
       :provider               => 'AWS',
       :aws_access_key_id      => ENV['S3_ACCESS_KEY'],
       :aws_secret_access_key  => ENV['S3_SECRET_KEY'],
-      :region                 => 'eu-west-2'
+      :region                 => 'eu-west-2',
   #    :host                   => 's3.example.com',
-      #:endpoint               => 'https://box2share.s3.eu-west-2.amazonaws.com/'
+      :endpoint               => 'https://s3.eu-west-2.amazonaws.com/'
     }
     config.fog_directory  = ENV['S3_AVATAR_BUCKET']
     config.fog_public     = false
