@@ -78,3 +78,4 @@ gem 'active_link_to'
 gem 'cancancan'
 gem "aws-sdk-s3", require: false
 gem 'faker'
+
