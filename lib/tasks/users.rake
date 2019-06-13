@@ -6,10 +6,10 @@ namespace :users do
     clear_database if Rails.env.development?
     destroy_subscriptions
     destroy_plans
-    create_plans
+    create_pans
     create_admin_user
     create_users_with_free_subscriptions
-    #create_users_with_paid_subscriptions
+    create_users_with_paid_subscriptions
   end
 
   task destroy: :environment do
