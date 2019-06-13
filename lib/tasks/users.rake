@@ -2,6 +2,7 @@
 namespace :users do
   desc "Create users in Box2Share application"
   task create: :environment do
+    Faker::Config.locale = :en
     clear_database if Rails.env.development?
     destroy_subscriptions
     destroy_plans
