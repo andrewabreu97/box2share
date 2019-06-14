@@ -36,7 +36,7 @@
                   <h6>Estado</h6>
                   <p><span class="badge badge-success"><%= t(".text.status.#{@user.current_subscription.status}") %></span></p>
                   <% unless @user.current_subscription.free? %>
-                    <p>Su suscripción finalizará el <%= l @user.current_subscription.end_date, format: :shor %>.</p>
+                    <p>Su suscripción finalizará el <%= l @user.current_subscription.end_date, format: :default %>.</p>
                   <% end %>
                 </div>
               </div>

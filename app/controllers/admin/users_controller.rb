@@ -9,26 +9,12 @@ class Admin::UsersController < Admin::ApplicationController
   end
 
   def destroy
-    unless @user.current_subscription.free?
-      workflow = CancelsStripeSubscription.new(
-          subscription_id: @user.current_subscription.id,
-          user: @user)
-      workflow.run
-      if workflow.success
-        if @user.destroy
-          redirect_to admin_users_path, notice: "El usuario ha sido eliminado correctamente."
-        else
-          redirect_to admin_users_path, alert: "Ha ocurrido un error al intentar eliminar el usuario."
-        end
-      else
-        redirect_to admin_users_path, alert: "Ha ocurrido un error al intentar cancelar la suscripción del usuario a eliminar."
-      end
+    workflow = DeleteUser.new(subscription_id: @user.current_subscription.id, user: @user)
+    workflow.run
+    if workflow.success
+      redirect_to admin_users_path, notice: "El usuario ha sido eliminado correctamente."
     else
-      if @user.destroy
-        redirect_to admin_users_path, notice: "El usuario ha sido eliminado correctamente."
-      else
-        redirect_to admin_users_path, alert: "Ha ocurrido un error al intentar eliminar el usuario."
-      end
+      redirect_to admin_users_path, alert: "Ha ocurrido un error al intentar eliminar el usuario."
     end
   end
 
