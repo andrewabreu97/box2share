@@ -22,11 +22,13 @@
               <td class="align-middle"><%= l user.created_at.to_datetime, format: :short %></td>
               <td class="text-center align-middle">
                 <div class="dropdown">
-                  <button class="btn" href="#" id="fileDropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <button class="btn" href="#" id="usersDropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-ellipsis-h"></i>
                   </button>
-                  <div class="dropdown-menu" aria-labelledby="fileDropdown">
-
+                  <div class="dropdown-menu" aria-labelledby="usersDropdown">
+                    <%= link_to admin_user_path(user), class: "dropdown-item", method: :delete, data: {confirm: '¿Deseas eliminar a este usuario?'} do %>
+                      <i class="fas fa-trash-alt mr-1"></i> Eliminar
+                    <% end %>
                   </div>
                 </div>
               </td>
