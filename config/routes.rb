@@ -31,6 +31,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get "service_statistics", to: "panel#service_statistics"
+    resources :users
   end
 
 end
