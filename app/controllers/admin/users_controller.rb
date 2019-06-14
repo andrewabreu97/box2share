@@ -1,8 +1,11 @@
 class Admin::UsersController < Admin::ApplicationController
-  before_action :require_existing_user, only: [:destroy]
+  before_action :require_existing_user, only: [:show, :destroy]
 
   def index
     @users = User.where(admin: false)
+  end
+
+  def show
   end
 
   def destroy

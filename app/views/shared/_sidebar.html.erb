@@ -31,7 +31,7 @@
       <% end %>
     </li>
     <li class="nav-item">
-      <%= link_to admin_users_path, class: "nav-link" do %>
+      <%= active_link_to admin_users_path, class: "nav-link", active: [['admin/users'],[]] do %>
         <i class="fas fa-fw fa-users"></i>
         <span>Usuarios</span>
       <% end %>
