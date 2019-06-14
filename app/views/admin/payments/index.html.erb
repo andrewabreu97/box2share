@@ -17,47 +17,7 @@
       </div>
       <div class="row">
         <div class="col">
-          <div class="card">
-            <div class="card-body">
-              <div class="table-responsive">
-                <table id="service-payments" class="table">
-                  <thead>
-                    <tr>
-                      <th scope="col">Referencia</th>
-                      <th scope="col">Nombrew</th>
-                      <th scope="col">Apellidos</th>
-                      <th scope="col">Plan</th>
-                      <th scope="col">Fecha/Hora</th>
-                      <th scope="col">Cantidad</th>
-                      <th scope="col">Método de pago</th>
-                      <th scope="col">Estado</th>
-                      <th scope="col"></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <% @payments.each do |payment| %>
-                      <tr>
-                        <th scope="row" class="align-middle"><%= payment.reference %></th>
-                        <td class="align-middle"><%= payment.user.name %></td>
-                        <td class="align-middle"><%= payment.user.last_name %></td>
-                        <td class="align-middle"><%= payment.payment_line_items.first.buyable.name %></td>
-                        <td class="align-middle"><%= l payment.created_at.to_datetime, format: :short %></td>
-                        <td class="align-middle"><%= humanized_money(payment.price) %> &euro;</td>
-                        <td class="align-middle"><%= payment.payment_method.capitalize %></td>
-                        <td class="align-middle"><%= t(".status.#{payment.status}") %></td>
-                        <td class="align-middle text-center">
-                          <%= link_to receipt_url(payment), target: :_blank, class: "btn btn-info" do %>
-                            <i class="fas fa-receipt"></i> Factura
-                          <% end %>
-                        </td>
-                      </tr>
-                    <% end %>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-          <br>
+          <%= render partial: "payments_table", users: @payments %>
         </div>
       </div>
     </div>
