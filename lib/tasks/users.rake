@@ -2,13 +2,14 @@
 namespace :users do
   desc "Create users in Box2Share application"
   task create: :environment do
-    # clear_database
+    Faker::Config.locale = :en
+    clear_database if Rails.env.development?
     destroy_subscriptions
     destroy_plans
     create_plans
     create_admin_user
     create_users_with_free_subscriptions
-    create_users_with_paid_subscriptions
+    #create_users_with_paid_subscriptions
   end
 
   task destroy: :environment do
@@ -59,12 +60,14 @@ namespace :users do
       last_name = Faker::Name.last_name
       email = Faker::Internet.free_email("#{first_name} #{last_name}")
       password = "foobar"
-      User.create!(name: first_name,
+      user = User.new(name: first_name,
         last_name: last_name,
         email: email,
         password: password,
         password_confirmation: password,
         confirmed_at: Time.zone.now)
+      user.remote_avatar_url = Faker::Avatar.image(email, "300x300", "png", "set1", "bg1")
+      user.save!
     end
   end
 
@@ -89,12 +92,14 @@ namespace :users do
       last_name = Faker::Name.last_name
       email = Faker::Internet.free_email("#{first_name} #{last_name}")
       password = "foobar"
-      user = User.create!(name: first_name,
+      user = User.new(name: first_name,
         last_name: last_name,
         email: email,
         password: password,
         password_confirmation: password,
         confirmed_at: Time.zone.now)
+      user.remote_avatar_url = Faker::Avatar.image(email, "300x300", "png", "set1", "bg1")
+      user.save!
       create_folders(user)
       subscription = Subscription.create!(
           user: user, plan: standard_monthly_plan,
@@ -117,12 +122,14 @@ namespace :users do
       last_name = Faker::Name.last_name
       email = Faker::Internet.free_email("#{first_name} #{last_name}")
       password = "foobar"
-      user = User.create!(name: first_name,
+      user = User.new(name: first_name,
         last_name: last_name,
         email: email,
         password: password,
         password_confirmation: password,
         confirmed_at: Time.zone.now)
+      user.remote_avatar_url = Faker::Avatar.image(email, "300x300", "png", "set1", "bg1")
+      user.save!
       create_folders(user)
       subscription = Subscription.create!(
           user: user, plan: standard_yearly_plan,
@@ -147,12 +154,14 @@ namespace :users do
       last_name = Faker::Name.last_name
       email = Faker::Internet.free_email("#{first_name} #{last_name}")
       password = "foobar"
-      user = User.create!(name: first_name,
+      user = User.new(name: first_name,
         last_name: last_name,
         email: email,
         password: password,
         password_confirmation: password,
         confirmed_at: Time.zone.now)
+      user.remote_avatar_url = Faker::Avatar.image(email, "300x300", "png", "set1", "bg1")
+      user.save!
       create_folders(user)
       subscription = Subscription.create!(
           user: user, plan: professional_monthly_plan,
@@ -175,12 +184,14 @@ namespace :users do
       last_name = Faker::Name.last_name
       email = Faker::Internet.free_email("#{first_name} #{last_name}")
       password = "foobar"
-      user = User.create!(name: first_name,
+      user = User.new(name: first_name,
         last_name: last_name,
         email: email,
         password: password,
         password_confirmation: password,
         confirmed_at: Time.zone.now)
+      user.remote_avatar_url = Faker::Avatar.image(email, "300x300", "png", "set1", "bg1")
+      user.save!
       create_folders(user)
       subscription = Subscription.create!(
           user: user, plan: professional_yearly_plan,
@@ -201,23 +212,17 @@ namespace :users do
   end
 
   def create_folders(user)
-    ['Documentos', 'Música', 'Vídeos', 'Imágenes'].each do |name|
-      folder = user.folders.create!(name: name)
-      case name
-      when "Documentos"
-        create_assets('document.pdf', user, folder)
-      when "Música"
-        create_assets('audio.mp3', user, folder)
-      when "Vídeos"
-        create_assets('video.mp4', user, folder)
-      else
-        create_assets('image.jpg', user, folder)
+    5.times do |n|
+      folder = user.folders.create!(name: "Carpeta #{n+1}")
+      assets = Dir["#{Rails.root}/public/resources/*"]
+      assets.each do |asset|
+        create_assets(asset, user, folder)
       end
     end
   end
 
-  def create_assets(filename, user, folder)
-    file = File.open("#{Rails.root}/public/resources/#{filename}")
+  def create_assets(path, user, folder)
+    file = File.open(path)
     blob = ActiveStorage::Blob.create_after_upload!(
       io: file,
       filename: File.basename(file)

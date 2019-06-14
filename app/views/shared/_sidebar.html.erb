@@ -1,19 +1,12 @@
 <ul class="sidebar navbar-nav">
   <li class="nav-item">
-    <% if current_page?("/") %>
-      <%= link_to root_path, class: "nav-link active" do %>
-        <i class="fas fa-fw fa-tachometer-alt"></i>
-        <span>Panel de control</span>
-      <% end %>
-    <% else %>
-      <%= active_link_to dashboard_path, class: "nav-link" do %>
-        <i class="fas fa-fw fa-tachometer-alt"></i>
-        <span>Panel de control</span>
-      <% end %>
+    <%= active_link_to dashboard_path, class: "nav-link", active: [['panel'], ['dashboard']] do %>
+      <i class="fas fa-fw fa-tachometer-alt"></i>
+      <span>Panel de control</span>
     <% end %>
   </li>
   <li class="nav-item">
-    <%= active_link_to files_path, class: "nav-link" do %>
+    <%= active_link_to files_path, class: "nav-link", active: [['panel','assets', 'folders'], ['files', 'show', 'browse', 'edit', 'new']] do %>
       <i class="fas fa-fw fa-folder-open"></i>
       <span>Mis archivos</span>
     <% end %>

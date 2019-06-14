@@ -1,4 +1,4 @@
-<div class="col-4 ml-auto mr-auto">
+<div class="col-4 mx-auto">
   <div class="card mb-4 box-shadow">
     <div class="card-header">
       <h4 class="my-0 font-weight-normal"><%= monthly_paid_plan.name %></h4>
@@ -6,28 +6,27 @@
     <div class="card-body">
       <%= image_tag("#{monthly_paid_plan.name.downcase}.png", alt: "#{monthly_paid_plan.name}_icon") %>
       <h1 class="card-title pricing-card-title">
-        <%= humanized_money(monthly_paid_plan.price) %> &euro;<small class="text-muted">/ <%= t('.text.month') %></small>
+        <%= humanized_money(monthly_paid_plan.price) %> &euro;<small class="text-muted">/ mes</small>
       </h1>
       <ul class="list-unstyled mt-3 mb-4">
-        <li><%= monthly_paid_plan.space_allowed %> GB <%= t('.text.of_storage') %></li>
+        <li><%= monthly_paid_plan.space_allowed %> GB de almacenamiento</li>
         <li>...</li>
         <li>...</li>
         <li>...</li>
       </ul>
-      <% if current_page?(action: 'index') %>
-        <% if user_signed_in? %>
-          <% if current_user.current_subscription.free? %>
-            <%= link_to t('.buttons.subscribe'), new_subscription_path(monthly_paid_plan.id), class: "btn btn-lg btn-block btn-outline-primary" %>
-          <% else %>
-            <% if current_user.current_plan?(monthly_paid_plan.id) %>
-              <%= link_to t('.buttons.current_plan'), "#", class: "btn btn-lg btn-block btn-outline-primary disabled" %>
-            <% end %>
-          <% end %>
+      <% if user_signed_in? %>
+        <% if current_user.current_subscription.free? %>
+          <%= link_to "Suscribirte", new_subscription_path(monthly_paid_plan.id), class: "btn btn-lg btn-block btn-outline-primary" %>
         <% else %>
-          <%= link_to t('.buttons.subscribe'), new_user_session_path, class: "btn btn-lg btn-block btn-outline-primary" %>
+          <% if current_user.current_plan?(monthly_paid_plan.id) %>
+            <%= link_to "Estás suscrito", "#", class: "btn btn-lg btn-block btn-outline-primary disabled" %>
+          <% else %>
+            <%= link_to "No estás suscrito", "#", class: "btn btn-lg btn-block btn-outline-primary disabled" %>
+          <% end %>
         <% end %>
+      <% else %>
+        <%= link_to "Suscribirte", new_user_session_path, class: "btn btn-lg btn-block btn-outline-primary" %>
       <% end %>
-
     </div>
   </div>
 </div>

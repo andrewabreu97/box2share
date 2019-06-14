@@ -6,7 +6,7 @@ es:
         name: El nombre de la carpeta
       asset:
         name: El nombre del archivo
-        uploaded_file: Debe seleccionar un archivo
+        uploaded_file: ""
     errors:
       messages:
         record_invalid: 'La validación falló: %{errors}'
@@ -23,7 +23,7 @@ es:
             name:
               blank: no puede estar en blanco
             uploaded_file:
-              blank: a subir
+              blank: Debe seleccionar un archivo a subir
   date:
     abbr_day_names:
     - dom
@@ -236,55 +236,15 @@ es:
     pm: pm
 
   # Custom translations
-  shared:
-    sidebar:
-      dashboard: "Panel de control"
-      files: "Mis archivos"
-      plan: "Mi plan"
   panel:
     plan:
-      sidebar:
-        dashboard: "Panel de control"
-        files: "Mis archivos"
-        plan: "Mi plan"
-      titles:
-        account_type: "Tipo de cuenta"
-        status: "Estado"
-        storage_space: "Espacio de almacenamiento"
-        renewal: "Renovación"
       text:
-        billing_cycle:
-          monthly: "Mensual"
-          yearly: "Anual"
-        no_billing_cycle: "Sin ciclo de facturación"
-        in_use: "en uso"
-        of: "de"
-        end_date_subscription: "Tu suscripción finalizará el"
-        payment_method: "La tarjeta %{card_brand} termina en %{card_last4}"
         status:
           active: "Activa"
           inactive: "Inactiva"
           waiting: "Esperando"
           pending_initial_payment: "Pendiente del pago inicial"
           cancelled: "Cancelada"
-      buttons:
-        cancel_subscription: "Cancelar suscripción"
-        change_subscription: "Cambiar suscripción"
-        update_payment_method: "Actualizar"
-      messages:
-        confirm_cancel: "¿Estás seguro de cancelar esta suscripción?"
-    files:
-      sidebar:
-        dashboard: "Panel de control"
-        files: "Mis archivos"
-        plan: "Mi plan"
-  messages:
-    subscriptions:
-      subscribed: "Te has suscrito exitosamente al plan %{name}"
-      unsubscribed: "Su suscripción ha sido cancelada con éxito."
-    failure:
-      already_subscribed: "Ya se encuentra suscrito a una suscripción de pago."
-      not_unsubscribed: "Ha ocurrido un problema al cancelar su suscripción."
   stripe:
     errors:
       incorrect_number: "El número de tarjeta es incorrecto."
@@ -299,74 +259,6 @@ es:
       missing: "No existe una tarjeta asociada al cliente al que se le está cobrando."
       processing_error: "Ocurrió un error mientras se procesaba la tarjeta."
       rate_limit: "Ocurrió un error debido a las solicitudes que llegan a IPA muy rápido. Háganos saber si este error se le presenta de manera constante."
-  subscriptions:
-    new:
-      title: "Formulario de pago"
-      buttons:
-        purchase: "Comprar suscripción"
-    edit:
-      display: "Planes disponibles"
-      lead: "Elije el que quieras para cambiar tu suscripción."
-      tab:
-        monthly: "Mensual"
-        yearly: "Anual"
-      success:
-        update_subscription: "Tu subscripción ha sido cambiada correctamente."
-      failure:
-        no_update_subscription: "Ha ocurrido un error al cambiar tu suscripción."
-        no_paid_subscription: "Debes estar suscrito a una suscripción de pago para cambiarla."
-        already_subscribed: "Ya se encuentra suscrito a una suscripción de pago."
-    destroy:
-      success:
-        unsubscribed: "Su suscripción ha sido cancelada con éxito."
-      failure:
-        not_unsubscribed: "Ha ocurrido un problema al cancelar su suscripción."
-    create:
-      success:
-        subscribed: "Te has suscrito exitosamente al plan %{name}"
-  payment_methods:
-    update:
-      success:
-        update_payment_method: "Tu método de pago ha sido actualizado correctamente."
-      failure:
-        no_paid_subscription: "Debes estar suscrito a un plan de pago para cambiar tu método de pago."
-    edit:
-      form:
-        title: "Formulario para actualizar la tarjeta"
-        buttons:
-          update: "Actualizar método de pago"
-  plans:
-    index:
-      title: "Precios"
-      subtitle: "Elige el plan que mejor se adapte a ti."
-      tab:
-        monthly: "Mensual"
-        yearly: "Anual"
-    free_plan:
-      text:
-        month: "mes"
-        year: "año"
-        of_storage: "de almacenamiento"
-      buttons:
-        current_plan: "Estás suscrito"
-        subscribe: "Suscribirte"
-        signup: "Registrarse"
-    monthly_paid_plan:
-      text:
-        month: "mes"
-        year: "año"
-        of_storage: "de almacenamiento"
-      buttons:
-        current_plan: "Estás suscrito"
-        subscribe: "Suscribirte"
-    yearly_paid_plan:
-      text:
-        month: "mes"
-        year: "año"
-        of_storage: "de almacenamiento"
-      buttons:
-        current_plan: "Estás suscrito"
-        subscribe: "Suscribirte"
   payments:
     index:
       status:
@@ -374,47 +266,4 @@ es:
         succeeded: "Exitoso"
         pending: "Pendiente"
         failed: "Fallido"
-  static_pages:
-    home:
-      title: "Inicio"
-      features:
-        upload: "Sube"
-        upload_lead: "Almacena tus archivos de forma segura"
-        download: "Descarga"
-        download_lead: "Descarga tus archivos desde cualquier parte"
-        share: "Comparte"
-        share_lead: "Compártelos con quién quieras"
-  layouts:
-    footer:
-      links:
-        about: "Sobre nosotros"
-        contact: "Contacto"
-        terms_of_use: "Términos de uso"
-        privacy_policy: "Política de privacidad"
-      copyright: "Todos los derechos reservados."
-    header:
-      links:
-        home: Inicio
-        pricing: Precios
-        signin: Inicio de sesión
-        signup: Registrarse
-        signout: Cerrar sesión
-        profile: Perfil
-      languages:
-        english: "Inglés"
-        spanish: "Español"
-    panel_header:
-      links:
-        home: Inicio
-        pricing: Precios
-        signin: Inicio de sesión
-        signup: Registrarse
-        signout: Cerrar sesión
-        profile: Perfil
-  assets:
-    new:
-      sidebar:
-        dashboard: "Panel de control"
-        files: "Mis archivos"
-        plan: "Mi plan"
 

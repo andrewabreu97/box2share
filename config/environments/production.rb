@@ -92,20 +92,6 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  # ActionMailer Config
-  # config.action_mailer.default_url_options = { :host => "box2share.herokuapp.com"}
-  # config.action_mailer.delivery_method = :smtp
-  # config.action_mailer.default_options = { from: "noreply@example.com" }
-  # config.action_mailer.smtp_settings = {
-  #  address: "smtp.sendgrid.net",
-  #  port: 587,
-  #  domain: "heroku.com",
-  #  user_name: ENV['SENDGRID_USERNAME'],
-  #  password: ENV['SENDGRID_PASSWORD'],
-  #  authentication: "plain",
-  #  enable_starttls_auto: true
-  # }
-
   config.action_mailer.default_url_options = { :host => "box2share.herokuapp.com" }
   config.action_mailer.perform_deliveries = true
   config.action_mailer.delivery_method = :smtp
@@ -117,8 +103,8 @@ Rails.application.configure do
     port: 587,
     authentication: "plain",
     enable_starttls_auto: true,
-    user_name: ENV['GMAIL_USER'],
-    password: ENV['GMAIL_PASSWORD'],
+    user_name: Rails.application.credentials[Rails.env.to_sym][:gmail][:user],
+    password: Rails.application.credentials[Rails.env.to_sym][:gmail][:password],
     openssl_verify_mode: "none"
   }
 

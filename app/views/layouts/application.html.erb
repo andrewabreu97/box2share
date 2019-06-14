@@ -1,33 +1,10 @@
 <!DOCTYPE html>
-<html lang="<%= I18n.locale %>">
-  <head>
-    <title><%= full_title(yield(:title)) %></title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag "#{STRIPE_JS_HOST}/v3" %>
-    <% if Rails.env.production? %>
-        <%= tag :meta, name: "stripe-publishable-key", content: ENV['STRIPE_PRODUCTION_PUBLISHABLE_KEY'] %>
-    <% else %>
-        <%= tag :meta, name: "stripe-publishable-key", content: Rails.application.secrets.stripe_publishable_key %>
-    <% end %>
-    <%= tag :meta, name: "viewport", content: "width=device-width, initial-scale=1, shrink-to-fit=no" %>
-    <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js">
-    </script>
-    <![endif]-->
-  </head>
+<html>
+  <%= render 'layouts/head' %>
 
   <body id="page-top">
 
-    <% if notice %>
-    <div class="alert alert-success mb-0"><%= notice %></div>
-    <% end %>
-    <% if alert %>
-    <div class="alert alert-danger mb-0"><%= alert %></div>
-    <% end %>
+    <%= render 'layouts/alert' %>
 
     <%= render "layouts/header" %>
 

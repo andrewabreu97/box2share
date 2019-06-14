@@ -1,7 +1,7 @@
 $(document).on('turbolinks:load', function(){
 
   // Retrieve language
-  var locale = $('html').attr('lang');
+  var locale = 'es'
 
   // Retrieve the Stripe publishable key.
   const STRIPE_PUBLISHABLE_KEY = $("meta[name='stripe-publishable-key']").attr("content");
@@ -34,7 +34,7 @@ $(document).on('turbolinks:load', function(){
   var card = elements.create('card', { style: style, hidePostalCode: true });
 
   // Add an instance of the card Element into the `card-element` <div>.
-  card.mount('#card-element');
+  card.mount('#card-element-one');
 
   // Handle real-time validation errors from the card Element.
   card.on('change', function (event) {
@@ -64,23 +64,6 @@ $(document).on('turbolinks:load', function(){
     });
   });
 
-  // Handle form submission.
-  $('#update-card-form').on('submit', function (event) {
-    event.preventDefault();
-
-    stripe.createToken(card).then(function (result) {
-      if (result.error) {
-        // Inform the user if there was an error.
-        $('#card-errors').removeClass('d-none');
-        $('#card-errors').text(result.error.message);
-      } else {
-        // Send the token to your server.
-        $('#card-errors').addClass('d-none');
-        updateCardFormStripeTokenHandler(result.token);
-      }
-    });
-  });
-
   // Submit the form with the token ID.
   function paymentFormStripeTokenHandler(token) {
       // Insert the token ID into the form so it gets submitted to the server
@@ -95,18 +78,4 @@ $(document).on('turbolinks:load', function(){
       $('#payment-form').get(0).submit();
     }
 
-  // Submit the form with the token ID.
-  function updateCardFormStripeTokenHandler(token) {
-      // Insert the token ID into the form so it gets submitted to the server
-      var hiddenInput = $('<input>')
-      .attr('type', 'hidden')
-      .attr('name', 'stripe_token')
-      .val(token.id);
-
-      $('#update-card-form').append(hiddenInput);
-      alert("Estoy en el stripe token handler: " + token.id);
-      // Submit the form
-      $('#update-card-form').get(0).submit();
-    }
-
-  });
+});

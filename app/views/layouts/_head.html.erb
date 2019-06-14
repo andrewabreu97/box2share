@@ -1,0 +1,14 @@
+<head>
+  <title><%= full_title(yield(:title)) %></title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag "#{STRIPE_JS_HOST}/v3" %>
+
+  <%= tag :meta, name: "stripe-publishable-key", content: Rails.application.credentials[Rails.env.to_sym][:stripe][:publishable_key] %>
+
+  <%= tag :meta, name: "viewport", content: "width=device-width, initial-scale=1, shrink-to-fit=no" %>
+  <%= render 'layouts/shim' %>
+</head>

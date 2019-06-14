@@ -1,6 +1,6 @@
 <div class="container p-5">
   <div class="row">
-    <div class="col-md-5 offset-md-3">
+    <div class="col-sm-2 col-md-3 col-lg-4 col-xl-5 mx-auto">
       <h2><%= t('.title', resource: resource.model_name.human) %></h2>
 
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, multipart: true }) do |f| %>
@@ -65,15 +65,17 @@
     </div>
   </div>
   <div class="row mt-3">
-    <div class="col-md-5 offset-md-3">
+    <div class="col-sm-2 col-md-3 col-lg-4 col-xl-5 mx-auto">
       <h3><%= t('.cancel_my_account') %></h3>
 
       <p> <%= t('.unhappy') %> <%=  button_to t('.cancel_my_account'), registration_path(resource_name), data: { confirm: t('.are_you_sure') }, method: :delete, class: "btn btn-block btn-danger" %></p>
     </div>
   </div>
   <div class="row">
-    <div class="col-md-5 offset-md-3">
-      <%= link_to t('devise.shared.links.back'), :back %>
+    <div class="col-sm-2 col-md-3 col-lg-4 col-xl-5 mx-auto">
+      <%= link_to :back, class: "btn btn-light" do %>
+        <i class="fas fa-arrow-left"></i> <%= t('devise.shared.links.back') %>
+      <% end %>
     </div>
   </div>
 </div>

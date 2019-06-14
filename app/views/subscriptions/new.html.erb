@@ -2,23 +2,27 @@
   <div class="row">
     <div class="col-4 ml-auto mr-auto">
       <div class="card-deck mb-3 text-center">
-        <p>Has seleccionado el plan <%= @selected_plan.name %> con ciclo de facturación <%= @selected_plan.interval %></p>
+        <% if @selected_plan.month? %>
+          <p>Has seleccionado el plan <%= @selected_plan.name %> con ciclo de facturación mensual</p>
+        <% else %>
+          <p>Has seleccionado el plan <%= @selected_plan.name %> con ciclo de facturación anual</p>
+        <% end %>
       </div>
     </div>
     <div class="col-6 ml-auto mr-auto">
       <div id="card-errors" class="alert-danger alert d-none" role="alert"></div>
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title"><%= t('.title') %></h5>
+          <h5 class="card-title">Formulario de pago</h5>
           <hr>
           <%= form_tag(subscriptions_path, id: "payment-form") do %>
           <%= hidden_field_tag(:purchase_amounts_cents, @selected_plan.price_cents) %>
           <%= hidden_field_tag(:plan_id, @selected_plan.id) %>
           <div class="form-group">
-            <%= content_tag(:div, nil , class: "form-control", id: "card-element") %>
+            <%= content_tag(:div, nil , class: "form-control", id: "card-element-one") %>
           </div>
           <div class="form-group">
-            <%= submit_tag(t('.buttons.purchase'), class: "btn btn-block btn-primary", id: "payment-submit", data: { disable_with: false }) %>
+            <%= submit_tag("Comprar suscripción", class: "btn btn-block btn-primary", id: "payment-submit", data: { disable_with: false }) %>
           </div>
           <% end %>
         </div>

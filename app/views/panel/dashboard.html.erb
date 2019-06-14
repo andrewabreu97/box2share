@@ -1,149 +1,78 @@
+<% provide(:title, "Panel de control") %>
+
 <div id="wrapper">
 
   <%= render 'shared/sidebar' %>
 
   <div id="content-wrapper">
-
     <div class="container-fluid">
       <div class="row">
         <div class="col">
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb bg-white breadcrumb-right-arrow">
-              <li class="breadcrumb-item active" aria-current="page">Panel de control</li>
+              <li class="breadcrumb-item active" aria-current="page">
+                Panel de control
+              </li>
             </ol>
           </nav>
         </div>
       </div>
       <div class="row">
-        <div class="col-xl-3 col-lg-6 col-xs-12">
-          <div class="card h-100 py-2">
-            <div class="card-body">
-              <div class="row no-gutters align-items-center">
-                <div class="col-3">
-                    <i class="fas fa-file-upload fa-3x text-custom"></i>
-                </div>
-                <div class="col-9 text-center">
-                  <h1 class="mb-0 font-weight-bold"><%= current_user.uploaded_files_count %></h1>
-                  <h6>Archivos subidos</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-3 col-lg-6 col-xs-12">
-          <div class="card h-100 py-2">
-            <div class="card-body">
-              <div class="row no-gutters align-items-center">
-                <div class="col-3">
-                    <i class="fas fa-file-download fa-3x text-custom"></i>
-                </div>
-                <div class="col-9 text-center">
-                  <h1 class="mb-0 font-weight-bold"><%= current_user.downloaded_files_count %></h1>
-                  <h6>Archivos descargados</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-3 col-lg-6 col-xs-12">
-          <div class="card h-100 py-2">
-            <div class="card-body">
-              <div class="row no-gutters align-items-center">
-                <div class="col-3">
-                    <i class="fas fa-file fa-3x text-custom"></i>
-                </div>
-                <div class="col-9 text-center">
-                  <h1 class="mb-0 font-weight-bold"><%= current_user.files_count %></h1>
-                  <h6>Archivos</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-3 col-lg-6 col-xs-12">
-          <div class="card h-100 py-2">
-            <div class="card-body">
-              <div class="row no-gutters align-items-center">
-                <div class="col-3">
-                    <i class="fas fa-share-alt fa-3x text-custom"></i>
-                </div>
-                <div class="col-9 text-center">
-                  <h1 class="mb-0 font-weight-bold"><%= current_user.shared_files_count %></h1>
-                  <h6>Archivos compartidos</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <%= render "stat", locals: {
+                              statistic: current_user.uploaded_files_count,
+                              title: "Archivos subidos",
+                              icon: "file-upload"
+                            }
+        %>
+        <%= render "stat", locals: {
+                              statistic: current_user.downloaded_files_count,
+                              title: "Archivos descargados",
+                              icon: "file-download"
+                            }
+        %>
+        <%= render "stat", locals: {
+                              statistic: current_user.files_count,
+                              title: "Archivos",
+                              icon: "file"
+                            }
+        %>
+        <%= render "stat", locals: {
+                              statistic: current_user.files_count,
+                              title: "Archivos compartidos",
+                              icon: "share-alt"
+                            }
+        %>
       </div>
       <br>
       <div class="row">
-        <div class="col-xl-3 col-lg-6 col-xs-12">
-          <div class="card h-100 py-2">
-            <div class="card-body">
-              <div class="row no-gutters align-items-center">
-                <div class="col-3">
-                    <i class="fas fa-folder fa-3x text-custom"></i>
-                </div>
-                <div class="col-9 text-center">
-                  <h1 class="mb-0 font-weight-bold"><%= current_user.folders_count %></h1>
-                  <h6>Carpetas</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-3 col-lg-6 col-xs-12">
-          <div class="card h-100 py-2">
-            <div class="card-body">
-              <div class="row no-gutters align-items-center">
-                <div class="col-3">
-                    <i class="fas fa-hdd fa-3x text-custom"></i>
-                </div>
-                <div class="col-9 text-center">
-                  <h1 class="mb-0 font-weight-bold"><%= number_to_human_size(current_user.used_storage_space) %></h1>
-                  <h6>Espacio de almacenamiento usado</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-3 col-lg-6 col-xs-12">
-          <div class="card h-100 py-2">
-            <div class="card-body">
-              <div class="row no-gutters align-items-center">
-                <div class="col-3">
-                    <i class="fas fa-hdd fa-3x text-custom"></i>
-                </div>
-                <div class="col-9 text-center">
-                  <h1 class="mb-0 font-weight-bold"><%= number_to_human_size(current_user.available_storage_space) %></h1>
-                  <h6>Espacio de almacenamiento disponible</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-3 col-lg-6 col-xs-12">
-          <div class="card h-100 py-2">
-            <div class="card-body">
-              <div class="row no-gutters align-items-center">
-                <div class="col-3">
-                    <i class="fas fa-hdd fa-3x text-custom"></i>
-                </div>
-                <div class="col-9 text-center">
-                  <h1 class="mb-0 font-weight-bold"><%= number_to_human_size(current_user.total_storage_space) %></h1>
-                  <h6>Espacio de almacenamiento total</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <%= render "stat", locals: {
+                              statistic: current_user.folders_count,
+                              title: "Carpetas",
+                              icon: "folder"
+                            }
+        %>
+        <%= render "stat", locals: {
+                              statistic: number_to_human_size(current_user.used_storage_space),
+                              title: "Espacio de almacenamiento usado",
+                              icon: "hdd"
+                            }
+        %>
+        <%= render "stat", locals: {
+                              statistic: number_to_human_size(current_user.available_storage_space),
+                              title: "Espacio de almacenamiento disponible",
+                              icon: "hdd"
+                            }
+        %>
+        <%= render "stat", locals: {
+                              statistic: number_to_human_size(current_user.total_storage_space),
+                              title: "Espacio de almacenamiento total",
+                              icon: "hdd"
+                            }
+        %>
       </div>
       <br>
     </div>
-
     <%= render 'shared/panel_footer' %>
-
   </div>
 
 </div>

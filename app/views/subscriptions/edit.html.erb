@@ -1,6 +1,6 @@
 <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-  <h1 class="display-4"><%= t('.display') %></h1>
-  <p class="lead"><%= t('.lead') %></p>
+  <h1 class="display-4">Planes disponibles</h1>
+  <p class="lead">Elije el que quieras para cambiar tu suscripción.</p>
 </div>
 
 <div class="container">
@@ -8,10 +8,10 @@
     <div class="col offset-5">
       <ul class="nav nav-pills" role="tablist">
         <li class="nav-item">
-          <a class="nav-link active" data-toggle="pill" href="#monthly"><%= t('.tab.monthly') %></a>
+          <a class="nav-link active" data-toggle="pill" href="#monthly">Mensual</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" data-toggle="pill" href="#yearly"><%= t('.tab.yearly') %></a>
+          <a class="nav-link" data-toggle="pill" href="#yearly">Anual</a>
         </li>
       </ul>
     </div>
@@ -19,12 +19,12 @@
   <div class="tab-content">
     <div id="monthly" class="container tab-pane active"><br>
       <div class="row card-deck mb-3 text-center">
-        <%= render partial: "plans/monthly_paid_plan", collection: @monthly_paid_plans %>
+        <%= render partial: "subscriptions/monthly_paid_plan", collection: @monthly_paid_plans %>
       </div>
     </div>
     <div id="yearly" class="container tab-pane fade"><br>
       <div class="row card-deck mb-3 text-center">
-        <%= render partial: "plans/yearly_paid_plan", collection: @yearly_paid_plans %>
+        <%= render partial: "subscriptions/yearly_paid_plan", collection: @yearly_paid_plans %>
       </div>
     </div>
   </div>
