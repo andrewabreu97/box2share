@@ -19,9 +19,9 @@
           <% @payments.each do |payment| %>
             <tr>
               <th scope="row" class="align-middle"><%= payment.reference %></th>
-              <td class="align-middle"><%= payment.user.name %></td>
-              <td class="align-middle"><%= payment.user.last_name %></td>
-              <td class="align-middle"><%= payment.payment_line_items.first.buyable.name %></td>
+              <td class="align-middle"><%= payment.user ? payment.user.name : "-" %></td>
+              <td class="align-middle"><%= payment.user ? payment.user.last_name : "-" %></td>
+              <td class="align-middle"><%= payment.payment_line_items.first.buyable ? payment.payment_line_items.first.buyable.name : "-" %></td>
               <td class="align-middle"><%= l payment.created_at.to_datetime, format: :short %></td>
               <td class="align-middle"><%= humanized_money(payment.price) %> &euro;</td>
               <td class="align-middle"><%= payment.payment_method.capitalize %></td>

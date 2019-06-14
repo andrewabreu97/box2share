@@ -13,7 +13,7 @@ class User < ApplicationRecord
   validate :avatar_size
 
   has_many :subscriptions, dependent: :destroy
-  has_many :payments, dependent: :destroy
+  has_many :payments
   has_many :assets, dependent: :destroy
   has_many :folders, dependent: :destroy
 
