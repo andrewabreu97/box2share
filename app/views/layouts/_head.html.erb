@@ -7,11 +7,7 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag "#{STRIPE_JS_HOST}/v3" %>
 
-  <% if Rails.env.production? %>
-  <%= tag :meta, name: "stripe-publishable-key", content: ENV['STRIPE_PRODUCTION_PUBLISHABLE_KEY'] %>
-  <% else %>
-  <%= tag :meta, name: "stripe-publishable-key", content: Rails.application.secrets.stripe_publishable_key %>
-  <% end %>
+  <%= tag :meta, name: "stripe-publishable-key", content: Rails.application.credentials[Rails.env.to_sym][:stripe][:publishable_key] %>
 
   <%= tag :meta, name: "viewport", content: "width=device-width, initial-scale=1, shrink-to-fit=no" %>
   <%= render 'layouts/shim' %>

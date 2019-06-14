@@ -31,11 +31,7 @@ class StripeWebhookController < ApplicationController
   private def check_signature
     payload = request.body.read
     signature_header = request.env['HTTP_STRIPE_SIGNATURE']
-    if Rails.env.production?
-      singing_key = ENV['STRIPE_PRODUCTION_SIGNING_KEY']
-    else
-      singing_key = Rails.application.secrets.stripe_signing_key
-    end
+    singing_key = Rails.application.credentials[Rails.env.to_sym][:stripe][:signing_key]
     event = nil
     begin
       event = Stripe::Webhook.construct_event(

@@ -7,13 +7,13 @@ if Rails.env.production?
 
     config.fog_credentials = {
       :provider               => 'AWS',
-      :aws_access_key_id      => ENV['AWS_ACCESS_KEY_ID'],
-      :aws_secret_access_key  => ENV['AWS_SECRET_ACCESS_KEY'],
-      :region                 => 'us-east-1'
+      :aws_access_key_id      => Rails.application.credentials[Rails.env.to_sym][:aws][:access_key_id],
+      :aws_secret_access_key  => Rails.application.credentials[Rails.env.to_sym][:aws][:secret_access_key],
+      :region                 => Rails.application.credentials[Rails.env.to_sym][:aws][:region]
   #    :host                   => 's3.example.com',
   #    :endpoint               => 'https://s3.eu-west-2.amazonaws.com/'
     }
-    config.fog_directory  = ENV['S3_BUCKET']
+    config.fog_directory  = Rails.application.credentials[Rails.env.to_sym][:aws][:bucket]
     config.fog_public     = false
     config.fog_attributes = {'Cache-Control'=>'max-age=315576000'}
   end
