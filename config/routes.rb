@@ -38,7 +38,7 @@ Rails.application.routes.draw do
     resources :users do
       get 'statistics', to: "users#statistics"
     end
-
+    resources :payments
   end
 
 end

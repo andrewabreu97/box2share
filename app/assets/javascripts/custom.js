@@ -32,4 +32,14 @@ $(document).on('turbolinks:load', function(){
     }
   });
 
+  $("#service-payments").dataTable({
+    "order": [[ 1, "asc" ]],
+    "columnDefs": [
+      { "targets": [0,8], "orderable": false, "searchable": false}
+    ],
+    "language": {
+      "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+    }
+  });
+
 })
