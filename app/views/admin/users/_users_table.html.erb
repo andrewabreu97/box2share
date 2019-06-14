@@ -29,6 +29,9 @@
                     <%= link_to admin_user_path(user), class: "dropdown-item" do %>
                       <i class="fas fa-info mr-1"></i> Detalles
                     <% end %>
+                    <%= link_to admin_user_statistics_path(user), class: "dropdown-item" do %>
+                      <i class="fas fa-chart-bar mr-1"></i> Estadísticas
+                    <% end %>
                     <%= link_to admin_user_path(user), class: "dropdown-item", method: :delete, data: {confirm: '¿Deseas eliminar a este usuario?'} do %>
                       <i class="fas fa-trash-alt mr-1"></i> Eliminar
                     <% end %>

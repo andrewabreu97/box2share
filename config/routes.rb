@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     root 'panel#dashboard'
   end
 
+
   unauthenticated :user do
     root 'static_pages#home'
   end
@@ -26,12 +27,18 @@ Rails.application.routes.draw do
   resources :subscriptions, path_names: { new: 'new/:plan_id' }
 
   resource :payment_method, only: [:edit, :update]
+
+
+
   resources :assets, except: [:index]
   resources :folders, except: [:index]
 
   namespace :admin do
     get "service_statistics", to: "panel#service_statistics"
-    resources :users
+    resources :users do
+      get 'statistics', to: "users#statistics"
+    end
+
   end
 
 end
