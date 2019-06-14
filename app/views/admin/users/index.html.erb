@@ -12,46 +12,7 @@
       </div>
       <div class="row">
         <div class="col">
-          <div class="card">
-            <div class="card-body">
-              <div class="table-responsive">
-                <table id="users" class="table">
-                  <thead>
-                    <tr>
-                      <th scope="col">Avatar</th>
-                      <th scope="col">Nombre</th>
-                      <th scope="col">Apellidos</th>
-                      <th scope="col">Email</th>
-                      <th scope="col">Fecha de registro</th>
-                      <th scope="col"></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <% @users.each do |user| %>
-                      <tr>
-                        <th scope="row" class="align-middle"> <%= image_tag(user.avatar.url, size: '40x40') %> </th>
-                        <td class="align-middle"><%= user.name %></td>
-                        <td class="align-middle"><%= user.last_name %></td>
-                        <td class="align-middle"><%= user.email %></td>
-                        <td class="align-middle"><%= l user.created_at.to_datetime, format: :short %></td>
-                        <td class="text-center align-middle">
-                          <div class="dropdown">
-                            <button class="btn" href="#" id="fileDropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              <i class="fas fa-ellipsis-h"></i>
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="fileDropdown">
-
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
-                    <% end %>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-          <br>
+          <%= render partial: "users_table", collection: @users %>
         </div>
       </div>
 
