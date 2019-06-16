@@ -1,0 +1,12 @@
+<%= form_tag shared_assets_path do %>
+  <div class="form-group">
+    <%= text_field_tag :emails, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= text_area_tag :message, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.submit "Comparte", class: "btn btn-block btn-primary" %>
+  </div>
+  <%= hidden_field_tag @asset.id %>
+<% end %>

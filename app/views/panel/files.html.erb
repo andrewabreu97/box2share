@@ -72,8 +72,8 @@
                               <%= link_to rename_folder_path(folder), class: "dropdown-item" do %>
                                 <i class="fas fa-edit mr-1"></i> Renombrar
                               <% end %>
-                              <%= link_to "#", class: "dropdown-item" do %>
-                                <i class="fas fa-share-alt mr-1"></i> Compartir
+                              <%= link_to '#', class: "dropdown-item" do %>
+                                <i class="fas fa-share-alt mr-1"></i> Comparte
                               <% end %>
                               <%= link_to folder, class: "dropdown-item", method: :delete, data: {confirm: '¿Deseas eliminar esta carpeta y todo su contenido?'} do %>
                                 <i class="fas fa-trash-alt mr-1"></i> Eliminar
@@ -104,8 +104,8 @@
                               <%= link_to download_path(asset), class: "dropdown-item", method: "post" do %>
                                 <i class="fas fa-file-download mr-1"></i> Descargar
                               <% end %>
-                              <%= link_to "#", class: "dropdown-item" do %>
-                                <i class="fas fa-share-alt mr-1"></i> Compartir
+                              <%= link_to new_shared_asset_path(asset), class: "dropdown-item" do %>
+                                <i class="fas fa-share-alt mr-1"></i> Comparte
                               <% end %>
                               <%= link_to asset, class: "dropdown-item", method: :delete, data: {confirm: '¿Deseas eliminar este archivo?'} do %>
                                 <i class="fas fa-trash-alt mr-1"></i> Eliminar

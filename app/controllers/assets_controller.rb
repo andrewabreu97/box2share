@@ -18,31 +18,33 @@ class AssetsController < ApplicationController
   end
 
   def create
+    puts "HOla"
     @asset = current_user.assets.build(asset_create_params)
-    unless @asset.uploaded_file.attachment
-      unless @asset.save
-        @asset.errors.delete(:name) if @asset.errors[:name].any?
-        render :new
-      end
-    else
-      @asset.update(name: @asset.uploaded_file.filename.base)
-      if current_user.has_available_storage_space?(@asset.uploaded_file.byte_size)
-        if @asset.save
-          current_user.increment!(:uploaded_files_count)
-          flash[:notice] = 'El archivo se ha subido correctamente.'
-          if @asset.folder
-            redirect_to browse_path(@asset.folder)
-          else
-            redirect_to files_path
-          end
-        else
-          render :new
-        end
-      else
-        flash[:alert] = "No tienes suficiente espacio de almacenamiento."
-        render :new
-      end
-    end
+    puts "Adios"
+    # unless @asset.uploaded_file.attachment
+    #   unless @asset.save
+    #     @asset.errors.delete(:name) if @asset.errors[:name].any?
+    #     render :new
+    #   end
+    # else
+    #   @asset.update(name: @asset.uploaded_file.filename.base)
+    #   if current_user.has_available_storage_space?(@asset.uploaded_file.byte_size)
+    #     if @asset.save
+    #       current_user.increment!(:uploaded_files_count)
+    #       flash[:notice] = 'El archivo se ha subido correctamente.'
+    #       if @asset.folder
+    #         redirect_to browse_path(@asset.folder)
+    #       else
+    #         redirect_to files_path
+    #       end
+    #     else
+    #       render :new
+    #     end
+    #   else
+    #     flash[:alert] = "No tienes suficiente espacio de almacenamiento."
+    #     render :new
+    #   end
+    # end
   end
 
   def edit
@@ -83,6 +85,7 @@ class AssetsController < ApplicationController
   private
     def asset_create_params
       params.fetch(:asset,{}).permit(:uploaded_file, :folder_id)
+      #params.require(:asset).permit(:uploaded_file, :folder_id)
     end
 
     def asset_update_params

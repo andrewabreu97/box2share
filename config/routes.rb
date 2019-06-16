@@ -28,5 +28,6 @@ Rails.application.routes.draw do
   resource :payment_method, only: [:edit, :update]
   resources :assets, except: [:index]
   resources :folders, except: [:index]
+  resources :shared_assets, path_names: { new: 'new/:asset_id' }
 
 end
