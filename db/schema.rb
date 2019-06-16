@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_06_184311) do
+ActiveRecord::Schema.define(version: 2019_06_16_180840) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -93,6 +93,20 @@ ActiveRecord::Schema.define(version: 2019_06_06_184311) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "type"
+  end
+
+  create_table "shared_assets", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "shared_email"
+    t.integer "shared_user_id"
+    t.integer "asset_id"
+    t.string "message"
+    t.string "shared_asset_token"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["asset_id"], name: "index_shared_assets_on_asset_id"
+    t.index ["shared_user_id"], name: "index_shared_assets_on_shared_user_id"
+    t.index ["user_id"], name: "index_shared_assets_on_user_id"
   end
 
   create_table "subscriptions", force: :cascade do |t|
