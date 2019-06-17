@@ -1,0 +1,9 @@
+Estimado,
+
+<%= @shared_asset.user.name %> ha compartido un archivo con usted:
+
+  <%= @shared_asset.asset.uploaded_file.filename %>
+
+Usa la siguiente URL para acceder al archivo:
+
+  <%= shared_asset_url(@shared_asset.shared_asset_token) %>

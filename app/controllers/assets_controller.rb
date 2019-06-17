@@ -18,33 +18,31 @@ class AssetsController < ApplicationController
   end
 
   def create
-    puts "HOla"
     @asset = current_user.assets.build(asset_create_params)
-    puts "Adios"
-    # unless @asset.uploaded_file.attachment
-    #   unless @asset.save
-    #     @asset.errors.delete(:name) if @asset.errors[:name].any?
-    #     render :new
-    #   end
-    # else
-    #   @asset.update(name: @asset.uploaded_file.filename.base)
-    #   if current_user.has_available_storage_space?(@asset.uploaded_file.byte_size)
-    #     if @asset.save
-    #       current_user.increment!(:uploaded_files_count)
-    #       flash[:notice] = 'El archivo se ha subido correctamente.'
-    #       if @asset.folder
-    #         redirect_to browse_path(@asset.folder)
-    #       else
-    #         redirect_to files_path
-    #       end
-    #     else
-    #       render :new
-    #     end
-    #   else
-    #     flash[:alert] = "No tienes suficiente espacio de almacenamiento."
-    #     render :new
-    #   end
-    # end
+    unless @asset.uploaded_file.attachment
+      unless @asset.save
+        @asset.errors.delete(:name) if @asset.errors[:name].any?
+        render :new
+      end
+    else
+      @asset.update(name: @asset.uploaded_file.filename.base)
+      if current_user.has_available_storage_space?(@asset.uploaded_file.byte_size)
+        if @asset.save
+          current_user.increment!(:uploaded_files_count)
+          flash[:notice] = 'El archivo se ha subido correctamente.'
+          if @asset.folder
+            redirect_to browse_path(@asset.folder)
+          else
+            redirect_to files_path
+          end
+        else
+          render :new
+        end
+      else
+        flash[:alert] = "No tienes suficiente espacio de almacenamiento."
+        render :new
+      end
+    end
   end
 
   def edit
@@ -75,7 +73,7 @@ class AssetsController < ApplicationController
   end
 
   def download
-    authorize! :download, @asset, message: "No tienes acceso a este archivo."
+    #authorize! :download, @asset, message: "No tienes acceso a este archivo."
     if @asset
       current_user.increment!(:downloaded_files_count)
       send_data @asset.uploaded_file.download, filename: @asset.uploaded_file.filename.to_s, content_type: @asset.uploaded_file.content_type

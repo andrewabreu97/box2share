@@ -1,12 +1,23 @@
-<%= form_tag shared_assets_path do %>
-  <div class="form-group">
-    <%= text_field_tag :emails, class: "form-control" %>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <%= form_for @shared_asset do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+        <div class="form-group">
+          <%= f.label :shared_email, "Ingrese la dirección de correo electrónico del destinario" %>
+          <%= f.text_field :shared_email, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :message, "Mensaje (opcional)" %>
+          <%= f.text_area :message, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.submit "Comparte", class: "btn btn-block btn-primary" %>
+        </div>
+        <%= f.hidden_field :asset_id %>
+      <% end %>
+    </div>
+    <%= params.inspect %>
   </div>
-  <div class="form-group">
-    <%= text_area_tag :message, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.submit "Comparte", class: "btn btn-block btn-primary" %>
-  </div>
-  <%= hidden_field_tag @asset.id %>
-<% end %>
+</div>
+

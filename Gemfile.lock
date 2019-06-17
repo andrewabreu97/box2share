@@ -384,6 +384,7 @@ DEPENDENCIES
   acts_as_tree
   awesome_print
   aws-sdk-s3
+  bcrypt
   bootsnap (>= 1.1.0)
   bootstrap
   byebug
