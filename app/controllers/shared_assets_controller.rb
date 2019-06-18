@@ -2,6 +2,9 @@ class SharedAssetsController < ApplicationController
   before_action :authenticate_user!
   before_action :require_existing_asset, only: [:new]
   before_action :require_existing_shared_asset, only: [:show]
+  before_action :require_valid_token, only: [:show]
+
+  authorize_resource @shared_asset, only: [:show]
 
   def show
   end
@@ -32,16 +35,21 @@ class SharedAssetsController < ApplicationController
 
   private
     def require_existing_asset
-      #@file = params[:file_id].blank? ? ShareLink.file_for_token(params[:id]) : UserFile.find(params[:file_id])
       @asset = Asset.find(params[:asset_id])
     rescue
-      redirect_to files_path, alert: "Este archivo no existe o ya ha sido eliminado."
+      redirect_to files_path, alert: "Este archivo no existe o ha sido eliminado."
     end
 
     def require_existing_shared_asset
-      @shared_asset = SharedAsset.find_by_shared_asset_token(params[:id])
+      @shared_asset = SharedAsset.find_by(shared_email: params[:email])
     rescue
-      redirect_to files_path, alert: "Este archivo no existe o ya ha sido eliminado."
+      redirect_to files_path, alert: "Este archivo no existe o han dejado de compartirlo contigo."
+    end
+
+    def require_valid_token
+      unless (@shared_asset && @shared_asset.authenticated?("shared_asset", params[:id]))
+        redirect_to root_path
+      end
     end
 
 end

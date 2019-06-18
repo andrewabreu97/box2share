@@ -16,7 +16,8 @@ class User < ApplicationRecord
   has_many :payments, dependent: :destroy
   has_many :assets, dependent: :destroy
   has_many :folders, dependent: :destroy
-  has_many :shared_assets
+  has_many :shared_assets, dependent: :destroy
+  has_many :being_shared_assets, class_name: "SharedAsset", foreign_key: "shared_user_id", dependent: :destroy
 
   def free_subscription
     subscriptions.where(type: "FreeSubscription").first

@@ -266,4 +266,6 @@ es:
         succeeded: "Exitoso"
         pending: "Pendiente"
         failed: "Fallido"
-
+  unauthorized:
+    show:
+      shared_asset: "No tienes acceso a este archivo compartido."
