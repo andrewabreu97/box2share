@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   after_create :create_free_subscription
+  after_create :check_and_assign_shared_ids_to_shared_assets
 
   mount_uploader :avatar, AvatarUploader
 
@@ -89,6 +90,16 @@ class User < ApplicationRecord
     def create_free_subscription
       self.subscriptions.create!(plan: Plan.free_plan.first, status: 0,
           type: 'FreeSubscription')
+    end
+
+    def check_and_assign_shared_ids_to_shared_assets
+      shared_assets_with_same_email = SharedAsset.where(shared_email: self.email)
+      if shared_assets_with_same_email
+        shared_assets_with_same_email.each do |shared_asset|
+          shared_asset.shared_user_id = self.id
+          shared_asset.save
+        end
+      end
     end
 
 end
