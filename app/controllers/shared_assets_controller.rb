@@ -41,9 +41,9 @@ class SharedAssetsController < ApplicationController
     end
 
     def require_existing_shared_asset
-      @shared_asset = SharedAsset.find_by(shared_email: params[:email])
+      @shared_asset = SharedAsset.find_by(shared_asset_token: params[:id])
     rescue
-      redirect_to files_path, alert: "Este archivo no existe o han dejado de compartirlo contigo."
+      redirect_to files_path, alert: "Este archivo no existe o han dejado de compartirlo."
     end
 
     def require_valid_token

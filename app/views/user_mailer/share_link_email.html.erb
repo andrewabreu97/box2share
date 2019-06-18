@@ -1,9 +1,18 @@
-Estimado,
+<p>Hola,</p>
 
-<%= @shared_asset.user.name %> ha compartido un archivo con usted:
+<p><%= @shared_asset.user.full_name %> ha compartido un archivo con usted:</p>
 
-  <%= @shared_asset.asset.uploaded_file.filename %>
+<p><%= @shared_asset.asset.uploaded_file.filename %> en Box2Share</p>
 
-Usa la siguiente URL para acceder al archivo:
+<p>Usa la siguiente URL para acceder al archivo:</p>
 
-  <%= shared_asset_url(@shared_asset.shared_asset_token, email: @shared_asset.shared_email) %>
+<p>
+  <%= link_to "Acceder al archivo", shared_asset_url(@shared_asset.shared_asset_token, email: @shared_asset.shared_email) %>
+</p>
+
+<% unless @shared_asset.message.blank? %>
+  <p><%= @shared_asset.user.name %> ha dicho:</p>
+  <p><%= @shared_asset.message %></p>
+<% end %>
+
+<p>El equipo de Box2Share</p>
