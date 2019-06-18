@@ -73,7 +73,7 @@ class AssetsController < ApplicationController
   end
 
   def download
-    #authorize! :download, @asset, message: "No tienes acceso a este archivo."
+    authorize! :download, @asset, message: "No tienes acceso a este archivo."
     if @asset
       current_user.increment!(:downloaded_files_count)
       send_data @asset.uploaded_file.download, filename: @asset.uploaded_file.filename.to_s, content_type: @asset.uploaded_file.content_type
