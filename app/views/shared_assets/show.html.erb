@@ -22,8 +22,10 @@
           </div>
         </div>
         <div class="card-footer">
-          <%= link_to download_path(@shared_asset.asset), class: "btn btn-block btn-primary", method: "post" do %>
-            <i class="fas fa-file-download mr-1"></i> Descargar
+          <% if can? :download, @shared_asset.asset %>
+            <%= link_to download_path(@shared_asset.asset), class: "btn btn-block btn-primary", method: "post" do %>
+              <i class="fas fa-file-download mr-1"></i> Descargar
+            <% end %>
           <% end %>
         </div>
       </div>

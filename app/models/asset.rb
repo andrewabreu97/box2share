@@ -13,4 +13,8 @@ class Asset < ApplicationRecord
     !self.shared_assets.empty?
   end
 
+  def members_count
+    self.shared_assets.count
+  end
+
 end
