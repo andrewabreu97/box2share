@@ -75,6 +75,10 @@ class User < ApplicationRecord
     self.folders.count
   end
 
+  def shared_files_count
+    self.shared_assets.map(&:asset_id).uniq.count
+  end
+
   private
     def avatar_size
       if avatar.size > 5.megabytes
