@@ -16,4 +16,8 @@ class PanelController < ApplicationController
     @assets = current_user.assets.where("folder_id IS NULL")
   end
 
+  def share_files
+    @being_shared_assets = current_user.being_shared_assets
+  end
+
 end

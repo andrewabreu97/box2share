@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   get 'plan', to: 'panel#plan'
   get 'dashboard', to: 'panel#dashboard'
   get 'files', to: 'panel#files'
+  get 'share/files', to: 'panel#share_files'
 
   post "stripe/webhook", to: "stripe_webhook#action"
 

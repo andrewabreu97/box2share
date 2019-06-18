@@ -12,6 +12,12 @@
     <% end %>
   </li>
   <li class="nav-item">
+    <%= active_link_to share_files_path, class: "nav-link" do %>
+      <i class="fas fa-fw fa-share-alt"></i>
+      <span>Compartiendo conmigo</span>
+    <% end %>
+  </li>
+  <li class="nav-item">
     <%= active_link_to plan_path, class: "nav-link" do %>
       <i class="fas fa-fw fa-calendar"></i>
       <span>Mi plan</span>

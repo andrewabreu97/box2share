@@ -40,6 +40,9 @@ class SharedAssetsController < ApplicationController
     end
   end
 
+  def destroy
+  end
+
   private
     def require_existing_asset
       @asset = Asset.find(params[:asset_id])
