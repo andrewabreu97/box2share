@@ -18,13 +18,13 @@ class SharedAssetsController < ApplicationController
 
   def create
     @shared_asset = current_user.shared_assets.build
-    @shared_asset.asset_id = params[:shared_asset][:asset_id]
-    @shared_asset.shared_email = params[:shared_asset][:shared_email]
+    @shared_asset.asset_id = shared_asset_params[:asset_id]
+    @shared_asset.shared_email = shared_asset_params[:shared_email]
 
-    shared_user = User.find_by_email(params[:shared_asset][:shared_email])
+    shared_user = User.find_by_email(shared_asset_params[:shared_email])
     @shared_asset.shared_user_id = shared_user.id if shared_user
 
-    @shared_asset.message = params[:shared_asset][:message]
+    @shared_asset.message = shared_asset_params[:message]
     if @shared_asset.save
       UserMailer.share_link_email(@shared_asset).deliver_now
       redirect_to files_path, notice: "El archivo se ha compartido con el usuario."
@@ -50,6 +50,10 @@ class SharedAssetsController < ApplicationController
       unless (@shared_asset && @shared_asset.authenticated?("shared_asset", params[:id]))
         redirect_to root_path
       end
+    end
+
+    def shared_asset_params
+      params.require(:shared_asset).permit(:shared_email, :message, :asset_id)
     end
 
 end

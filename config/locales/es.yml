@@ -7,6 +7,8 @@ es:
       asset:
         name: El nombre del archivo
         uploaded_file: ""
+      shared_asset:
+        shared_email: ""
     errors:
       messages:
         record_invalid: 'La validación falló: %{errors}'
@@ -24,6 +26,11 @@ es:
               blank: no puede estar en blanco
             uploaded_file:
               blank: Debe seleccionar un archivo a subir
+        shared_asset:
+          attributes:
+            shared_email:
+              blank: "Debes introducir una dirección de correo electrónico"
+              taken: "Ya has compartido este archivo a esta dirección de correo electrónico"
   date:
     abbr_day_names:
     - dom

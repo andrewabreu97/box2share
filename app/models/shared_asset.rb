@@ -5,6 +5,8 @@ class SharedAsset < ApplicationRecord
 
   validates_uniqueness_of :shared_email, scope: [:asset_id, :user_id]
 
+  validates_presence_of :shared_email
+
   before_create :create_shared_asset_digest
 
   has_secure_password validations: false
