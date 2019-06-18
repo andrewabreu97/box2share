@@ -4,6 +4,8 @@ class SharedAssetsController < ApplicationController
   before_action :require_existing_shared_asset, only: [:show]
   before_action :require_valid_token, only: [:show]
 
+  layout 'panel'
+
   authorize_resource @shared_asset, only: [:show]
 
   def show

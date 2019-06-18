@@ -111,8 +111,13 @@
                               <%= link_to download_path(asset), class: "dropdown-item", method: "post" do %>
                                 <i class="fas fa-file-download mr-1"></i> Descargar
                               <% end %>
-                              <%= link_to "#", class: "dropdown-item" do %>
-                                <i class="fas fa-share-alt mr-1"></i> Compartir
+                              <%= link_to new_shared_asset_path(asset), class: "dropdown-item" do %>
+                                <i class="fas fa-share-alt mr-1"></i> Comparte
+                              <% end %>
+                              <% if asset.shared? %>
+                                <%= link_to "#", class: "dropdown-item" do %>
+                                  <i class="fas fa-user mr-1"></i> Miembros
+                                <% end %>
                               <% end %>
                               <%= link_to asset, class: "dropdown-item", method: :delete, data: {confirm: '¿Deseas eliminar este archivo?'} do %>
                                 <i class="fas fa-trash-alt mr-1"></i> Eliminar
