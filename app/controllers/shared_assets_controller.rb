@@ -29,7 +29,12 @@ class SharedAssetsController < ApplicationController
     @shared_asset.message = shared_asset_params[:message]
     if @shared_asset.save
       UserMailer.share_link_email(@shared_asset).deliver_now
-      redirect_to files_path, notice: "El archivo se ha compartido con el usuario."
+      flash[:notice] = "El archivo se ha compartido con el usuario."
+      if @shared_asset.asset.folder
+        redirect_to browse_path(@shared_asset.asset.folder)
+      else
+        redirect_to files_path
+      end
     else
       render :new
     end

@@ -11,7 +11,15 @@
         <div class="col">
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb bg-white breadcrumb-right-arrow">
-              <li class="breadcrumb-item"><%= link_to "Mis archivos", files_path %></li>
+              <% if @shared_asset.asset.folder %>
+                <li class="breadcrumb-item"><%= link_to "Mis archivos", files_path %></li>
+                <% @shared_asset.asset.folder.ancestors.reverse.each do |folder| %>
+                  <li class="breadcrumb-item"><%= link_to folder.name, browse_path(folder) %></li>
+                <% end %>
+                <li class="breadcrumb-item"><%= link_to @shared_asset.asset.folder.name, browse_path(@shared_asset.asset.folder) %></li>
+              <% else %>
+                <li class="breadcrumb-item"><%= link_to "Mis archivos", files_path %></li>
+              <% end %>
               <li class="breadcrumb-item active" aria-current="page">Compartir archivo</li>
             </ol>
           </nav>
@@ -41,6 +49,7 @@
               <% end %>
             </div>
           </div>
+          <%= render 'back_link' %>
       </div>
 
     </div>
