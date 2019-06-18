@@ -21,7 +21,7 @@
           <div class="card">
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table">
+                <table class="table files">
                   <thead>
                     <tr>
                       <th scope="col"></th>
@@ -46,9 +46,6 @@
                               <i class="fas fa-ellipsis-h"></i>
                             </button>
                             <div class="dropdown-menu" aria-labelledby="fileDropdown">
-                              <%= link_to being_shared_asset, class: "dropdown-item", method: :delete, data: {confirm: '¿Deseas dejer de ser miembro de este archivo?'} do %>
-                                <i class="fas fa-trash mr-1"></i> Dejar de ser miembro
-                              <% end %>
                             </div>
                           </div>
                         </td>
