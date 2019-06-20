@@ -1,0 +1,76 @@
+<% provide(:title, "Miembros") %>
+
+<div id="wrapper">
+
+  <%= render 'shared/sidebar' %>
+
+  <div id="content-wrapper">
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb bg-white breadcrumb-right-arrow">
+              <% if @asset.folder %>
+                <li class="breadcrumb-item"><%= link_to "Mis archivos", files_path %></li>
+                <% @asset.folder.ancestors.reverse.each do |folder| %>
+                  <li class="breadcrumb-item"><%= link_to folder.name, browse_path(folder) %></li>
+                <% end %>
+                <li class="breadcrumb-item"><%= link_to @asset.folder.name, browse_path(@asset.folder) %></li>
+              <% else %>
+                <li class="breadcrumb-item"><%= link_to "Mis archivos", files_path %></li>
+              <% end %>
+              <li class="breadcrumb-item active" aria-current="page">Miembros</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="card">
+            <div class="card-header"><%= @asset.uploaded_file.filename %></div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table id="members" class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col"></th>
+                      <th scope="col">Nombre</th>
+                      <th scope="col">Apellidos</th>
+                      <th scope="col">Compartido el</th>
+                      <th scope="col"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% @members.each do |member| %>
+                      <tr>
+                        <th scope="row" class="align-middle"> <%= image_tag(member.shared_user.avatar.url, size: '40x40') %> </th>
+                        <td class="align-middle"><%=  member.shared_user.name %></td>
+                        <td class="align-middle"><%= member.shared_user.last_name %></td>
+                        <td class="align-middle"><%= l member.created_at.to_datetime, format: :short %></td>
+                        <td class="text-center align-middle">
+                          <%= link_to member, class: "btn btn-danger", method: :delete, data: {confirm: '¿Deseas dejar de compartir este archivo con este usuario?'} do %>
+                            <i class="fas fa-trash-alt mr-1"></i> Dejar de compartir
+                          <% end %>
+                        </td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <%= link_to @asset.folder ? browse_path(@asset.folder) : files_path, class: "btn btn-light mt-2" do %>
+            <i class="fas fa-arrow-left"></i> Atrás
+          <% end %>
+          <br>
+        </div>
+      </div>
+
+    </div>
+
+    <%= render 'shared/panel_footer' %>
+
+  </div>
+
+</div>

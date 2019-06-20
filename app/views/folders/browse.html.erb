@@ -117,7 +117,7 @@
                                 <i class="fas fa-share-alt mr-1"></i> Comparte
                               <% end %>
                               <% if asset.shared? %>
-                                <%= link_to "#", class: "dropdown-item" do %>
+                                <%= link_to members_path(asset), class: "dropdown-item" do %>
                                   <i class="fas fa-user mr-1"></i> Miembros
                                 <% end %>
                               <% end %>

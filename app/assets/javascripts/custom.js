@@ -22,4 +22,14 @@ $(document).on('turbolinks:load', function(){
     }
   });
 
+  $("#members").dataTable({
+    "order": [[ 1, "asc" ]],
+    "columnDefs": [
+      { "targets": [0,4], "orderable": false, "searchable": false}
+    ],
+    "language": {
+      "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+    }
+  });
+
 })

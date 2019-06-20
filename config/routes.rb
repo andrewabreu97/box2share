@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   get 'dashboard', to: 'panel#dashboard'
   get 'files', to: 'panel#files'
   get 'share/files', to: 'panel#share_files'
+  get 'shared_assets/:asset_id/members', to: "shared_assets#members", as: "members"
 
   post "stripe/webhook", to: "stripe_webhook#action"
 
@@ -30,5 +31,7 @@ Rails.application.routes.draw do
   resources :assets, except: [:index]
   resources :folders, except: [:index]
   resources :shared_assets, path_names: { new: 'new/:asset_id' }
+
+
 
 end

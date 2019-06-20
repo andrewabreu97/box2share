@@ -1,8 +1,10 @@
 class SharedAssetsController < ApplicationController
   before_action :authenticate_user!
-  before_action :require_existing_asset, only: [:new]
-  before_action :require_existing_shared_asset, only: [:show]
+  before_action :set_asset, only: [:new, :members]
+  before_action :set_shared_asset_by_token, only: [:show]
   before_action :require_valid_token, only: [:show]
+  before_action :set_shared_asset_by_id, only: [:destroy]
+  before_action :check_members, only: [:members]
 
   layout 'panel'
 
@@ -42,17 +44,36 @@ class SharedAssetsController < ApplicationController
   end
 
   def destroy
+    @asset = @shared_asset.asset
+    if @shared_asset.destroy
+      flash[:notice] = "Has dejado de compartir el archivo con este usuario."
+      if @asset.folder
+        redirect_to browse_path(@asset.folder)
+      else
+        redirect_to files_path
+      end
+    end
+  end
+
+  def members
+    @members = @asset.shared_assets
   end
 
   private
-    def require_existing_asset
+    def set_asset
       @asset = Asset.find(params[:asset_id])
     rescue
       redirect_to files_path, alert: "Este archivo no existe o ha sido eliminado."
     end
 
-    def require_existing_shared_asset
+    def set_shared_asset_by_token
       @shared_asset = SharedAsset.find_by(shared_asset_token: params[:id])
+    rescue
+      redirect_to files_path, alert: "Este archivo no existe o han dejado de compartirlo."
+    end
+
+    def set_shared_asset_by_id
+      @shared_asset = SharedAsset.find(params[:id])
     rescue
       redirect_to files_path, alert: "Este archivo no existe o han dejado de compartirlo."
     end
@@ -60,6 +81,12 @@ class SharedAssetsController < ApplicationController
     def require_valid_token
       unless (@shared_asset && @shared_asset.authenticated?("shared_asset", params[:id]))
         redirect_to root_path
+      end
+    end
+
+    def check_members
+      unless @asset.shared_assets.count > 0
+        redirect_to files_path, alert: "Necesitas haber compartido este archivo con al menos un usuario."
       end
     end
 
