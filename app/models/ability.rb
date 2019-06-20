@@ -32,13 +32,11 @@ class Ability
     # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
 
 
-    can [:show, :edit, :update, :destroy], Asset, user_id: user.id
+    can [:show, :edit, :update, :destroy, :share, :members], Asset, user_id: user.id
     can [:show, :new, :edit, :update, :destroy, :browse], Folder, user_id: user.id
     can [:show], SharedAsset, shared_user_id: user.id
 
-    can :share, Asset do |asset|
-        asset.user_id == user.id
-    end
+
 
     can :download, Asset do |asset|
       asset.user_id == user.id || asset.shared_assets.map(&:shared_user_id).include?(user.id)

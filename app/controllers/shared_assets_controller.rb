@@ -56,6 +56,7 @@ class SharedAssetsController < ApplicationController
   end
 
   def members
+    authorize! :members, @asset, message: "No puedes puedes ver los miembros de este archivo porque no es tuyo."
     @members = @asset.shared_assets
   end
 
