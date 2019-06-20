@@ -36,10 +36,9 @@ class Ability
     can [:show, :new, :edit, :update, :destroy, :browse], Folder, user_id: user.id
     can [:show], SharedAsset, shared_user_id: user.id
 
-
-
     can :download, Asset do |asset|
       asset.user_id == user.id || asset.shared_assets.map(&:shared_user_id).include?(user.id)
     end
+
   end
 end
