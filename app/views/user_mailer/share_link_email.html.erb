@@ -7,7 +7,7 @@
 <p>Usa la siguiente URL para acceder al archivo:</p>
 
 <p>
-  <%= link_to "Acceder al archivo", shared_asset_url(@shared_asset.shared_asset_token, email: @shared_asset.shared_email) %>
+  <%= link_to "Acceder al archivo", shared_asset_url(@shared_asset.shared_asset_token) %>
 </p>
 
 <% unless @shared_asset.message.blank? %>

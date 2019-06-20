@@ -36,7 +36,7 @@
                     <% @being_shared_assets.each do |being_shared_asset| %>
                       <tr>
                         <th scope="row" class="align-middle"> <%= image_tag(file_icon(being_shared_asset.asset.uploaded_file.filename.extension), size: '40x40') %> </th>
-                        <td class="align-middle"><%= link_to being_shared_asset.asset.uploaded_file.filename, shared_asset_url(being_shared_asset.shared_asset_token, email: being_shared_asset.shared_email) %></td>
+                        <td class="align-middle"><%= link_to being_shared_asset.asset.uploaded_file.filename, shared_asset_url(being_shared_asset.shared_asset_token) %></td>
                         <td class="align-middle"><%= l being_shared_asset.asset.uploaded_file.created_at.to_datetime, format: :short %></td>
                         <td class="align-middle"><%= number_to_human_size(being_shared_asset.asset.uploaded_file.byte_size) %></td>
                         <td class="align-middle"><span class="mr-3"><%= image_tag(being_shared_asset.user.avatar.url, size: '40x40') %></span><%= being_shared_asset.user.full_name %></td>
