@@ -40,15 +40,7 @@
                         <td class="align-middle"><%= l being_shared_asset.asset.uploaded_file.created_at.to_datetime, format: :short %></td>
                         <td class="align-middle"><%= number_to_human_size(being_shared_asset.asset.uploaded_file.byte_size) %></td>
                         <td class="align-middle"><span class="mr-3"><%= image_tag(being_shared_asset.user.avatar.url, size: '40x40') %></span><%= being_shared_asset.user.full_name %></td>
-                        <td class="text-center align-middle">
-                          <div class="dropdown">
-                            <button class="btn" href="#" id="fileDropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              <i class="fas fa-ellipsis-h"></i>
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="fileDropdown">
-                            </div>
-                          </div>
-                        </td>
+                        <td class="align-middle"></td>
                       </tr>
                     <% end %>
                   </tbody>
