@@ -7,6 +7,7 @@ class SharedAssetsController < ApplicationController
   layout 'panel'
 
   authorize_resource @shared_asset, only: [:show]
+  authorize_resource @asset, only: [:new]
 
   def show
   end
