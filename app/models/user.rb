@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   after_create :create_free_subscription
+  after_create :check_and_assign_shared_ids_to_shared_assets
 
   mount_uploader :avatar, AvatarUploader
 
@@ -16,6 +17,8 @@ class User < ApplicationRecord
   has_many :payments
   has_many :assets, dependent: :destroy
   has_many :folders, dependent: :destroy
+  has_many :shared_assets, dependent: :destroy
+  has_many :being_shared_assets, class_name: "SharedAsset", foreign_key: "shared_user_id", dependent: :destroy
 
   def free_subscription
     subscriptions.where(type: "FreeSubscription").first
@@ -73,6 +76,10 @@ class User < ApplicationRecord
     self.folders.count
   end
 
+  def shared_files_count
+    self.shared_assets.map(&:asset_id).uniq.count
+  end
+
   private
     def avatar_size
       if avatar.size > 5.megabytes
@@ -83,6 +90,16 @@ class User < ApplicationRecord
     def create_free_subscription
       self.subscriptions.create!(plan: Plan.free_plan.first, status: 0,
           type: 'FreeSubscription')
+    end
+
+    def check_and_assign_shared_ids_to_shared_assets
+      shared_assets_with_same_email = SharedAsset.where(shared_email: self.email)
+      if shared_assets_with_same_email
+        shared_assets_with_same_email.each do |shared_asset|
+          shared_asset.shared_user_id = self.id
+          shared_asset.save
+        end
+      end
     end
 
 end

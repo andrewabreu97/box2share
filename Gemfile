@@ -35,6 +35,7 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem "spring-commands-rspec"
+  gem 'rails-erd'
 end
 
 group :test do
@@ -78,4 +79,4 @@ gem 'active_link_to'
 gem 'cancancan'
 gem "aws-sdk-s3", require: false
 gem 'faker'
-
+gem 'bcrypt'

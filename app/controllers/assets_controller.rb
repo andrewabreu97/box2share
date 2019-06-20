@@ -83,6 +83,7 @@ class AssetsController < ApplicationController
   private
     def asset_create_params
       params.fetch(:asset,{}).permit(:uploaded_file, :folder_id)
+      #params.require(:asset).permit(:uploaded_file, :folder_id)
     end
 
     def asset_update_params

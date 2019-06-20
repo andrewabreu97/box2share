@@ -3,6 +3,8 @@ class Subscription < ApplicationRecord
   belongs_to :user
   belongs_to :plan
 
+  has_one :payment_line_item, as: :buyable
+
   validates_presence_of :type
 
   enum status: {active: 0, inactive: 1,

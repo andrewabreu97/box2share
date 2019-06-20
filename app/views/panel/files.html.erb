@@ -50,6 +50,7 @@
                       <th scope="col">Nombre</th>
                       <th scope="col">Fecha de subida</th>
                       <th scope="col">Tamaño</th>
+                      <th scope="col">Miembros</th>
                       <th scope="col"></th>
                     </tr>
                   </thead>
@@ -60,6 +61,7 @@
                         <td class="align-middle"> <%= link_to folder.name, browse_path(folder) %> </td>
                         <td class="align-middle"> <%= l folder.created_at.to_datetime, format: :short %> </td>
                         <td class="align-middle"> - </td>
+                        <td class="align-middle"> Solo tú </td>
                         <td class="text-center align-middle">
                           <div class="dropdown">
                             <button class="btn" href="#" id="folderDropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -72,8 +74,8 @@
                               <%= link_to rename_folder_path(folder), class: "dropdown-item" do %>
                                 <i class="fas fa-edit mr-1"></i> Renombrar
                               <% end %>
-                              <%= link_to "#", class: "dropdown-item" do %>
-                                <i class="fas fa-share-alt mr-1"></i> Compartir
+                              <%= link_to '#', class: "dropdown-item" do %>
+                                <i class="fas fa-share-alt mr-1"></i> Comparte
                               <% end %>
                               <%= link_to folder, class: "dropdown-item", method: :delete, data: {confirm: '¿Deseas eliminar esta carpeta y todo su contenido?'} do %>
                                 <i class="fas fa-trash-alt mr-1"></i> Eliminar
@@ -89,6 +91,13 @@
                         <td class="align-middle"><%= link_to asset.uploaded_file.filename, asset %></td>
                         <td class="align-middle"><%= l asset.uploaded_file.created_at.to_datetime, format: :short %></td>
                         <td class="align-middle"><%= number_to_human_size(asset.uploaded_file.byte_size) %></td>
+                        <td class="align-middle">
+                          <% if asset.shared? %>
+                            <%= asset.members_count %>
+                          <% else %>
+                            Solo tú
+                          <% end %>
+                        </td>
                         <td class="text-center align-middle">
                           <div class="dropdown">
                             <button class="btn" href="#" id="fileDropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -104,8 +113,13 @@
                               <%= link_to download_path(asset), class: "dropdown-item", method: "post" do %>
                                 <i class="fas fa-file-download mr-1"></i> Descargar
                               <% end %>
-                              <%= link_to "#", class: "dropdown-item" do %>
-                                <i class="fas fa-share-alt mr-1"></i> Compartir
+                              <%= link_to new_shared_asset_path(asset), class: "dropdown-item" do %>
+                                <i class="fas fa-share-alt mr-1"></i> Comparte
+                              <% end %>
+                              <% if asset.shared? %>
+                                <%= link_to members_path(asset), class: "dropdown-item" do %>
+                                  <i class="fas fa-user mr-1"></i> Miembros
+                                <% end %>
                               <% end %>
                               <%= link_to asset, class: "dropdown-item", method: :delete, data: {confirm: '¿Deseas eliminar este archivo?'} do %>
                                 <i class="fas fa-trash-alt mr-1"></i> Eliminar

@@ -1,0 +1,55 @@
+<% provide(:title, "Archivo compartido") %>
+
+<div id="wrapper">
+  <%= render 'shared/sidebar' %>
+  <div id="content-wrapper">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb bg-white breadcrumb-right-arrow">
+              <li class="breadcrumb-item"><%= link_to "Compartiendo conmigo", share_files_path %></li>
+              <li class="breadcrumb-item active" aria-current="page"><%= @shared_asset.asset.uploaded_file.filename %></li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-5 col-lg-6 col-xl-7 mx-auto">
+          <div class="card">
+            <div class="card-body">
+              <div class="row">
+                <div class="col align-self-center text-center">
+                  <% if  @shared_asset.asset.uploaded_file.variable? %>
+                    <%= image_tag @shared_asset.asset.uploaded_file.variant(resize: "250x250"), class: "img-thumbnail" %>
+                  <% elsif @shared_asset.asset.uploaded_file.previewable? %>
+                    <%= image_tag @shared_asset.asset.uploaded_file.preview(resize: "250x250"), class: "img-thumbnail" %>
+                  <% else %>
+                    <div>
+                      <span>No hay vista previa para este archivo.</span>
+                    </div>
+                  <% end %>
+                </div>
+                <div class="col">
+                  <%= render 'shared_asset_details', shared_asset: @shared_asset %>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer">
+              <% if can? :download, @shared_asset.asset %>
+                <%= link_to download_path(@shared_asset.asset), class: "btn btn-block btn-primary", method: "post" do %>
+                  <i class="fas fa-file-download mr-1"></i> Descargar
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+          <%= link_to share_files_path, class: "btn btn-light mt-2" do %>
+            <i class="fas fa-arrow-left"></i> Atrás
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

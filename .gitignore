@@ -40,4 +40,4 @@
 /public/uploads/*
 
 #Exclude resources directory
-#/public/resources/*
+/public/resources/*

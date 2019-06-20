@@ -5,7 +5,7 @@ $(document).on('turbolinks:load', function(){
   $("table.files").dataTable({
     "order": [[ 1, "asc" ]],
     "columnDefs": [
-      { "targets": [0,4], "orderable": false, "searchable": false}
+      { "targets": [0,5], "orderable": false, "searchable": false}
     ],
     "language": {
       "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
@@ -22,6 +22,7 @@ $(document).on('turbolinks:load', function(){
     }
   });
 
+
   $("#users").dataTable({
     "order": [[ 1, "asc" ]],
     "columnDefs": [
@@ -36,6 +37,16 @@ $(document).on('turbolinks:load', function(){
     "order": [[ 1, "asc" ]],
     "columnDefs": [
       { "targets": [0,8], "orderable": false, "searchable": false}
+    ],
+    "language": {
+      "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+    }
+  });
+
+  $("#members").dataTable({
+    "order": [[ 1, "asc" ]],
+    "columnDefs": [
+      { "targets": [0,4], "orderable": false, "searchable": false}
     ],
     "language": {
       "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"

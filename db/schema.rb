@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_06_184311) do
+ActiveRecord::Schema.define(version: 2019_06_20_101629) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 2019_06_06_184311) do
     t.string "buyable_type"
     t.integer "buyable_id"
     t.integer "price_cents", default: 0, null: false
-    t.string "price_currency", default: "USD", null: false
+    t.string "price_currency", default: "EUR", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["buyable_type", "buyable_id"], name: "index_payment_line_items_on_buyable_type_and_buyable_id"
@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(version: 2019_06_06_184311) do
   create_table "payments", force: :cascade do |t|
     t.integer "user_id"
     t.integer "price_cents", default: 0, null: false
-    t.string "price_currency", default: "USD", null: false
+    t.string "price_currency", default: "EUR", null: false
     t.integer "status"
     t.string "reference"
     t.string "payment_method"
@@ -84,7 +84,7 @@ ActiveRecord::Schema.define(version: 2019_06_06_184311) do
     t.string "remote_id"
     t.string "name"
     t.integer "price_cents", default: 0, null: false
-    t.string "price_currency", default: "USD", null: false
+    t.string "price_currency", default: "EUR", null: false
     t.integer "interval"
     t.integer "interval_count"
     t.integer "space_allowed"
@@ -93,6 +93,22 @@ ActiveRecord::Schema.define(version: 2019_06_06_184311) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "type"
+  end
+
+  create_table "shared_assets", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "shared_email"
+    t.integer "shared_user_id"
+    t.integer "asset_id"
+    t.string "message"
+    t.string "shared_asset_digest"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "shared_asset_token"
+    t.index ["asset_id"], name: "index_shared_assets_on_asset_id"
+    t.index ["shared_asset_token"], name: "index_shared_assets_on_shared_asset_token"
+    t.index ["shared_user_id"], name: "index_shared_assets_on_shared_user_id"
+    t.index ["user_id"], name: "index_shared_assets_on_user_id"
   end
 
   create_table "subscriptions", force: :cascade do |t|
@@ -131,7 +147,6 @@ ActiveRecord::Schema.define(version: 2019_06_06_184311) do
     t.string "card_brand"
     t.integer "downloaded_files_count", default: 0, null: false
     t.integer "uploaded_files_count", default: 0, null: false
-    t.integer "shared_files_count", default: 0, null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
