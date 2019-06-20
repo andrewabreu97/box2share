@@ -7,12 +7,12 @@ class SharedAssetsController < ApplicationController
   layout 'panel'
 
   authorize_resource @shared_asset, only: [:show]
-  authorize_resource @asset, only: [:new]
 
   def show
   end
 
   def new
+    authorize! :share, @asset, message: "No puedes compartir este archivo porque no es tuyo."
     @shared_asset = current_user.shared_assets.build
     if params[:asset_id]
       @shared_asset.asset_id = params[:asset_id]
