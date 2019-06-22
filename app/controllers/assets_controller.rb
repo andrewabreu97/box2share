@@ -1,7 +1,7 @@
 class AssetsController < ApplicationController
   before_action :authenticate_user!
-  before_action :require_existing_asset, only: [:show, :edit, :update, :destroy, :download]
-  before_action :require_existing_current_folder, only: [:new]
+  before_action :set_asset, only: [:show, :edit, :update, :destroy, :download]
+  before_action :set_current_folder, only: [:new]
 
   layout 'panel'
 
@@ -39,7 +39,7 @@ class AssetsController < ApplicationController
           render :new
         end
       else
-        flash[:alert] = "No tienes suficiente espacio de almacenamiento."
+        flash[:alert] = "No tienes suficiente espacio de almacenamiento en tu cuenta."
         render :new
       end
     end
@@ -83,23 +83,22 @@ class AssetsController < ApplicationController
   private
     def asset_create_params
       params.fetch(:asset,{}).permit(:uploaded_file, :folder_id)
-      #params.require(:asset).permit(:uploaded_file, :folder_id)
     end
 
     def asset_update_params
       params.fetch(:asset,{}).permit(:name)
     end
 
-    def require_existing_asset
+    def set_asset
       @asset = Asset.find(params[:id])
     rescue
-      redirect_to files_path, alert: "Este archivo no existe o ya ha sido eliminado."
+      redirect_to files_path, alert: "Este archivo no existe o ha sido eliminado."
     end
 
-    def require_existing_current_folder
+    def set_current_folder
       @current_folder = Folder.find(params[:id]) if params[:id]
     rescue
-      redirect_to files_path, alert: "Esta carpeta no existe o ya ha sido eliminada."
+      redirect_to files_path, alert: "Esta carpeta no existe o ha sido eliminada."
     end
 
 end

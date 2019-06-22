@@ -1,7 +1,7 @@
 class FoldersController < ApplicationController
   before_action :authenticate_user!
-  before_action :require_existing_folder, only: [:show, :edit, :update, :destroy, :browse]
-  before_action :require_existing_current_folder, only: [:new]
+  before_action :set_folder, only: [:show, :edit, :update, :destroy, :browse]
+  before_action :set_current_folder, only: [:new]
 
   layout 'panel'
 
@@ -52,12 +52,13 @@ class FoldersController < ApplicationController
   def destroy
     authorize! :destroy, @folder, message: "No tienes acceso a esta carpeta."
     @parent_folder = @folder.parent
-    @folder.destroy
-    flash[:notice] = "La carpeta y todo su contenido se han eliminado correctamente."
-    if @parent_folder
-      redirect_to browse_path(@parent_folder)
-    else
-      redirect_to files_path
+    if @folder.destroy
+      flash[:notice] = "La carpeta y todo su contenido se han eliminado correctamente."
+      if @parent_folder
+        redirect_to browse_path(@parent_folder)
+      else
+        redirect_to files_path
+      end
     end
   end
 
@@ -74,16 +75,16 @@ class FoldersController < ApplicationController
       params.require(:folder).permit(:name, :parent_id)
     end
 
-    def require_existing_folder
+    def set_folder
       @folder = Folder.find(params[:id])
     rescue
-      redirect_to files_path, alert: "Esta carpeta no existe o ya ha sido eliminada."
+      redirect_to files_path, alert: "Esta carpeta no existe o ha sido eliminada."
     end
 
-    def require_existing_current_folder
+    def set_current_folder
       @current_folder = Folder.find(params[:id]) if params[:id]
     rescue
-      redirect_to files_path, alert: "Esta carpeta no existe o ya ha sido eliminada."
+      redirect_to files_path, alert: "Esta carpeta no existe o ha sido eliminada."
     end
 
 end
