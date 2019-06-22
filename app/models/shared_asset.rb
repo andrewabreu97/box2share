@@ -6,6 +6,7 @@ class SharedAsset < ApplicationRecord
   validates_uniqueness_of :shared_email, scope: [:asset_id, :user_id]
 
   validates_presence_of :shared_email
+  validates :shared_email, format: { with: /\A[^@\s]+@([^@.\s]+\.)+[^@.\s]+\z/ }
 
   before_create :create_shared_asset_digest
 
