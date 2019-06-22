@@ -14,36 +14,38 @@ class StripeWebhookController < ApplicationController
     end
   end
 
-  private def verify_event
-    Stripe::Event.retrieve(@event_data["id"])
-  rescue Stripe::InvalidRequestError => e
-    Rollbar.error(e)
-    nil
-  end
+  private
 
-  private def workflow_class
-    event_type = @event_data["type"]
-    "StripeHandler::#{event_type.tr('.', '_').camelize}".constantize
-  rescue NameError
-    StripeHandler::NullHandler
-  end
-
-  private def check_signature
-    payload = request.body.read
-    signature_header = request.env['HTTP_STRIPE_SIGNATURE']
-    singing_key = Rails.application.credentials[Rails.env.to_sym][:stripe][:signing_key]
-    event = nil
-    begin
-      event = Stripe::Webhook.construct_event(
-        payload, signature_header, singing_key
-      )
-    rescue JSON::ParserError => e
+    def verify_event
+      Stripe::Event.retrieve(@event_data["id"])
+    rescue Stripe::InvalidRequestError => e
       Rollbar.error(e)
-      head :bad_request
-    rescue Stripe::SignatureVerificationError => e
-      Rollbar.error(e)
-      head :bad_request
+      nil
     end
-  end
+
+    def workflow_class
+      event_type = @event_data["type"]
+      "StripeHandler::#{event_type.tr('.', '_').camelize}".constantize
+    rescue NameError
+      StripeHandler::NullHandler
+    end
+
+    def check_signature
+      payload = request.body.read
+      signature_header = request.env['HTTP_STRIPE_SIGNATURE']
+      singing_key = Rails.application.credentials[Rails.env.to_sym][:stripe][:signing_key]
+      event = nil
+      begin
+        event = Stripe::Webhook.construct_event(
+          payload, signature_header, singing_key
+        )
+      rescue JSON::ParserError => e
+        Rollbar.error(e)
+        head :bad_request
+      rescue Stripe::SignatureVerificationError => e
+        Rollbar.error(e)
+        head :bad_request
+      end
+    end
 
 end

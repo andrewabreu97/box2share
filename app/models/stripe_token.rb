@@ -22,16 +22,6 @@ class StripeToken
     stripe_token || token.id
   end
 
-  private def retrieve_token
-    Stripe::Token.retrieve(stripe_token)
-  end
-
-  private def create_token
-    Stripe::Token.create(
-        card: {number: credit_card_number, exp_month: expiration_month,
-               exp_year: expiration_year, cvc: cvc})
-  end
-
   def to_s
     "STRIPE TOKEN: #{id}"
   end
@@ -39,5 +29,17 @@ class StripeToken
   def inspect
     "STRIPE TOKEN #{id}"
   end
+
+  private
+
+    def retrieve_token
+      Stripe::Token.retrieve(stripe_token)
+    end
+
+    def create_token
+      Stripe::Token.create(
+          card: {number: credit_card_number, exp_month: expiration_month,
+                 exp_year: expiration_year, cvc: cvc})
+    end
 
 end

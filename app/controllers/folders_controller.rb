@@ -71,6 +71,7 @@ class FoldersController < ApplicationController
   end
 
   private
+
     def folder_params
       params.require(:folder).permit(:name, :parent_id)
     end

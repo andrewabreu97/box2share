@@ -26,10 +26,6 @@ class User < ApplicationRecord
     subscriptions.where(type: "FreeSubscription").first
   end
 
-  def paid_subscription
-    subscriptions.where(type: "PaidSubscription").last
-  end
-
   def current_subscription
     subscriptions.where(status: "active").last
   end
@@ -83,6 +79,7 @@ class User < ApplicationRecord
   end
 
   private
+
     def avatar_size
       if avatar.size > 5.megabytes
         errors.add(:avatar, "debería ser menor de 5 megabytes")

@@ -61,6 +61,7 @@ class SharedAssetsController < ApplicationController
   end
 
   private
+
     def set_asset
       @asset = Asset.find(params[:asset_id])
     rescue

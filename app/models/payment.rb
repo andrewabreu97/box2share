@@ -1,5 +1,4 @@
 class Payment < ApplicationRecord
-
   include HasReference
 
   belongs_to :user, optional: true

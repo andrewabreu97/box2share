@@ -1,5 +1,5 @@
 class Admin::UsersController < Admin::ApplicationController
-  before_action :require_existing_user, only: [:show, :destroy, :statistics]
+  before_action :set_user, only: [:show, :destroy, :statistics]
 
   def index
     @users = User.where(admin: false)
@@ -22,7 +22,8 @@ class Admin::UsersController < Admin::ApplicationController
   end
 
   private
-    def require_existing_user
+
+    def set_user
       @user = User.find(params[:id] || params[:user_id])
     rescue
       redirect_to admin_users_path, alert: "Este usuario no existe o ya ha sido eliminado."
