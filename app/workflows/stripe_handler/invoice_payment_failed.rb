@@ -17,9 +17,11 @@ module StripeHandler
           user.free_subscription.active!
           payment.update_attributes(status: "failed", full_response: charge.to_json)
         else
+
           subscription.inactive!
           user.free_subscription.active!
           payment = Payment.create!(
+
               user_id: user.id, price_cents: invoice.amount_paid,
               status: "failed", reference: Payment.generate_reference,
               payment_method: "stripe", response_id: invoice.id,
@@ -27,6 +29,7 @@ module StripeHandler
           payment.payment_line_items.create!(
               buyable: subscription, price_cents: invoice.amount_paid)
         end
+
         SubscriptionMailer.failed_payment_intent(user, subscription, invoice).deliver_now
         @success = true
       end

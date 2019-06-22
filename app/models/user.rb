@@ -19,6 +19,8 @@ class User < ApplicationRecord
   has_many :folders, dependent: :destroy
   has_many :shared_assets, dependent: :destroy
   has_many :being_shared_assets, class_name: "SharedAsset", foreign_key: "shared_user_id", dependent: :destroy
+  has_many :shared_assets_by_others, :through => :being_shared_assets, :source => :asset
+  has_many :shared_assets_with_others, -> { distinct }, through: :shared_assets, source: :asset, dependent: :destroy
 
   def free_subscription
     subscriptions.where(type: "FreeSubscription").first
@@ -77,7 +79,7 @@ class User < ApplicationRecord
   end
 
   def shared_files_count
-    self.shared_assets.map(&:asset_id).uniq.count
+    self.shared_assets_with_others.count
   end
 
   private
