@@ -31,6 +31,7 @@ es:
             shared_email:
               blank: "Debes introducir una dirección de correo electrónico"
               taken: "Ya has compartido este archivo a esta dirección de correo electrónico"
+              invalid: "La dirección de correo electrónico no es válida"
   date:
     abbr_day_names:
     - dom
