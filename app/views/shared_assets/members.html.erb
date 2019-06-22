@@ -35,7 +35,7 @@
                   <thead>
                     <tr>
                       <th scope="col"></th>
-                      <th scope="col">Nombre</th>
+                      <th scope="col">Nombre/Email</th>
                       <th scope="col">Apellidos</th>
                       <th scope="col">Compartido el</th>
                       <th scope="col"></th>
@@ -43,17 +43,31 @@
                   </thead>
                   <tbody>
                     <% @members.each do |member| %>
-                      <tr>
-                        <th scope="row" class="align-middle"> <%= image_tag(member.shared_user.avatar.url, size: '40x40') %> </th>
-                        <td class="align-middle"><%=  member.shared_user.name %></td>
-                        <td class="align-middle"><%= member.shared_user.last_name %></td>
-                        <td class="align-middle"><%= l member.created_at.to_datetime, format: :short %></td>
-                        <td class="text-center align-middle">
-                          <%= link_to member, class: "btn btn-danger", method: :delete, data: {confirm: '¿Deseas dejar de compartir este archivo con este usuario?'} do %>
-                            <i class="fas fa-trash-alt mr-1"></i> Dejar de compartir
-                          <% end %>
-                        </td>
-                      </tr>
+                      <% if member.shared_user.nil? %>
+                        <tr>
+                          <th scope="row" class="align-middle"></th>
+                          <td class="align-middle"> <%= member.shared_email %> </td>
+                          <td class="align-middle"> - </td>
+                          <td class="align-middle"><%= l member.created_at.to_datetime, format: :short %></td>
+                          <td class="text-center align-middle">
+                            <%= link_to member, class: "btn btn-danger", method: :delete, data: {confirm: '¿Deseas dejar de compartir este archivo con este usuario?'} do %>
+                              <i class="fas fa-trash-alt mr-1"></i> Dejar de compartir
+                            <% end %>
+                          </td>
+                        </tr>
+                      <% else %>
+                        <tr>
+                          <th scope="row" class="align-middle"> <%= image_tag(member.shared_user.avatar.url, size: '40x40') %> </th>
+                          <td class="align-middle"><%=  member.shared_user.name %></td>
+                          <td class="align-middle"><%= member.shared_user.last_name %></td>
+                          <td class="align-middle"><%= l member.created_at.to_datetime, format: :short %></td>
+                          <td class="text-center align-middle">
+                            <%= link_to member, class: "btn btn-danger", method: :delete, data: {confirm: '¿Deseas dejar de compartir este archivo con este usuario?'} do %>
+                              <i class="fas fa-trash-alt mr-1"></i> Dejar de compartir
+                            <% end %>
+                          </td>
+                        </tr>
+                      <% end %>
                     <% end %>
                   </tbody>
                 </table>
