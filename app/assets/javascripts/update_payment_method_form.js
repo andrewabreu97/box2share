@@ -34,7 +34,7 @@ $(document).on('turbolinks:load', function(){
   var card = elements.create('card', { style: style, hidePostalCode: true });
 
   // Add an instance of the card Element into the `card-element` <div>.
-  card.mount('#card-element-two');
+  card.mount('#card-element');
 
   // Handle real-time validation errors from the card Element.
   card.on('change', function (event) {

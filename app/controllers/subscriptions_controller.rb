@@ -23,7 +23,7 @@ class SubscriptionsController < ApplicationController
 
   def update
     workflow = ChangesStripeSubscriptionPlan.new(
-        subscription_id: current_user.paid_subscription.id,
+        subscription_id: current_user.current_subscription.id,
         user: current_user,
         new_plan_id: params[:new_plan_id])
     workflow.run
