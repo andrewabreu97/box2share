@@ -62,18 +62,22 @@
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb bg-white breadcrumb-right-arrow">
               <li class="breadcrumb-item"><%= link_to "Mis archivos", files_path %></li>
+              <% if @asset.folder %>
+                <li class="breadcrumb-item"><%= link_to @asset.folder.name, browse_path(@asset.folder) %></li>
+              <% end %>
               <li class="breadcrumb-item active" aria-current="page">Detalles de archivo</li>
             </ol>
           </nav>
         </div>
       </div>
       <div class="row">
-        <div class="col-md-6 col-lg-7 col-xl-8 mx-auto">
+        <div class="col-md-7 col-lg-8 col-xl-9 mx-auto">
           <div class="card">
+            <div class="card-header"><%= @asset.uploaded_file.filename %></div>
             <div class="card-body">
               <div class="row">
                 <div class="col align-self-center text-center">
-                  <% if  @asset.uploaded_file.variable? %>
+                  <% if @asset.uploaded_file.variable? %>
                     <%= image_tag @asset.uploaded_file.variant(resize: "250x250"), class: "img-thumbnail" %>
                   <% elsif @asset.uploaded_file.previewable? %>
                     <%= image_tag @asset.uploaded_file.preview(resize: "250x250"), class: "img-thumbnail" %>

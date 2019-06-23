@@ -62,6 +62,9 @@
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb bg-white breadcrumb-right-arrow">
               <li class="breadcrumb-item"><%= link_to "Mis archivos", files_path %></li>
+              <% if @asset.folder %>
+                <li class="breadcrumb-item"><%= link_to @asset.folder.name, browse_path(@asset.folder) %></li>
+              <% end %>
               <li class="breadcrumb-item active" aria-current="page">Renombrar archivo</li>
             </ol>
           </nav>
@@ -70,6 +73,7 @@
       <div class="row">
         <div class="col-md-6 col-lg-7 col-xl-8 mx-auto">
           <div class="card">
+            <div class="card-header">Renombrar archivo</div>
             <div class="card-body">
               <%= render 'form', asset: @asset %>
             </div>
