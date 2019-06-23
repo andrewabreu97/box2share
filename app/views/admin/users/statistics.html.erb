@@ -131,90 +131,13 @@
       <br>
       <div class="row">
         <div class="col-md-5 col-lg-6 col-xl-7 mx-auto">
-          <div class="card">
-            <div class="card-header">Estadísticas del usuario</div>
-            <div class="card-body">
-              <div class="row">
-                <div class="col">
-                  <h6>Archivos subidos</h6>
-                  <div>
-                    <%= @user.uploaded_files_count %>
-                  </div>
-                </div>
-              </div>
-              <hr>
-              <div class="row">
-                <div class="col">
-                  <h6>Archivos descargados</h6>
-                  <div>
-                    <%= @user.downloaded_files_count %>
-                  </div>
-                </div>
-              </div>
-              <hr>
-              <div class="row">
-                <div class="col">
-                  <h6>Archivos compartidos</h6>
-                  <div>
-                    <%= @user.shared_files_count %>
-                  </div>
-                </div>
-              </div>
-              <hr>
-              <div class="row">
-                <div class="col">
-                  <h6>Archivos</h6>
-                  <div>
-                    <%= @user.files_count %>
-                  </div>
-                </div>
-              </div>
-              <hr>
-              <div class="row">
-                <div class="col">
-                  <h6>Carpetas</h6>
-                  <div>
-                    <%= @user.folders_count %>
-                  </div>
-                </div>
-              </div>
-              <hr>
-              <div class="row">
-                <div class="col">
-                  <h6>Espacio de almacenamiento usado</h6>
-                  <div>
-                    <%= number_to_human_size(@user.used_storage_space) %>
-                  </div>
-                </div>
-              </div>
-              <hr>
-              <div class="row">
-                <div class="col">
-                  <h6>Espacio de almacenamiento disponible</h6>
-                  <div>
-                    <%= number_to_human_size(@user.available_storage_space) %>
-                  </div>
-                </div>
-              </div>
-              <hr>
-              <div class="row">
-                <div class="col">
-                  <h6>Espacio de almacenamiento total</h6>
-                  <div>
-                    <%= number_to_human_size(@user.total_storage_space) %>
-                  </div>
-                </div>
-              </div>
-              <hr>
-            </div>
-            <div class="card-footer"></div>
-          </div>
+          <%= render "user_statistics", user: @user %>
           <%= link_to :back, class: "btn btn-light mt-2" do %>
             <i class="fas fa-arrow-left"></i> Atrás
           <% end %>
         </div>
       </div>
-
+      <br>
     </div>
 
     <%= render 'shared/panel_footer' %>

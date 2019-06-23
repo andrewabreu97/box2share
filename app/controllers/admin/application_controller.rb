@@ -1,6 +1,8 @@
 class Admin::ApplicationController < ApplicationController
   before_action :authorize_admin
 
+  layout 'panel'
+
   private
 
     def authorize_admin
