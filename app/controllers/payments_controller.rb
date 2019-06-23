@@ -7,9 +7,4 @@ class PaymentsController < ApplicationController
     @payments = current_user.payments
   end
 
-  def show
-    @reference = params[:id]
-    @payment = Payment.find_by(reference: @reference)
-  end
-
 end
