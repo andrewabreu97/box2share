@@ -2,7 +2,58 @@
 
 <div id="wrapper">
 
-  <%= render 'shared/sidebar' %>
+  <ul class="sidebar navbar-nav">
+    <li class="nav-item">
+      <%= link_to dashboard_path, class: "nav-link" do %>
+        <i class="fas fa-fw fa-tachometer-alt"></i>
+        <span>Panel de control</span>
+      <% end %>
+    </li>
+    <li class="nav-item">
+      <%= link_to files_path, class: "nav-link active" do %>
+        <i class="fas fa-fw fa-folder-open"></i>
+        <span>Mis archivos</span>
+      <% end %>
+    </li>
+    <li class="nav-item">
+      <%= link_to share_files_path, class: "nav-link" do %>
+        <i class="fas fa-fw fa-share-alt"></i>
+        <span>Compartiendo conmigo</span>
+      <% end %>
+    </li>
+    <li class="nav-item">
+      <%= link_to plan_path, class: "nav-link" do %>
+        <i class="fas fa-fw fa-calendar"></i>
+        <span>Mi plan</span>
+      <% end %>
+    </li>
+    <li class="nav-item">
+      <%= link_to payments_path, class: "nav-link" do %>
+        <i class="fas fa-fw fa-file-invoice"></i>
+        <span>Historial de pagos</span>
+      <% end %>
+    </li>
+    <% if current_user.admin? %>
+      <li class="nav-item">
+        <%= link_to "#", class: "nav-link" do %>
+          <i class="fas fa-fw fa-chart-bar"></i>
+          <span>Estadísticas del servicio</span>
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to admin_users_path, class: "nav-link" do %>
+          <i class="fas fa-fw fa-users"></i>
+          <span>Usuarios</span>
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to admin_payments_path, class: "nav-link active" do %>
+          <i class="fas fa-fw fa-file-invoice"></i>
+          <span>Historial de pagos del servicio</span>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
 
   <div id="content-wrapper">
     <div class="container-fluid">
