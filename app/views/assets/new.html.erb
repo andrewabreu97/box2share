@@ -62,6 +62,9 @@
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb bg-white breadcrumb-right-arrow">
               <li class="breadcrumb-item"><%= link_to "Mis archivos", files_path %></li>
+              <% if @current_folder %>
+                <li class="breadcrumb-item"><%= link_to @current_folder.name, browse_path(@current_folder) %></li>
+              <% end %>
               <li class="breadcrumb-item active" aria-current="page">Subir archivo</li>
             </ol>
           </nav>
