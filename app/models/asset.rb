@@ -9,6 +9,8 @@ class Asset < ApplicationRecord
   validates_presence_of :name
   validates_uniqueness_of :name, scope: [:folder_id, :user_id]
 
+  before_destroy :delete_uploaded_file
+
   def shared?
     !self.shared_assets.empty?
   end
@@ -16,5 +18,10 @@ class Asset < ApplicationRecord
   def members_count
     self.shared_assets.count
   end
+
+  private
+    def delete_uploaded_file
+      self.uploaded_file.purge
+    end
 
 end

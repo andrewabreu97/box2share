@@ -63,12 +63,13 @@ class AssetsController < ApplicationController
   def destroy
     authorize! :destroy, @asset, message: "No tienes acceso a este archivo."
     @parent_folder = @asset.folder
-    @asset.destroy
-    flash[:notice] = 'El archivo se ha eliminado correctamente.'
-    if @parent_folder
-      redirect_to browse_path(@parent_folder)
-    else
-      redirect_to files_path
+    if @asset.destroy
+      flash[:notice] = 'El archivo se ha eliminado correctamente.'
+      if @parent_folder
+        redirect_to browse_path(@parent_folder)
+      else
+        redirect_to files_path
+      end
     end
   end
 
