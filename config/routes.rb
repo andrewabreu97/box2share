@@ -6,7 +6,6 @@ Rails.application.routes.draw do
     root 'panel#dashboard'
   end
 
-
   unauthenticated :user do
     root 'static_pages#home'
   end
@@ -30,16 +29,11 @@ Rails.application.routes.draw do
 
   resource :payment_method, only: [:edit, :update]
 
-
-
   resources :assets, except: [:index]
   resources :folders, except: [:index]
   resources :shared_assets, path_names: { new: 'new/:asset_id' }
 
-
-
   namespace :admin do
-    get "service_statistics", to: "panel#service_statistics"
     resources :users do
       get 'statistics', to: "users#statistics"
     end
