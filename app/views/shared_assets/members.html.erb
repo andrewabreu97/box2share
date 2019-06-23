@@ -62,14 +62,9 @@
         <div class="col">
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb bg-white breadcrumb-right-arrow">
+              <li class="breadcrumb-item"><%= link_to "Mis archivos", files_path %></li>
               <% if @asset.folder %>
-                <li class="breadcrumb-item"><%= link_to "Mis archivos", files_path %></li>
-                <% @asset.folder.ancestors.reverse.each do |folder| %>
-                  <li class="breadcrumb-item"><%= link_to folder.name, browse_path(folder) %></li>
-                <% end %>
                 <li class="breadcrumb-item"><%= link_to @asset.folder.name, browse_path(@asset.folder) %></li>
-              <% else %>
-                <li class="breadcrumb-item"><%= link_to "Mis archivos", files_path %></li>
               <% end %>
               <li class="breadcrumb-item active" aria-current="page">Miembros</li>
             </ol>
