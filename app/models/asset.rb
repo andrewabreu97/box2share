@@ -1,7 +1,7 @@
 class Asset < ApplicationRecord
   belongs_to :user
   belongs_to :folder, optional: true
-  has_many :shared_assets
+  has_many :shared_assets, dependent: :destroy
 
   has_one_attached :uploaded_file
 
