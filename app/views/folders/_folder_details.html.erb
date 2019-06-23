@@ -1,0 +1,33 @@
+<div class="card">
+  <div class="card-header">
+    Detalles de la carpeta
+  </div>
+  <div class="card-body">
+    <ul class="list-unstyled"
+      <li class="mt-2 mb-2">
+        <span class="h6">Dueño:</span>
+        <span class="float-right"><%= @folder.user.full_name %></span>
+      </li>
+      <li class="mt-2 mb-2">
+        <span class="h6">Fecha de subida:</span>
+        <span class="float-right"><%= l @folder.created_at.to_datetime, format: :short %></span>
+      </li>
+      <li class="mt-2 mb-2">
+        <span class="h6">Ultima modificación:</span>
+        <span class="float-right"><%= l @folder.updated_at.to_datetime, format: :short %></span>
+      </li>
+      <li class="mt-2 mb-2">
+        <span class="h6">Tamaño:</span>
+        <span class="float-right">-</span>
+      </li>
+      <li class="mt-2 mb-2">
+        <span class="h6">Tipo:</span>
+        <span class="float-right">Carpeta</span>
+      </li>
+      <li class="mt-2 mb-2">
+        <span class="h6">Número de archivos:</span>
+        <span class="float-right"><%= @folder.files_and_subfolders_count %></span>
+      </li>
+    </ul>
+  </div>
+</div>

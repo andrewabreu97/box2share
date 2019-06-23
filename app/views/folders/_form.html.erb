@@ -1,0 +1,22 @@
+<%= form_for @folder do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <% if @folder.new_record? %>
+    <div class="form-group">
+      <%= f.label :name, "Nombre de la carpeta" %>
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+    <%= f.hidden_field :parent_id %>
+    <div class="form-group">
+      <%= f.submit "Crear carpeta", class: "btn btn-block btn-primary" %>
+    </div>
+  <% else %>
+    <div class="form-group">
+      <%= f.label :name, "Nombre de la carpeta" %>
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+    <%= f.hidden_field :parent_id %>
+    <div class="form-group">
+      <%= f.submit "Renombrar carpeta", class: "btn btn-block btn-primary" %>
+    </div>
+  <% end %>
+<% end %>
