@@ -8,6 +8,8 @@ class SharedAsset < ApplicationRecord
   validates_presence_of :shared_email
   validates :shared_email, format: { with: /\A[^@\s]+@([^@.\s]+\.)+[^@.\s]+\z/ }
 
+  validate :check_not_to_share_with_my_self
+
   before_create :create_shared_asset_digest
 
   has_secure_password validations: false
@@ -32,6 +34,10 @@ class SharedAsset < ApplicationRecord
     def create_shared_asset_digest
       self.shared_asset_token = SharedAsset.new_token
       self.shared_asset_digest = SharedAsset.digest(shared_asset_token)
+    end
+
+    def check_not_to_share_with_my_self
+      errors.add(:shared_email, "No puedes compartir este archivo contigo mismo") if user.email == shared_email
     end
 
 end
