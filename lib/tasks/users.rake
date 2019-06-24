@@ -9,7 +9,7 @@ namespace :users do
     create_plans
     create_admin_user
     create_users_with_free_subscriptions
-    #create_users_with_paid_subscriptions
+    create_users_with_paid_subscriptions
   end
 
   task destroy: :environment do
@@ -212,12 +212,12 @@ namespace :users do
   end
 
   def create_folders(user)
-    5.times do |n|
-      folder = user.folders.create!(name: "Carpeta #{n+1}")
-      assets = Dir["#{Rails.root}/public/resources/*"]
-      assets.each do |asset|
-        create_assets(asset, user, folder)
-      end
+    ["Documentos", "Imágenes", "Música", "Vídeos"].each do |folder_name|
+      folder = user.folders.create!(name: folder_name)
+      # assets = Dir["#{Rails.root}/public/resources/*"]
+      # assets.each do |asset|
+      #   create_assets(asset, user, folder)
+      # end
     end
   end
 
