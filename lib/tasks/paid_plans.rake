@@ -3,16 +3,16 @@ namespace :paid_plans do
   task create: :environment do
     product = {id: "box2share", name: "Box2Share", type: "service"}
     plans = [
-        {remote_id: "standard_monthly", name: "Standard", price_cents: 600,
+        {remote_id: "standard_monthly", name: "Estándar", price_cents: 600,
           interval: "month", interval_count: 1, space_allowed: 2
         },
-        {remote_id: "professional_monthly", name: "Professional", price_cents: 1200,
+        {remote_id: "professional_monthly", name: "Profesional", price_cents: 1200,
           interval: "month", interval_count: 1, space_allowed: 3
         },
-        {remote_id: "standard_yearly", name: "Standard", price_cents: 7_200,
+        {remote_id: "standard_yearly", name: "Estándar", price_cents: 7_200,
           interval: "year", interval_count: 1, space_allowed: 2
         },
-        {remote_id: "professional_yearly", name: "Professional", price_cents: 14_400,
+        {remote_id: "professional_yearly", name: "Profesional", price_cents: 14_400,
           interval: "year", interval_count: 1, space_allowed: 3
         }
       ]
@@ -28,16 +28,16 @@ namespace :paid_plans do
   task destroy: :environment do
     product = {id: "box2share", name: "Box2Share", type: "service"}
     plans = [
-        {remote_id: "standard_monthly", name: "Standard", price_cents: 600,
+        {remote_id: "standard_monthly", name: "Estándar", price_cents: 600,
           interval: "month", interval_count: 1, space_allowed: 2
         },
-        {remote_id: "professional_monthly", name: "Professional", price_cents: 1200,
+        {remote_id: "professional_monthly", name: "Profesional", price_cents: 1200,
           interval: "month", interval_count: 1, space_allowed: 3
         },
-        {remote_id: "standard_yearly", name: "Standard", price_cents: 7_200,
+        {remote_id: "standard_yearly", name: "Estándar", price_cents: 7_200,
           interval: "year", interval_count: 1, space_allowed: 2
         },
-        {remote_id: "professional_yearly", name: "Professional", price_cents: 14_400,
+        {remote_id: "professional_yearly", name: "Profesional", price_cents: 14_400,
           interval: "year", interval_count: 1, space_allowed: 3
         }
       ]

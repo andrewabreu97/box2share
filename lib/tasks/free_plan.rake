@@ -3,7 +3,7 @@ namespace :free_plan do
   desc "Create free plan"
   task create: :environment do
     plan = [
-      {name: 'Starter', space_allowed: 1}
+      {name: 'Básico', space_allowed: 1}
     ]
     Plan.transaction do
       plan.each { |plan_data| CreatesFreePlan.new(**plan_data).run }
