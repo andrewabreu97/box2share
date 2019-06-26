@@ -25,7 +25,7 @@
               <td class="align-middle"><%= l payment.created_at.to_datetime, format: :short %></td>
               <td class="align-middle"><%= humanized_money(payment.price) %> &euro;</td>
               <td class="align-middle"><%= payment.payment_method.capitalize %></td>
-              <td class="align-middle"><%= t(".status.#{payment.status}") %></td>
+              <td class="align-middle"><%= t("admin.payments.index.status.#{payment.status}") %></td>
               <td class="align-middle text-center">
                 <%= link_to receipt_url(payment), target: :_blank, class: "btn btn-info" do %>
                   <i class="fas fa-receipt"></i> Factura

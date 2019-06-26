@@ -275,3 +275,11 @@ es:
   unauthorized:
     show:
       shared_asset: "No tienes acceso a este archivo compartido."
+  admin:
+    payments:
+      index:
+        status:
+          created: "Creado"
+          succeeded: "Exitoso"
+          pending: "Pendiente"
+          failed: "Fallido"
