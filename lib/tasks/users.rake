@@ -44,13 +44,14 @@ namespace :users do
 
   def create_admin_user
     puts "Create admin user."
-    User.create!(name: "Usuario",
+    user = User.create!(name: "Usuario",
       last_name: "Administrador",
       email: "admin@box2share.com",
       password: "foobar",
       password_confirmation: "foobar",
       admin: true,
       confirmed_at: Time.zone.now)
+    create_folders(user)
   end
 
   def create_users_with_free_subscriptions
@@ -68,6 +69,7 @@ namespace :users do
         confirmed_at: Time.zone.now)
       user.remote_avatar_url = Faker::Avatar.image(email, "300x300", "png", "set1", "bg1")
       user.save!
+      create_folders(user)
     end
   end
 
