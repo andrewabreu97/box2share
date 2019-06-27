@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   get 'shared_assets/:asset_id/members', to: "shared_assets#members", as: "members"
   get 'terms', to: "static_pages#terms"
   get 'privacy_policy', to: "static_pages#privacy_policy"
+  get 'contact', to: "static_pages#contact"
 
   post "stripe/webhook", to: "stripe_webhook#action"
 

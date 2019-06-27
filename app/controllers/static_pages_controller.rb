@@ -9,4 +9,7 @@ class StaticPagesController < ApplicationController
   def terms
   end
 
+  def contact
+  end
+
 end
