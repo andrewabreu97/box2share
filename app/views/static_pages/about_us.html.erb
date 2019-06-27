@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row">
+    <div class="col mx-auto">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb bg-white breadcrumb-right-arrow">
+          <li class="breadcrumb-item"><%= link_to "Inicio", root_path %></li>
+          <li class="breadcrumb-item active" aria-current="page">Sobre nosotros</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="team-clean">
+        <div class="container">
+          <div class="intro">
+            <h2 class="text-center">Equipo</h2>
+            <p class="text-center">Desarrollo</p>
+          </div>
+          <div class="row people">
+            <div class="col-md-6 col-lg-4 item"><%= image_tag("default.png", class: "rounded-circle") %>
+              <h3 class="name">Andrew De Abreu Ruiz</h3>
+              <p class="title">Desarrollador</p>
+              <p class="description">
+                Estudiante del Grado en Ingeniería Informática de la <%= link_to "Universidad de Las Palmas de Gran Canaria", "https://www.ulpgc.es/node", target: "_blank" %>
+              </p>
+              <div class="social">
+                <%= link_to "https://github.com/andrewabreur", target: "_blank" do %>
+                <i class="fab fa-github"></i>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
